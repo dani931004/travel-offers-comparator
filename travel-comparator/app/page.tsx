@@ -39,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch('/data.json');
+        const response = await fetch('/travel-offers-comparator/data.json');
         const data = await response.json();
         setAllOffers(data);
       } catch (error) {
