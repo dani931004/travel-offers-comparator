@@ -89,63 +89,118 @@ export default function Home() {
   }, [allOffers, filters]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-2 sm:p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-2 sm:p-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 text-blue-900">✈️ Travel Offers Comparator</h1>
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+            🌟 Travel Offers Comparator
+          </h1>
+          <p className="text-white/90 text-sm sm:text-base font-medium">
+            Discover amazing deals from top Bulgarian travel agencies
+          </p>
+        </div>
 
-        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-6 sm:mb-8 border border-blue-100">
-          <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">🔍 Search & Filter Offers</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 mb-4">
-            <div className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-2">
+        <div className="bg-white/95 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-2xl mb-6 sm:mb-8 border border-white/20">
+          <div className="flex items-center mb-6">
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg mr-3">
+              <span className="text-white text-xl">🔍</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Search & Filter Offers</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 mb-6">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-2 relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Search Destinations & Titles</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Try 'Albania', 'New Year', 'Christmas'..."
+                  value={filters.search}
+                  onChange={handleFilterChange}
+                  className="w-full pl-12 pr-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500"
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-purple-500">
+                  🔍
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Min Price (€)</label>
+              <div className="relative">
+                <input
+                  type="number"
+                  name="min_price"
+                  placeholder="0"
+                  value={filters.min_price}
+                  onChange={handleFilterChange}
+                  className="w-full pl-8 pr-4 py-3 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-300 focus:border-green-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500"
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-500 font-bold">
+                  €
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Max Price (€)</label>
+              <div className="relative">
+                <input
+                  type="number"
+                  name="max_price"
+                  placeholder="5000"
+                  value={filters.max_price}
+                  onChange={handleFilterChange}
+                  className="w-full pl-8 pr-4 py-3 border-2 border-green-200 rounded-xl focus:ring-4 focus:ring-green-300 focus:border-green-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500"
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-500 font-bold">
+                  €
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Start Date</label>
               <input
-                type="text"
-                name="search"
-                placeholder="Search destinations or titles..."
-                value={filters.search}
+                type="date"
+                name="start_date"
+                value={filters.start_date}
                 onChange={handleFilterChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-300 focus:border-blue-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800"
               />
             </div>
-            <input
-              type="number"
-              name="min_price"
-              placeholder="Min Price (EUR)"
-              value={filters.min_price}
-              onChange={handleFilterChange}
-              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-            <input
-              type="number"
-              name="max_price"
-              placeholder="Max Price (EUR)"
-              value={filters.max_price}
-              onChange={handleFilterChange}
-              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-            <input
-              type="date"
-              name="start_date"
-              value={filters.start_date}
-              onChange={handleFilterChange}
-              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-            <input
-              type="date"
-              name="end_date"
-              value={filters.end_date}
-              onChange={handleFilterChange}
-              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-            <div className="text-sm sm:text-base text-gray-600 font-medium">
-              📊 Found <span className="text-blue-600 font-bold">{offers.length}</span> offers matching your criteria
+
+            <div className="relative">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">End Date</label>
+              <input
+                type="date"
+                name="end_date"
+                value={filters.end_date}
+                onChange={handleFilterChange}
+                className="w-full px-4 py-3 border-2 border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-300 focus:border-blue-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800"
+              />
             </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
+            <div className="flex items-center">
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg mr-3">
+                <span className="text-white">📊</span>
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-800">
+                  <span className="text-purple-600">{offers.length}</span> Amazing Offers Found
+                </div>
+                <div className="text-sm text-gray-600">From 3 top Bulgarian agencies</div>
+              </div>
+            </div>
+
             <button
               onClick={() => setViewMode(viewMode === 'grid' ? 'table' : 'grid')}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md font-medium"
+              className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white px-6 py-3 rounded-xl hover:from-purple-700 hover:via-pink-700 hover:to-red-700 transition-all shadow-lg font-bold transform hover:scale-105"
             >
-              🔄 Switch to {viewMode === 'grid' ? 'Table' : 'Grid'} View
+              🔄 {viewMode === 'grid' ? '📋 Table View' : '🎴 Grid View'}
             </button>
           </div>
         </div>
@@ -159,19 +214,19 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border-collapse">
+          <div className="overflow-x-auto bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/30">
+            <table className="min-w-full">
               <thead>
-                <tr className="bg-gray-100">
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Agency</th>
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Title</th>
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Destination</th>
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Price</th>
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Dates</th>
-                  <th className="px-4 py-3 border border-gray-300 text-left font-semibold text-gray-800">Link</th>
+                <tr className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white">
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base border-r border-white/20">🏢 Agency</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base border-r border-white/20">📝 Offer Details</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base border-r border-white/20">📍 Destination</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base border-r border-white/20">💰 Price</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base border-r border-white/20">📅 Travel Dates</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-bold text-sm sm:text-base">🔗 Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-gray-100">
                 {offers.map((offer) => (
                   <OfferRow key={offer.id} offer={offer} />
                 ))}
