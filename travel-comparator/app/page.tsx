@@ -85,7 +85,7 @@ export default function Home() {
       }
 
       return true;
-    });
+    }).sort((a, b) => a.price_eur - b.price_eur);
   }, [allOffers, filters]);
 
   return (
