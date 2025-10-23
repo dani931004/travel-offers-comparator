@@ -26,7 +26,7 @@ interface Offer {
 export default function Home() {
   const [allOffers, setAllOffers] = useState<Offer[]>([]);
   const [filters, setFilters] = useState({
-    destination: '',
+    search: '',
     min_price: '',
     max_price: '',
     start_date: '',
@@ -58,9 +58,14 @@ export default function Home() {
   // Filter offers client-side
   const offers = useMemo(() => {
     return allOffers.filter((offer) => {
-      // Destination filter (case-insensitive partial match)
-      if (filters.destination && !offer.destination.toLowerCase().includes(filters.destination.toLowerCase())) {
-        return false;
+      // Search filter (searches in both destination and title, case-insensitive)
+      if (filters.search) {
+        const searchTerm = filters.search.toLowerCase();
+        const destinationMatch = offer.destination.toLowerCase().includes(searchTerm);
+        const titleMatch = offer.title.toLowerCase().includes(searchTerm);
+        if (!destinationMatch && !titleMatch) {
+          return false;
+        }
       }
 
       // Price filters
@@ -84,64 +89,66 @@ export default function Home() {
   }, [allOffers, filters]);
 
   return (
-    <div className="min-h-screen bg-blue-50 p-4">
-      <h1 className="text-3xl font-bold text-center mb-8 text-blue-800">Travel Offers Comparator</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-2 sm:p-4">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 text-blue-900">✈️ Travel Offers Comparator</h1>
 
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md mb-8">
-        <h2 className="text-xl font-semibold mb-4">Filters</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <input
-            type="text"
-            name="destination"
-            placeholder="Destination (e.g., Albania)"
-            value={filters.destination}
-            onChange={handleFilterChange}
-            className="p-2 border rounded"
-          />
-          <input
-            type="number"
-            name="min_price"
-            placeholder="Min Price (EUR)"
-            value={filters.min_price}
-            onChange={handleFilterChange}
-            className="p-2 border rounded"
-          />
-          <input
-            type="number"
-            name="max_price"
-            placeholder="Max Price (EUR)"
-            value={filters.max_price}
-            onChange={handleFilterChange}
-            className="p-2 border rounded"
-          />
-          <input
-            type="date"
-            name="start_date"
-            value={filters.start_date}
-            onChange={handleFilterChange}
-            className="p-2 border rounded"
-          />
-          <input
-            type="date"
-            name="end_date"
-            value={filters.end_date}
-            onChange={handleFilterChange}
-            className="p-2 border rounded"
-          />
+        <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-6 sm:mb-8 border border-blue-100">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">🔍 Search & Filter Offers</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 mb-4">
+            <div className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-2">
+              <input
+                type="text"
+                name="search"
+                placeholder="Search destinations or titles..."
+                value={filters.search}
+                onChange={handleFilterChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              />
+            </div>
+            <input
+              type="number"
+              name="min_price"
+              placeholder="Min Price (EUR)"
+              value={filters.min_price}
+              onChange={handleFilterChange}
+              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+            <input
+              type="number"
+              name="max_price"
+              placeholder="Max Price (EUR)"
+              value={filters.max_price}
+              onChange={handleFilterChange}
+              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+            <input
+              type="date"
+              name="start_date"
+              value={filters.start_date}
+              onChange={handleFilterChange}
+              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+            <input
+              type="date"
+              name="end_date"
+              value={filters.end_date}
+              onChange={handleFilterChange}
+              className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div className="text-sm sm:text-base text-gray-600 font-medium">
+              📊 Found <span className="text-blue-600 font-bold">{offers.length}</span> offers matching your criteria
+            </div>
+            <button
+              onClick={() => setViewMode(viewMode === 'grid' ? 'table' : 'grid')}
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md font-medium"
+            >
+              🔄 Switch to {viewMode === 'grid' ? 'Table' : 'Grid'} View
+            </button>
+          </div>
         </div>
-        <div className="text-sm text-gray-600">
-          Found {offers.length} offers matching your criteria
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto mb-4">
-        <button
-          onClick={() => setViewMode(viewMode === 'grid' ? 'table' : 'grid')}
-          className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-        >
-          Switch to {viewMode === 'grid' ? 'Table' : 'Grid'} View
-        </button>
-      </div>
 
       <div className="max-w-6xl mx-auto">
         {offers.length === 0 && !loading && <p className="text-center">No offers found. Try adjusting filters.</p>}
@@ -172,6 +179,7 @@ export default function Home() {
             </table>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
