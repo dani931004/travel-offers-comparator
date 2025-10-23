@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import OfferCard from '../components/OfferCard';
 import OfferRow from '../components/OfferRow';
@@ -24,7 +24,7 @@ interface Offer {
 }
 
 export default function Home() {
-  const [offers, setOffers] = useState<Offer[]>([]);
+  const [allOffers, setAllOffers] = useState<Offer[]>([]);
   const [filters, setFilters] = useState({
     destination: '',
     min_price: '',
@@ -32,37 +32,56 @@ export default function Home() {
     start_date: '',
     end_date: '',
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
 
+  // Load data on component mount
   useEffect(() => {
-    searchOffers();
-  }, [filters]);
+    const loadData = async () => {
+      try {
+        const response = await fetch('/data.json');
+        const data = await response.json();
+        setAllOffers(data);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
-  const searchOffers = async () => {
-    setLoading(true);
-    const params = new URLSearchParams();
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) params.append(key, value);
-    });
-    try {
-      const res = await fetch(`/api/offers?${params}`);
-      if (!res.ok) {
-        throw new Error('Failed to fetch offers');
+  // Filter offers client-side
+  const offers = useMemo(() => {
+    return allOffers.filter((offer) => {
+      // Destination filter (case-insensitive partial match)
+      if (filters.destination && !offer.destination.toLowerCase().includes(filters.destination.toLowerCase())) {
+        return false;
       }
-      const data = await res.json();
-      setOffers(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Error fetching offers:', error);
-      setOffers([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      // Price filters
+      if (filters.min_price && offer.price_eur < parseFloat(filters.min_price)) {
+        return false;
+      }
+      if (filters.max_price && offer.price_eur > parseFloat(filters.max_price)) {
+        return false;
+      }
+
+      // Date filters
+      if (filters.start_date && offer.dates_start && offer.dates_start < filters.start_date) {
+        return false;
+      }
+      if (filters.end_date && offer.dates_end && offer.dates_end > filters.end_date) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [allOffers, filters]);
 
   return (
     <div className="min-h-screen bg-blue-50 p-4">
@@ -110,13 +129,9 @@ export default function Home() {
             className="p-2 border rounded"
           />
         </div>
-        <button
-          onClick={searchOffers}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          disabled={loading}
-        >
-          {loading ? 'Searching...' : 'Search Offers'}
-        </button>
+        <div className="text-sm text-gray-600">
+          Found {offers.length} offers matching your criteria
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto mb-4">
