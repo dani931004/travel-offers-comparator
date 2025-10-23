@@ -48,14 +48,14 @@ jobs:
         cd travel-comparator
         npm ci
 
+    - name: Copy data file
+      run: |
+        cp unified_offers.json travel-comparator/public/data.json
+
     - name: Build Next.js app
       run: |
         cd travel-comparator
         npm run build
-
-    - name: Copy data file
-      run: |
-        cp unified_offers.json travel-comparator/public/data.json
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
