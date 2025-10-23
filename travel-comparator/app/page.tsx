@@ -209,8 +209,8 @@ export default function Home() {
         {offers.length === 0 && !loading && <p className="text-center">No offers found. Try adjusting filters.</p>}
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {offers.map((offer) => (
-              <OfferCard key={offer.id} offer={offer} />
+            {offers.map((offer, index) => (
+              <OfferCard key={`${offer.id}-${index}`} offer={offer} />
             ))}
           </div>
         ) : (
@@ -227,8 +227,8 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {offers.map((offer) => (
-                  <OfferRow key={offer.id} offer={offer} />
+                {offers.map((offer, index) => (
+                  <OfferRow key={`${offer.id}-${index}`} offer={offer} />
                 ))}
               </tbody>
             </table>
