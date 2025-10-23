@@ -2,7 +2,7 @@ import json
 import sqlite3
 
 def create_db():
-    conn = sqlite3.connect('/home/dani/Desktop/Organizer/travel_offers.db')
+    conn = sqlite3.connect('travel_offers.db')
     cursor = conn.cursor()
 
     # Create table
@@ -28,7 +28,7 @@ def create_db():
     ''')
 
     # Load unified data
-    with open('/home/dani/Desktop/Organizer/unified_offers.json', 'r', encoding='utf-8') as f:
+    with open('unified_offers.json', 'r', encoding='utf-8') as f:
         offers = json.load(f)
 
     # Insert data

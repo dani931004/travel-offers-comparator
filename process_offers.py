@@ -264,11 +264,11 @@ def process_files(file_paths):
 
 if __name__ == '__main__':
     files = [
-        '/home/dani/Desktop/Organizer/angel_travel_scrape.json',
-        '/home/dani/Desktop/Organizer/aratur.json',
-        '/home/dani/Desktop/Organizer/dari_tour_scraped.json'
+        'angel_travel_scrape.json',
+        'aratur.json',
+        'dari_tour_scraped.json'
     ]
     unified = process_files(files)
-    with open('/home/dani/Desktop/Organizer/unified_offers.json', 'w', encoding='utf-8') as f:
+    with open('unified_offers.json', 'w', encoding='utf-8') as f:
         json.dump(unified, f, ensure_ascii=False, indent=2)
     print(f"Processed {len(unified)} offers into unified_offers.json")
