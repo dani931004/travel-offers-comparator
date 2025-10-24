@@ -1,0 +1,66 @@
+
+==================================================
+DARI TOUR DATA ANALYSIS REPORT
+==================================================
+Total offers analyzed: 5
+
+📊 SUMMARY:
+  ✅ Valid dates: 5 (100.0%)
+  ✅ Valid prices: 5 (100.0%)
+  ✅ Valid destinations: 3 (60.0%)
+  ✅ Valid titles: 5 (100.0%)
+  ✅ Valid links: 5 (100.0%)
+
+🚨 ISSUES BY PRIORITY:
+
+🟡 MEDIUM: 2 offers with INVALID DESTINATIONS
+   Destinations not in known list
+   Indices: [2, 4]
+
+
+💡 RECOMMENDATIONS:
+1. Focus on fixing EMPTY DATES first - these are critical for the travel offers
+2. Then fix EMPTY PRICES - users need pricing information
+3. Finally address EMPTY DESTINATIONS - improves search/filtering
+4. Test fixes on a few examples before applying to all offers
+
+
+==================================================
+DETAILED BREAKDOWN BY OFFER
+==================================================
+
+Offer 0:
+  Title: празници, автобусни екскурзии и почивки в Сърбия
+  Link: https://dari-tour.com/ekskurzii-surbiya
+  Price: 689 лв
+  Dates: 02.12.2025 - 30.12.2025
+  Destination: Сърбия
+
+Offer 1:
+  Title: Почивки в Сингапур
+  Link: https://dari-tour.com/pochivki-singapur
+  Price: 5358.97 лв
+  Dates: 01.11.2025 - 21.03.2026
+  Destination: Сингапур
+
+Offer 2:
+  Title: Почивки в Кипър
+  Link: https://dari-tour.com/pochivki-kipur
+  Price: 968.14 лв
+  Dates: 28.12.2025
+  Destination: Кипър
+
+Offer 3:
+  Title: Екскурзии Патагония
+  Link: https://dari-tour.com/ekskurzii-patagoniya
+  Price: 9159 лв
+  Dates: 16.01.2026 - 13.02.2026
+  Destination: Китай
+
+Offer 4:
+  Title: Екскурзия остров Бали – 7 екскурзии включени в цената
+  Link: https://dari-tour.com/ekskurziya-ostrov-bali-7-ekskurzii-vklyucheni-v-tsenata
+  Price: 4478.85 лв
+  Dates: 20.02.2026 - 16.04.2026
+  Destination: Бали
+
