@@ -35,13 +35,33 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
 
+  // Utility function to calculate duration from dates
+  const calculateDuration = (startDate: string, endDate: string): number | null => {
+    if (!startDate || !endDate) return null;
+    
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return null;
+    
+    const diffTime = Math.abs(end.getTime() - start.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    return diffDays;
+  };
+
   // Load data on component mount
   useEffect(() => {
     const loadData = async () => {
       try {
         const response = await fetch('/travel-offers-comparator/data.json');
         const data = await response.json();
-        setAllOffers(data);
+        // Calculate duration for offers that don't have it
+        const processedData = data.map((offer: Offer) => ({
+          ...offer,
+          duration_days: offer.duration_days || calculateDuration(offer.dates_start, offer.dates_end)
+        }));
+        setAllOffers(processedData);
       } catch (error) {
         console.error('Error loading data:', error);
       } finally {
@@ -57,6 +77,17 @@ export default function Home() {
 
   // Filter offers client-side
   const offers = useMemo(() => {
+    // Only show offers if at least one filter is active
+    const hasActiveFilters = filters.search.trim() !== '' || 
+                           filters.min_price !== '' || 
+                           filters.max_price !== '' || 
+                           filters.start_date !== '' || 
+                           filters.end_date !== '';
+
+    if (!hasActiveFilters) {
+      return [];
+    }
+
     return allOffers.filter((offer) => {
       // Search filter (searches in both destination and title, case-insensitive)
       if (filters.search) {
@@ -190,9 +221,19 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-lg font-bold text-gray-800">
-                  <span className="text-purple-600">{offers.length}</span> Amazing Offers Found
+                  {offers.length > 0 ? (
+                    <>
+                      <span className="text-purple-600">{offers.length}</span> Amazing Offers Found
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-purple-600">{allOffers.length}</span> Offers Available
+                    </>
+                  )}
                 </div>
-                <div className="text-sm text-gray-600">From 3 top Bulgarian agencies</div>
+                <div className="text-sm text-gray-600">
+                  {offers.length > 0 ? 'From 3 top Bulgarian agencies' : 'Apply filters to see results'}
+                </div>
               </div>
             </div>
 
@@ -206,7 +247,13 @@ export default function Home() {
         </div>
 
       <div className="max-w-6xl mx-auto">
-        {offers.length === 0 && !loading && <p className="text-center">No offers found. Try adjusting filters.</p>}
+        {offers.length === 0 && !loading && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-bold text-gray-700 mb-2">Start Your Search</h3>
+            <p className="text-gray-500">Use the filters above to find amazing travel offers from top Bulgarian agencies</p>
+          </div>
+        )}
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {offers.map((offer, index) => (

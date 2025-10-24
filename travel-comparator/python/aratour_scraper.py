@@ -31,25 +31,13 @@ from urllib.parse import urljoin, urlparse, unquote
 
 @dataclass
 class AratourOffer:
-    """Data structure for Aratour offers with detailed information."""
+    """Data structure for Aratour offers with basic information."""
     title: str = ""
     link: str = ""
     price: str = ""
-    description: str = ""
-    destination: str = ""
     dates: str = ""  # Travel dates
-    duration: str = ""  # Duration in days
+    destination: str = ""
     scraped_at: str = field(default_factory=lambda: datetime.now().isoformat())
-
-    # Detailed fields extracted from individual offer pages
-    program_info: str = ""
-    price_includes: List[str] = field(default_factory=list)
-    price_excludes: List[str] = field(default_factory=list)
-    hotel_titles: List[str] = field(default_factory=list)
-    booking_conditions: str = ""
-
-    # Hotel options with prices
-    hotel_options: List[Dict[str, str]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert offer to dictionary for JSON serialization."""
@@ -58,15 +46,7 @@ class AratourOffer:
             'link': self.link,
             'price': self.price,
             'dates': self.dates,
-            'description': self.description,
             'destination': self.destination,
-            'duration': self.duration,
-            'program_info': self.program_info,
-            'price_includes': self.price_includes,
-            'price_excludes': self.price_excludes,
-            'hotel_titles': self.hotel_titles,
-            'booking_conditions': self.booking_conditions,
-            'hotel_options': self.hotel_options,
             'scraped_at': self.scraped_at
         }
 
@@ -156,9 +136,25 @@ class AratourScraper:
                 if full_url not in found_urls and full_url != self.BASE_URL:
                     found_urls.add(full_url)
 
+                    # Skip non-destination pages (partnerships, special offers, etc.)
+                    path_lower = urlparse(full_url).path.lower()
+                    skip_keywords = [
+                        'партньорство', 'partnership', 'абакс', 'abaks',
+                        'ранни-записвания', 'early-booking', 'коледа', 'christmas',
+                        'нова-година', 'new-year', 'великден', 'easter',
+                        'лято', 'summer', 'зима', 'winter', 'пролет', 'spring', 'есен', 'autumn',
+                        'уикенд', 'weekend', 'екзотични', 'exotic', 'круизи', 'cruises',
+                        'авторски', 'author', 'специални', 'special', 'промо', 'promo'
+                    ]
+                    
+                    should_skip = any(keyword in path_lower for keyword in skip_keywords)
+                    if should_skip:
+                        continue
+
                     # Extract destination name from URL or link text
                     path = urlparse(full_url).path
-                    name = path.split('/')[-1].replace('-', ' ').title()
+                    name = path.split('/')[-2] if len(path.split('/')) > 2 else path.split('/')[-1]
+                    name = name.replace('-', ' ').title()
 
                     # Try to get better name from link text
                     link_elem = soup.find('a', href=match)
@@ -190,7 +186,8 @@ class AratourScraper:
 
         # Extract destination name from URL
         path = urlparse(destination_url).path
-        destination_name = path.split('/')[-1].replace('-', ' ').title()
+        destination_name = path.split('/')[-2] if len(path.split('/')) > 2 else path.split('/')[-1]
+        destination_name = destination_name.replace('-', ' ').title()
 
         # Look for offer cards - Aratour uses different structures
         # Try multiple selectors for offer containers
@@ -500,11 +497,6 @@ class AratourScraper:
             if duration_match:
                 offer.duration = duration_match.group(0)
 
-            # Extract destination from URL or context
-            path = urlparse(offer.link).path
-            destination = path.split('/')[-2] if len(path.split('/')) > 2 else path.split('/')[-1]
-            offer.destination = destination.replace('-', ' ').title()
-
             # Extract description from remaining context
             description_parts = []
             lines = [line.strip() for line in context.split('\n') if line.strip()]
@@ -640,7 +632,8 @@ class AratourScraper:
                 "title": offer.title,
                 "link": offer.link,
                 "price": offer.price,
-                "dates": offer.dates
+                "dates": offer.dates,
+                "destination": offer.destination
             }
             for offer in self.scraped_offers
         ]
@@ -677,7 +670,7 @@ class AratourScraper:
 
     async def _extract_offer_details_with_html(self, offer: AratourOffer, html: str) -> None:
         """
-        Extract detailed information from HTML content.
+        Extract destination information from HTML content.
         """
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -685,547 +678,270 @@ class AratourScraper:
         for script in soup(["script", "style"]):
             script.decompose()
 
-        # Extract program information (day-by-day itinerary)
-        program_info = ""
+        # Extract destination from the offer page if not already set properly
+        known_destinations = [
+            'Турция', 'Гърция', 'Италия', 'Испания', 'Франция', 'Египет',
+            'Тунис', 'Мароко', 'България', 'Албания', 'Македония', 'Сърбия',
+            'Черна гора', 'Хърватия', 'Словения', 'Австрия', 'Швейцария',
+            'Чехия', 'Полша', 'Унгария', 'Румъния', 'Германия', 'Холандия',
+            'Белгия', 'Великобритания', 'Ирландия', 'Португалия', 'Йордания',
+            'Куба', 'Мексико', 'Доминикана', 'Ямайка', 'Тайланд', 'Виетнам',
+            'Япония', 'Китай', 'Индия', 'Индонезия', 'Малайзия', 'Сингапур',
+            'Южна Корея', 'Филипини', 'Австралия', 'Нова Зеландия', 'Канада',
+            'САЩ', 'Бразилия', 'Аржентина', 'Чили', 'Перу', 'Колумбия',
+            'Еквадор', 'Боливия', 'Уругвай', 'Парагвай', 'Малта'
+        ]
 
-        # Extract hotel information first (before checking programa content)
-        hotel_titles = []
+        should_extract_destination = (
+            not offer.destination or
+            offer.destination == "" or
+            offer.destination not in known_destinations or
+            any(skip_word in offer.destination.lower() for skip_word in [
+                'pochi', 'ekskurzi', 'tour', 'пътуван', 'пътешеств', 'vacation', 'trip',
+                'early', 'booking', 'ранни', 'записван', 'лято', 'зима', 'пролет', 'есен',
+                'all', 'inclusive', 'all-inclusive', 'всичко', 'включен', 'от', 'до', 'в',
+                'партньорство', 'partnership', 'абакс', 'abaks', 'коледа', 'christmas',
+                'нова-година', 'new-year', 'великден', 'easter', 'уикенд', 'weekend',
+                'екзотични', 'exotic', 'круизи', 'cruises', 'авторски', 'author',
+                'специални', 'special', 'промо', 'promo'
+            ])
+        )
 
-        # First try to find program in the tabbed content structure
-        programa_div = soup.find('div', class_='programa')
-        if programa_div:
-            # Extract hotel titles from programa div before checking content
-            hotel_links = programa_div.find_all('a', class_='hotel-item')
-            for link in hotel_links:
-                title_elem = link.find('h2', class_='title')
-                if title_elem:
-                    hotel_name = title_elem.get_text().strip()
-                    if hotel_name and hotel_name not in hotel_titles:
-                        hotel_titles.append(hotel_name)
+        if should_extract_destination:
+            # Try to extract from page title first
+            title_elem = soup.find('title')
+            if title_elem:
+                title_text = title_elem.get_text().strip()
+                # Look for destination patterns in title
+                destination_patterns = [
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+\d{4}\s*–',  # "Малта 2025 –"
+                    r'Aratour\s*-\s*([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
+                    r'Екскурзия\s+до\s+([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
+                    r'Почивка\s+в\s+([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s*-\s*Aratour',
+                ]
+                for pattern in destination_patterns:
+                    match = re.search(pattern, title_text, re.IGNORECASE)
+                    if match:
+                        extracted_dest = match.group(1).strip()
+                        if extracted_dest in known_destinations:
+                            offer.destination = extracted_dest
+                            return
 
-            # Get all text from the programa div
-            program_text = programa_div.get_text(separator='\n').strip()
-            # Skip if this is hotel selection content (not actual program)
-            if not program_text.startswith('Изберете хотели за резервация по програмата') and len(program_text) > 100:
-                program_info = program_text[:3000]
-
-        # If still no program info, look for program section with heading
-        if not program_info:
-            program_section = soup.find('div', string=re.compile(r'Програма по дни', re.IGNORECASE))
-            if program_section:
-                # Find the next div or section that contains the program
-                program_container = program_section.find_next(['div', 'section'])
-                if program_container:
-                    program_text = program_container.get_text().strip()
-                    if len(program_text) > 100:
-                        program_info = program_text[:3000]
-
-        # If still no program info, look for any content with "Ден 1", "Ден 2", etc.
-        if not program_info:
-            program_patterns = [
-                r'Ден\s+\d+.*?(?=В цената|$)',
-                r'Програма.*?(?=В цената|$)',
-            ]
-            for pattern in program_patterns:
-                match = re.search(pattern, html, re.DOTALL | re.IGNORECASE)
-                if match:
-                    program_info = match.group(0).strip()[:3000]
-                    break
-
-        # Final fallback: use meta description if it contains program information
-        if not program_info:
+            # If not found in title, try meta description
             meta_desc = soup.find('meta', attrs={'name': 'description'})
             if meta_desc and meta_desc.get('content'):
-                meta_content = meta_desc['content']
-                # Check if meta description mentions program or excursions
-                if any(word in meta_content.lower() for word in ['програма', 'екскурзии', 'екскурзия']):
-                    program_info = f"Програма според описанието: {meta_content}"[:3000]
+                desc_text = meta_desc['content']
+                for dest in known_destinations:
+                    if dest in desc_text:
+                        offer.destination = dest
+                        return
 
-        offer.program_info = program_info
+            # Final fallback: URL path
+            if not offer.destination:
+                path = urlparse(offer.link).path
+                path_parts = path.split('/')
+                for i, part in enumerate(path_parts):
+                    if part and len(part) > 2 and not part.isdigit():
+                        decoded_part = unquote(part).replace('-', ' ').strip()
+                        if decoded_part in known_destinations:
+                            offer.destination = decoded_part
+                            return
 
-        # Extract price includes
-        price_includes = []
+    async def fix_destination_extraction(self, offers: List[AratourOffer]) -> List[AratourOffer]:
+        """
+        Fix destination extraction for offers that have incorrect destinations.
+        Re-extracts destinations for offers with partnership or other invalid destinations.
+        """
+        fixed_offers = []
 
-        # Look for tabbed content structure first
-        tabs_container = soup.find('div', class_='resp-tabs-container')
-        if tabs_container:
-            tabs = tabs_container.find_all('div', recursive=False)
-            tab_names = ['Програма', 'Цената включва', 'Цената не включва', 'Други']
-            
-            # Find the "Цената включва" tab
-            for i, tab in enumerate(tabs):
-                if i < len(tab_names) and 'Цената включва' in tab_names[i]:
-                    # Extract items from this tab
-                    tab_text = tab.get_text(separator='\n').strip()
-                    
-                    # Split by semicolons and clean up
-                    items = [item.strip() for item in tab_text.split(';') if item.strip()]
-                    
-                    # Filter out non-price-include items (like program descriptions)
-                    for item in items:
-                        # Skip if it looks like program description or other content
-                        if len(item) > 5 and not any(skip in item.lower() for skip in [
-                            'програма', 'ден 1', 'ден 2', 'ден 3', 'ден 4', 'ден 5', 'ден 6',
-                            'екскурзия', 'пояснения', 'условия', 'договор'
-                        ]):
-                            # Check if it looks like a price include item
-                            if any(keyword in item.lower() for keyword in [
-                                'билет', 'такси', 'трансфер', 'хотел', 'закуска', 'водач',
-                                'автобус', 'екскурзовод', 'застраховка', 'багаж', 'нощувк'
-                            ]):
-                                price_includes.append(item)
-                    
-                    if price_includes:
-                        break
-
-        # Fallback to old method if tabbed structure didn't work
-        if not price_includes:
-            # Look for "ЦЕНАТА ВКЛЮЧВА:" heading and get the following ul/li elements
-            includes_heading = soup.find(['p', 'strong', 'div'], string=re.compile(r'ЦЕНАТА ВКЛЮЧВА', re.IGNORECASE))
-            if includes_heading:
-                # Find the next ul element
-                includes_ul = includes_heading.find_next('ul')
-                if includes_ul:
-                    li_elements = includes_ul.find_all('li')
-                    for li in li_elements:
-                        text = li.get_text().strip()
-                        if text and len(text) > 5:
-                            price_includes.append(text)
-
-            # If not found, look for "В цената са включени:" (used in some offers)
-            if not price_includes:
-                includes_heading = soup.find(['span', 'strong', 'div'], string=re.compile(r'В цената са включени', re.IGNORECASE))
-                if includes_heading:
-                    # Find the next ul element
-                    includes_ul = includes_heading.find_next('ul')
-                    if includes_ul:
-                        li_elements = includes_ul.find_all('li')
-                        for li in li_elements:
-                            text = li.get_text().strip()
-                            if text and len(text) > 5:
-                                price_includes.append(text)
-
-            # If still not found, try the old method as fallback
-            if not price_includes:
-                includes_section = soup.find(['div', 'p', 'section'], string=re.compile(r'В цената са включени|Цената включва', re.IGNORECASE))
-                if includes_section:
-                    # Find the next element that contains the list
-                    includes_container = includes_section.find_next(['ul', 'div', 'p'])
-                    if includes_container:
-                        includes_text = includes_container.get_text()
-                        # Split by bullet points or line breaks
-                        includes_items = re.split(r'[•♦▪■]\s*|\n\s*\n', includes_text)
-                        price_includes = [item.strip() for item in includes_items if item.strip() and len(item.strip()) > 5][:20]
-
-            # If still not found, look for ul elements in the programa tab that come after program content
-            if not price_includes:
-                programa_div = soup.find('div', class_='programa')
-                if programa_div:
-                    # Find ul elements that come after the programa div
-                    next_divs = programa_div.find_all_next('div')
-                    for div in next_divs:
-                        ul_elements = div.find_all('ul')
-                        for ul in ul_elements:
-                            li_elements = ul.find_all('li')
-                            if li_elements:
-                                # Check if this looks like price includes (contains typical items)
-                                li_texts = [li.get_text().strip() for li in li_elements]
-                                if any('билет' in text.lower() or 'трансфер' in text.lower() or 'застраховка' in text.lower() or 'хотел' in text.lower() for text in li_texts):
-                                    # This looks like price includes
-                                    price_includes = li_texts[:20]
-                                    break
-                        if price_includes:
-                            break
-
-        offer.price_includes = price_includes[:20]
-
-        # Extract price excludes
-        price_excludes = []
-
-        # Look for tabbed content structure first
-        tabs_container = soup.find('div', class_='resp-tabs-container')
-        if tabs_container:
-            tabs = tabs_container.find_all('div', recursive=False)
-            tab_names = ['Програма', 'Цената включва', 'Цената не включва', 'Други']
-            
-            # Find the "Цената не включва" tab
-            for i, tab in enumerate(tabs):
-                if i < len(tab_names) and 'Цената не включва' in tab_names[i]:
-                    # Extract items from this tab
-                    tab_text = tab.get_text(separator='\n').strip()
-                    
-                    # Split by semicolons and clean up
-                    items = [item.strip() for item in tab_text.split(';') if item.strip()]
-                    
-                    # Filter out non-price-exclude items
-                    for item in items:
-                        # Skip if it looks like program description or other content
-                        if len(item) > 5 and not any(skip in item.lower() for skip in [
-                            'програма', 'ден 1', 'ден 2', 'ден 3', 'ден 4', 'ден 5', 'ден 6',
-                            'екскурзия', 'пояснения', 'условия', 'договор'
-                        ]):
-                            # Check if it looks like a price exclude item
-                            if any(keyword in item.lower() for keyword in [
-                                'такси', 'билети', 'слушалки', 'застраховка', 'такса',
-                                'горивна', 'инфлационна', 'разходи', 'личен'
-                            ]):
-                                price_excludes.append(item)
-                    
-                    if price_excludes:
-                        break
-
-        # Fallback to old method if tabbed structure didn't work
-        if not price_excludes:
-            # Look for "ЦЕНАТА НЕ ВКЛЮЧВА:" heading and get the following ul/li elements
-            excludes_heading = soup.find(['p', 'strong', 'div'], string=re.compile(r'ЦЕНАТА НЕ ВКЛЮЧВА|Цената не включва', re.IGNORECASE))
-            if excludes_heading:
-                # Find the next ul element
-                excludes_ul = excludes_heading.find_next('ul')
-                if excludes_ul:
-                    li_elements = excludes_ul.find_all('li')
-                    for li in li_elements:
-                        text = li.get_text().strip()
-                        if text and len(text) > 5:
-                            price_excludes.append(text)
-
-                # Also look for "Задължителни доплащания" section that follows
-                mandatory_heading = soup.find(['p', 'strong'], string=re.compile(r'Задължителни доплащания', re.IGNORECASE))
-                if mandatory_heading:
-                    mandatory_ul = mandatory_heading.find_next('ul')
-                    if mandatory_ul:
-                        li_elements = mandatory_ul.find_all('li')
-                        for li in li_elements:
-                            text = li.get_text().strip()
-                            if text and len(text) > 5:
-                                price_excludes.append(text)
-
-            # If not found, look for "В цената не са включени:" (used in some offers)
-            if not price_excludes:
-                excludes_heading = soup.find(['span', 'strong', 'div'], string=re.compile(r'В цената не са включени', re.IGNORECASE))
-                if excludes_heading:
-                    # Find the next ul element
-                    excludes_ul = excludes_heading.find_next('ul')
-                    if excludes_ul:
-                        li_elements = excludes_ul.find_all('li')
-                        for li in li_elements:
-                            text = li.get_text().strip()
-                            if text and len(text) > 5:
-                                price_excludes.append(text)
-
-            # If still not found, try the old method as fallback
-            if not price_excludes:
-                excludes_section = soup.find(['div', 'p', 'section'], string=re.compile(r'В цената не са включени|Цената не включва', re.IGNORECASE))
-                if excludes_section:
-                    excludes_container = excludes_section.find_next(['ul', 'div', 'p'])
-                    if excludes_container:
-                        excludes_text = excludes_container.get_text()
-                        # Split by bullet points or line breaks
-                        excludes_items = re.split(r'[•♦▪■]\s*|\n\s*\n', excludes_text)
-                        price_excludes = [item.strip() for item in excludes_items if item.strip() and len(item.strip()) > 5][:20]
-
-            # If still not found, look for ul elements in the programa tab that look like price excludes
-            if not price_excludes:
-                programa_div = soup.find('div', class_='programa')
-                if programa_div:
-                    # Find ul elements that come after the programa div
-                    next_divs = programa_div.find_all_next('div')
-                    for div in next_divs:
-                        ul_elements = div.find_all('ul')
-                        for ul in ul_elements:
-                            li_elements = ul.find_all('li')
-                            if li_elements:
-                                # Check if this looks like price excludes (contains typical items)
-                                li_texts = [li.get_text().strip() for li in li_elements]
-                                if any('лични разходи' in text.lower() or 'доплащане' in text.lower() or 'spa' in text.lower() for text in li_texts):
-                                    # This looks like price excludes
-                                    price_excludes = li_texts[:20]
-                                    break
-                        if price_excludes:
-                            break
-
-        offer.price_excludes = price_excludes[:20]
-
-        # Extract hotel information (already started above)
-        # Continue with additional hotel extraction methods if needed
-
-        # If no hotels found in programa div, look for hotel mentions in the content
-        if not hotel_titles:
-            hotel_patterns = [
-                r'хотел\s+([A-Z][a-zA-Z\s]+\d+\*)',
-                r'([A-Z][a-zA-Z\s]+(?:\d+\*|\s+хотел))',
+        for offer in offers:
+            # Check if destination needs fixing
+            invalid_destinations = [
+                'В Партньорство С Абакс', 'В Партньорство С Абакс'.lower(),
+                'партньорство', 'partnership', 'абакс', 'abaks'
             ]
-            for pattern in hotel_patterns:
-                matches = re.findall(pattern, html, re.IGNORECASE)
-                for match in matches:
-                    hotel_name = match.strip()
-                    if hotel_name and len(hotel_name) > 3 and hotel_name not in hotel_titles:
-                        hotel_titles.append(hotel_name[:100])
-
-        offer.hotel_titles = hotel_titles[:10]
-
-        # Extract booking conditions
-        booking_conditions = []
-
-        # Look for tabbed content structure first - conditions are in "Други" tab
-        tabs_container = soup.find('div', class_='resp-tabs-container')
-        if tabs_container:
-            tabs = tabs_container.find_all('div', recursive=False)
-            tab_names = ['Програма', 'Цената включва', 'Цената не включва', 'Други']
             
-            # Find the "Други" tab
-            for i, tab in enumerate(tabs):
-                if i < len(tab_names) and 'Други' in tab_names[i]:
-                    # Extract conditions from this tab
-                    ul_elements = tab.find_all('ul')
-                    for ul in ul_elements:
-                        li_elements = ul.find_all('li')
-                        for li in li_elements:
-                            text = li.get_text().strip()
-                            if text and len(text) > 10:  # Conditions tend to be longer
-                                booking_conditions.append(text)
-                    
-                    if booking_conditions:
-                        break
-
-        # Fallback to old method if tabbed structure didn't work
-        if not booking_conditions:
-            # Look for payment/booking conditions in the tabbed content
-            payment_heading = soup.find(['p', 'strong', 'div'], string=re.compile(r'ПЛАЩАНЕ И СРОКОВЕ|Условия за резервация', re.IGNORECASE))
-            if payment_heading:
-                # Find the next ul element or get text from the section
-                payment_ul = payment_heading.find_next('ul')
-                if payment_ul:
-                    li_elements = payment_ul.find_all('li')
-                    for li in li_elements:
-                        text = li.get_text().strip()
-                        if text and len(text) > 5:
-                            booking_conditions.append(text)
-
-                # Also get any following text
-                payment_container = payment_heading.find_next('p')
-                if payment_container and payment_container.get_text().strip():
-                    booking_conditions.append(payment_container.get_text().strip())
-
-            # Fallback to old method
-            if not booking_conditions:
-                conditions_patterns = [
-                    r'Условия за резервация.*?(?=Необходими документи|$)',
-                    r'Необходими документи.*?(?=Срокове|$)',
-                    r'Срокове за анулации.*?(?=$|ХОТЕЛИ)',
-                    r'ПЛАЩАНЕ И СРОКОВЕ.*?(?=$|ХОТЕЛИ)',
-                ]
-
-                for pattern in conditions_patterns:
-                    match = re.search(pattern, html, re.DOTALL | re.IGNORECASE)
-                    if match:
-                        condition_text = match.group(0).strip()
-                        if len(condition_text) > 20:
-                            booking_conditions.append(condition_text)
-
-        if booking_conditions:
-            offer.booking_conditions = ' '.join(booking_conditions)[:1000]
-
-        # Extract dates if available - prioritize main offer dates
-        main_dates = []
-
-        # Look for date in offer-info sections (most accurate)
-        offer_info_elements = soup.find_all('div', class_='offer-info')
-        for offer_info in offer_info_elements:
-            # Look specifically for the calendar icon offer-info
-            if offer_info.find('span', class_='icon-calendar') or 'icon-calendar' in str(offer_info):
-                date_text = offer_info.get_text().strip()
-                # Extract all dates from this calendar offer-info section
-                dates_found = re.findall(r'(\d{1,2}[./-]\d{1,2}[./-]\d{4})', date_text)
-                if dates_found:
-                    main_dates = dates_found
-                    break  # Found the calendar dates, stop looking
-
-        # If no dates found in offer-info, look for dates in reservation links
-        if not main_dates:
-            reservation_links = soup.find_all('a', href=re.compile(r'reservation\.php|запитване', re.IGNORECASE))
-            for link in reservation_links:
-                # Check if the link has a date parameter
-                href = link.get('href', '')
-                date_match = re.search(r'date=(\d{1,2}[./-]\d{1,2}[./-]\d{4})', href)
-                if date_match:
-                    main_dates.append(date_match.group(1))
-
-                # Also check link text
-                link_text = link.get_text().strip()
-                dates_found = re.findall(r'\d{1,2}[./-]\d{1,2}[./-]\d{4}', link_text)
-                main_dates.extend(dates_found)
-
-        # If we found main dates, use those; otherwise look for any dates on the page
-        if not main_dates:
-            # Fallback: Look for date patterns in the entire HTML (but avoid hotel option dates)
-            date_matches = re.findall(r'(\d{1,2}[./-]\d{1,2}[./-]\d{4})', html)
-            # Filter out dates that are likely from hotel options (usually many dates in a row)
-            # Only take the first few dates to avoid collecting hotel option dates
-            main_dates = date_matches[:10]  # Limit to first 10 dates
-
-        # Remove duplicates and sort dates chronologically
-        unique_dates = list(set(main_dates))
+            needs_fixing = (
+                not offer.destination or
+                offer.destination == "" or
+                any(invalid in offer.destination.lower() for invalid in invalid_destinations)
+            )
+            
+            if needs_fixing:
+                print(f"Fixing destination for offer: {offer.title[:50]}...")
+                
+                # Fetch the offer page
+                html = await self._fetch_page(offer.link)
+                if html:
+                    # Reset destination and re-extract
+                    offer.destination = ""
+                    await self._extract_offer_details_with_html(offer, html)
+                    print(f"  Fixed destination: '{offer.destination}'")
+                else:
+                    print(f"  Failed to fetch page for: {offer.link}")
+            
+            fixed_offers.append(offer)
         
-        # Sort dates chronologically, not alphabetically
-        def parse_date(date_str):
-            """Parse date string in DD.MM.YYYY or DD/MM/YYYY or DD-MM-YYYY format."""
-            try:
-                # Normalize separators
-                normalized = date_str.replace('/', '.').replace('-', '.')
-                day, month, year = normalized.split('.')
-                return datetime(int(year), int(month), int(day))
-            except (ValueError, IndexError):
-                # If parsing fails, return a default date for sorting
-                return datetime(1900, 1, 1)
-        
-        # Sort by actual date value
-        unique_dates.sort(key=parse_date)
-        
-        # Format the dates field - show main date or range
-        if unique_dates:
-            if len(unique_dates) == 1:
-                offer.dates = unique_dates[0]
-            elif len(unique_dates) <= 3:
-                # Show all dates if few
-                offer.dates = ", ".join(unique_dates)
-            else:
-                # Show range from earliest to latest with count
-                offer.dates = f"{unique_dates[0]} - {unique_dates[-1]} (and {len(unique_dates)-2} more dates)"
-        
-        # Extract price from the offer page (more accurate than main page)
-        price_elements = soup.find_all('div', class_='price')
-        for price_elem in price_elements:
-            price_text = price_elem.get_text().strip()
-            # Look for pattern like "от 772.83 лв. / 395.14 €"
-            full_price_match = re.search(r'от\s+(\d+(?:[,.]\d+)?)\s*лв\.?\s*/\s*(\d+(?:[,.]\d+)?)\s*€', price_text, re.IGNORECASE)
-            if full_price_match:
-                offer.price = f"{full_price_match.group(1)} лв. / {full_price_match.group(2)} €"
-                break
-            # Fallback to simpler pattern
-            simple_price_match = re.search(r'(\d+(?:[,.]\d+)?)\s*(лв\.?|€|\$|USD)', price_text)
-            if simple_price_match and not offer.price:
-                offer.price = simple_price_match.group(0)
-                break
-                offer.price = f"{full_price_match.group(1)} лв. / {full_price_match.group(2)} €"
-                break
-            # Fallback to simpler pattern
-            simple_price_match = re.search(r'(\d+(?:,\d+)?)\s*(лв\.?|€|\$|USD)', price_text)
-            if simple_price_match and not offer.price:
-                offer.price = simple_price_match.group(0)
-                break
-
-        # Extract hotel options with prices (if available)
-        hotel_options = []
-        # Look for hotel selection sections
-        hotel_selectors = soup.find_all('a', href=re.compile(r'hotel-pochivka'))
-        for selector in hotel_selectors:
-            hotel_info = {
-                'name': selector.get_text().strip(),
-                'link': urljoin(self.BASE_URL, selector.get('href')),
-                'price': ''
-            }
-
-            # Try to find price in the same container
-            container = selector.parent
-            if container:
-                price_match = re.search(r'(\d+(?:,\d+)?)\s*(лв\.?|€|\$|USD)', container.get_text())
-                if price_match:
-                    hotel_info['price'] = price_match.group(0)
-
-            if hotel_info['name']:
-                hotel_options.append(hotel_info)
-
-        offer.hotel_options = hotel_options[:20]
+        return fixed_offers
 
 
 async def main():
     """Main scraping function."""
     limit = None
-    debug_url = None
+    debug_urls = []
 
     if len(sys.argv) > 1:
         try:
-            if sys.argv[1].startswith('http'):
-                debug_url = sys.argv[1]
-                limit = int(sys.argv[2]) if len(sys.argv) > 2 else None
-            else:
-                limit = int(sys.argv[1])
-                debug_url = sys.argv[2] if len(sys.argv) > 2 and sys.argv[2].startswith('http') else None
-            if limit:
-                print(f"Limiting to {limit} destinations for testing")
-            if debug_url:
-                print(f"Debug URL: {debug_url}")
+            # Parse arguments - can be limit, URLs, or mixed
+            for arg in sys.argv[1:]:
+                if arg == 'fix':
+                    # Fix existing data
+                    print("Loading existing data to fix destinations...")
+                    try:
+                        with open('aratur.json', 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                        
+                        # Convert dicts back to AratourOffer objects
+                        offers = []
+                        for item in data:
+                            offer = AratourOffer()
+                            offer.title = item.get('title', '')
+                            offer.link = item.get('link', '')
+                            offer.price = item.get('price', '')
+                            offer.dates = item.get('dates', '')
+                            offer.description = item.get('description', '')
+                            offer.destination = item.get('destination', '')
+                            offer.duration = item.get('duration', '')
+                            offer.program_info = item.get('program_info', '')
+                            offer.price_includes = item.get('price_includes', [])
+                            offer.price_excludes = item.get('price_excludes', [])
+                            offer.hotel_titles = item.get('hotel_titles', [])
+                            offer.booking_conditions = item.get('booking_conditions', '')
+                            offer.hotel_options = item.get('hotel_options', [])
+                            offer.scraped_at = item.get('scraped_at', '')
+                            offers.append(offer)
+                        
+                        print(f"Loaded {len(offers)} offers")
+                        
+                        # Fix destinations
+                        async with AratourScraper() as scraper:
+                            fixed_offers = await scraper.fix_destination_extraction(offers)
+                        
+                        # Save fixed data
+                        output_data = [offer.to_dict() for offer in fixed_offers]
+                        with open('aratur_fixed.json', 'w', encoding='utf-8') as f:
+                            json.dump(output_data, f, ensure_ascii=False, indent=2)
+                        
+                        print(f"✓ Fixed data saved to aratur_fixed.json")
+                        
+                        # Show summary of fixes
+                        original_invalid = sum(1 for o in offers if o.destination == 'В Партньорство С Абакс')
+                        fixed_invalid = sum(1 for o in fixed_offers if o.destination == 'В Партньорство С Абакс')
+                        print(f"Offers with invalid destination: {original_invalid} -> {fixed_invalid}")
+                        
+                    except FileNotFoundError:
+                        print("Error: aratur.json not found")
+                    except Exception as e:
+                        print(f"Error fixing data: {e}")
+                    
+                    return
+                elif arg.isdigit():
+                    limit = int(arg)
+                    print(f"Limiting to {limit} destinations for testing")
+                elif arg.startswith('http'):
+                    debug_urls.append(arg)
+                else:
+                    print(f"Unknown argument: {arg}")
+                    print("Usage: python aratour_scraper.py [fix|limit] [url1] [url2] ...")
+                    print("Examples:")
+                    print("  python aratour_scraper.py fix                 # Fix destinations in existing data")
+                    print("  python aratour_scraper.py 1                    # Limit to 1 destination")
+                    print("  python aratour_scraper.py https://...          # Test single offer")
+                    print("  python aratour_scraper.py https://... https://...  # Test multiple offers")
+                    return
+
+            if debug_urls:
+                print(f"Debug URLs: {len(debug_urls)}")
+                for url in debug_urls:
+                    print(f"  - {url}")
+
         except ValueError:
-            print("Usage: python aratour_scraper.py [limit] [debug_url]")
-            print("Or: python aratour_scraper.py debug_url [limit]")
+            print("Usage: python aratour_scraper.py [limit] [url1] [url2] ...")
             return
 
     async with AratourScraper() as scraper:
-        if debug_url:
-            # Debug single URL mode
-            print(f"\n=== DEBUG MODE: Testing single URL ===")
+        if debug_urls:
+            # Debug multiple URLs mode
+            print(f"\n=== DEBUG MODE: Testing {len(debug_urls)} URLs ===")
             scraper._debug_mode = True  # Enable debug mode
-            
-            # Check if it's an individual offer URL or main page
-            if '/почивка/' in debug_url or '/екскурзия/' in debug_url or '/tour/' in debug_url:
-                # Individual offer URL - create a mock offer and extract details
-                print("Detected individual offer URL, extracting details directly...")
-                offer = AratourOffer(
-                    title="Debug Offer",
-                    link=debug_url,
-                    price="",
-                    dates=""
-                )
-                
-                # Fetch and process the offer directly
-                async with scraper.session.get(debug_url) as response:
-                    html = await response.text()
-                
-                # Save debug HTML
-                debug_dir = Path("dev")
-                debug_dir.mkdir(exist_ok=True)
-                debug_file = debug_dir / f"debug_offer_{debug_url.split('/')[-1]}.html"
-                async with aiofiles.open(debug_file, 'w', encoding='utf-8') as f:
-                    await f.write(html)
-                print(f"✓ Saved debug HTML: {debug_file}")
-                
-                # Extract details
-                await scraper._extract_offer_details_with_html(offer, html)
-                
-                # Print results
-                print(f"\n=== DEBUG RESULTS ===")
-                print(f"Title: {offer.title}")
-                print(f"Price: {offer.price}")
-                print(f"Dates: {offer.dates}")
-                
-                # Export to JSON
-                output_data = [offer.to_dict()]
-                with open('aratur.json', 'w', encoding='utf-8') as f:
-                    json.dump(output_data, f, ensure_ascii=False, indent=2)
-                print(f"✓ Exported to JSON: aratur.json")
-                
-            else:
-                # Main page URL - extract offers from main page
-                async with scraper.session.get(debug_url) as response:
-                    html = await response.text()
-                
-                # Extract offers from the page
-                offers = scraper.extract_offers_from_main_page(html, debug_url)
-                print(f"Found {len(offers)} offers on the page")
-                
-                # Extract detailed information from individual offer pages
-                print(f"\nExtracting detailed information from {len(offers)} offers...")
-                for i, offer in enumerate(offers, 1):
-                    if i % 5 == 0:
-                        print(f"Processed {i}/{len(offers)} offers...")
-                    
-                    # Extract details for main page offers
-                    await scraper.extract_offer_details(offer)
-                
-                # Save results
-                scraper.scraped_offers = offers
-                await scraper.save_results()
-            print(f"Debug complete for: {debug_url}")
+
+            all_debug_offers = []
+
+            for i, debug_url in enumerate(debug_urls, 1):
+                print(f"\n[{i}/{len(debug_urls)}] Processing: {debug_url}")
+
+                # Check if it's an individual offer URL or main page
+                if '/почивка/' in debug_url or '/екскурзия/' in debug_url or '/tour/' in debug_url:
+                    # Individual offer URL - create a mock offer and extract details
+                    print("Detected individual offer URL, extracting details directly...")
+                    offer = AratourOffer(
+                        title="Debug Offer",
+                        link=debug_url,
+                        price="",
+                        dates=""
+                    )
+
+                    # Fetch and process the offer directly
+                    async with scraper.session.get(debug_url) as response:
+                        html = await response.text()
+
+                    # Save debug HTML
+                    debug_dir = Path("dev")
+                    debug_dir.mkdir(exist_ok=True)
+                    debug_file = debug_dir / f"debug_offer_{debug_url.split('/')[-1]}.html"
+                    async with aiofiles.open(debug_file, 'w', encoding='utf-8') as f:
+                        await f.write(html)
+                    print(f"✓ Saved debug HTML: {debug_file}")
+
+                    # Extract details
+                    await scraper._extract_offer_details_with_html(offer, html)
+
+                    # Print results
+                    print(f"Title: {offer.title}")
+                    print(f"Price: {offer.price}")
+                    print(f"Dates: {offer.dates}")
+                    print(f"Destination: {offer.destination}")
+
+                    all_debug_offers.append(offer)
+
+                else:
+                    # Main page URL - extract offers from main page
+                    async with scraper.session.get(debug_url) as response:
+                        html = await response.text()
+
+                    # Extract offers from the page
+                    offers = scraper.extract_offers_from_main_page(html, debug_url)
+                    print(f"Found {len(offers)} offers on the page")
+
+                    # Extract detailed information from individual offer pages
+                    print(f"Extracting detailed information from {len(offers)} offers...")
+                    for j, offer in enumerate(offers, 1):
+                        if j % 5 == 0:
+                            print(f"Processed {j}/{len(offers)} offers...")
+
+                        # Extract details for main page offers
+                        await scraper.extract_offer_details(offer)
+
+                    all_debug_offers.extend(offers)
+
+            # Export all debug results to JSON
+            output_data = [offer.to_dict() for offer in all_debug_offers]
+            with open('aratur.json', 'w', encoding='utf-8') as f:
+                json.dump(output_data, f, ensure_ascii=False, indent=2)
+            print(f"\n✓ Exported {len(all_debug_offers)} debug offers to JSON: aratur.json")
+
+            print(f"Debug complete for {len(debug_urls)} URLs")
         else:
             # Normal scraping mode
             offers = await scraper.scrape_all_destinations(limit=limit)

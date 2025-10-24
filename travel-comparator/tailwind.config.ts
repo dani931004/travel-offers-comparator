@@ -9,6 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'primary-teal': '#00A8A8',
+        'accent-coral': '#FF6B6B',
+        'trust-navy': '#003366',
+        'bg-light': '#F7F7F7',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
