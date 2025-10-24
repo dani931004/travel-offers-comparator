@@ -16,12 +16,13 @@ Features:
 
 import asyncio
 import json
-import re
 import csv
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Set, Any
 from dataclasses import dataclass, field
+
+import re
 
 import aiohttp
 import aiofiles
@@ -678,7 +679,7 @@ class AratourScraper:
         for script in soup(["script", "style"]):
             script.decompose()
 
-        # Extract destination from the offer page if not already set properly
+        # --- Destination extraction (unchanged) ---
         known_destinations = [
             'Турция', 'Гърция', 'Италия', 'Испания', 'Франция', 'Египет',
             'Тунис', 'Мароко', 'България', 'Албания', 'Македония', 'Сърбия',
@@ -691,7 +692,6 @@ class AratourScraper:
             'САЩ', 'Бразилия', 'Аржентина', 'Чили', 'Перу', 'Колумбия',
             'Еквадор', 'Боливия', 'Уругвай', 'Парагвай', 'Малта'
         ]
-
         should_extract_destination = (
             not offer.destination or
             offer.destination == "" or
@@ -706,19 +706,21 @@ class AratourScraper:
                 'специални', 'special', 'промо', 'promo'
             ])
         )
-
         if should_extract_destination:
-            # Try to extract from page title first
+            # ...existing code for destination extraction...
             title_elem = soup.find('title')
             if title_elem:
                 title_text = title_elem.get_text().strip()
-                # Look for destination patterns in title
                 destination_patterns = [
-                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+\d{4}\s*–',  # "Малта 2025 –"
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+\d{4}\s*–',
                     r'Aratour\s*-\s*([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
                     r'Екскурзия\s+до\s+([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
                     r'Почивка\s+в\s+([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)',
                     r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s*-\s*Aratour',
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+ИМПЕРСКИТЕ',  # For Morocco offer
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+–\s+МИСТИКА',  # For Cappadocia
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+–\s+ЗЕМЯ',  # For Lycia
+                    r'([А-ЯA-Z][а-яА-Яa-zA-Z\s]+)\s+–\s+\d+',  # For Ireland
                 ]
                 for pattern in destination_patterns:
                     match = re.search(pattern, title_text, re.IGNORECASE)
@@ -726,18 +728,37 @@ class AratourScraper:
                         extracted_dest = match.group(1).strip()
                         if extracted_dest in known_destinations:
                             offer.destination = extracted_dest
-                            return
-
-            # If not found in title, try meta description
-            meta_desc = soup.find('meta', attrs={'name': 'description'})
-            if meta_desc and meta_desc.get('content'):
-                desc_text = meta_desc['content']
-                for dest in known_destinations:
-                    if dest in desc_text:
-                        offer.destination = dest
-                        return
-
-            # Final fallback: URL path
+                            break
+            if not offer.destination:
+                meta_desc = soup.find('meta', attrs={'name': 'description'})
+                if meta_desc and meta_desc.get('content'):
+                    desc_text = meta_desc['content']
+                    for dest in known_destinations:
+                        if dest in desc_text:
+                            offer.destination = dest
+                            break
+            # Check breadcrumb navigation for destination
+            if not offer.destination:
+                breadcrumb_links = soup.find_all('a', href=re.compile(r'/(почивки|екскурзии)/[^/]+/\d+'))
+                for link in breadcrumb_links:
+                    link_text = link.get_text().strip()
+                    for dest in known_destinations:
+                        if dest in link_text:
+                            offer.destination = dest
+                            break
+                    if offer.destination:
+                        break
+            # Check structured data for destination
+            if not offer.destination:
+                script_tags = soup.find_all('script', string=re.compile(r'item_category'))
+                for script in script_tags:
+                    script_text = script.get_text()
+                    category_match = re.search(r'item_category["\s:]+([^",]+)', script_text)
+                    if category_match:
+                        category = category_match.group(1).strip()
+                        if category in known_destinations:
+                            offer.destination = category
+                            break
             if not offer.destination:
                 path = urlparse(offer.link).path
                 path_parts = path.split('/')
@@ -746,7 +767,85 @@ class AratourScraper:
                         decoded_part = unquote(part).replace('-', ' ').strip()
                         if decoded_part in known_destinations:
                             offer.destination = decoded_part
-                            return
+                            break
+
+        # --- NEW: Extract date and price from offer page if missing or suspicious ---
+        page_text = soup.get_text(separator='\n')
+
+        # Extract date(s) if missing or looks wrong, and format as range
+        if not offer.dates or offer.dates.strip() == "":
+            # First try: Find the date text by searching for spans containing 'до' and dates
+            date_spans = soup.find_all('span', string=lambda text: text and 'до' in text and re.search(r'\d{1,2}[./-]\d{1,2}[./-]\d{4}', text))
+            if date_spans:
+                date_text = date_spans[0].get_text().strip()
+                # Extract dates from this text
+                date_pattern = r'(\d{1,2}[./-]\d{1,2}[./-]\d{4})'
+                all_dates = re.findall(date_pattern, date_text)
+                if all_dates:
+                    # Sort dates
+                    from datetime import datetime
+                    parsed_dates = [datetime.strptime(d.replace('-', '.'), "%d.%m.%Y") for d in all_dates]
+                    parsed_dates.sort()
+                    first_date = parsed_dates[0].strftime("%d.%m.%Y")
+                    last_date = parsed_dates[-1].strftime("%d.%m.%Y")
+                    offer.dates = f"{first_date} - {last_date}" if first_date != last_date else first_date
+            else:
+                # Second try: Look for spans with icon-calendar class or in offer-info div
+                calendar_spans = soup.find_all('span', class_='icon-calendar')
+                for calendar_span in calendar_spans:
+                    parent_div = calendar_span.find_parent('div', class_='offer-info')
+                    if parent_div:
+                        # Check if the parent div itself contains dates
+                        div_text = parent_div.get_text().strip()
+                        if re.search(r'\d{1,2}[./-]\d{1,2}[./-]\d{4}', div_text):
+                            # Extract all dates from the div text
+                            date_pattern = r'(\d{1,2}[./-]\d{1,2}[./-]\d{4})'
+                            all_dates = re.findall(date_pattern, div_text)
+                            if all_dates:
+                                # Sort dates
+                                from datetime import datetime
+                                parsed_dates = [datetime.strptime(d.replace('-', '.'), "%d.%m.%Y") for d in all_dates]
+                                parsed_dates.sort()
+                                first_date = parsed_dates[0].strftime("%d.%m.%Y")
+                                last_date = parsed_dates[-1].strftime("%d.%m.%Y")
+                                offer.dates = f"{first_date} - {last_date}" if first_date != last_date else first_date
+                                break
+
+        # If only one date found and it's a multi-day trip, calculate return date from duration
+        if offer.dates and '-' not in offer.dates:
+            # Extract duration from the page
+            duration_match = re.search(r'(\d+)\s*дни\s*/\s*(\d+)\s*нощувки', page_text)
+            if duration_match:
+                days = int(duration_match.group(1))
+                if days > 1:
+                    # Calculate return date: departure + (days - 1)
+                    from datetime import datetime, timedelta
+                    try:
+                        dep_date = datetime.strptime(offer.dates, "%d.%m.%Y")
+                        ret_date = dep_date + timedelta(days=days - 1)
+                        offer.dates = f"{offer.dates} - {ret_date.strftime('%d.%m.%Y')}"
+                    except ValueError:
+                        pass  # Invalid date format, skip
+
+        # Extract price if missing or suspicious (e.g., too low)
+        def is_suspicious_price(price_str):
+            try:
+                val = float(price_str.replace('лв.', '').replace('лв', '').replace('€', '').replace(',', '.').strip())
+                return val < 100  # Arbitrary threshold for suspiciously low price
+            except Exception:
+                return True
+
+        if not offer.price or is_suspicious_price(offer.price):
+            price_patterns = [
+                r'(\d{3,5}(?:[.,]\d{2})?)\s*лв',
+                r'цена от\s*(\d{3,5}(?:[.,]\d{2})?)\s*лв',
+                r'(\d{3,5}(?:[.,]\d{2})?)\s*€',
+            ]
+            for pattern in price_patterns:
+                match = re.search(pattern, page_text)
+                if match:
+                    offer.price = f"{match.group(1)} лв."
+                    break
 
     async def fix_destination_extraction(self, offers: List[AratourOffer]) -> List[AratourOffer]:
         """
@@ -772,14 +871,18 @@ class AratourScraper:
                 print(f"Fixing destination for offer: {offer.title[:50]}...")
                 
                 # Fetch the offer page
-                html = await self._fetch_page(offer.link)
-                if html:
-                    # Reset destination and re-extract
-                    offer.destination = ""
-                    await self._extract_offer_details_with_html(offer, html)
-                    print(f"  Fixed destination: '{offer.destination}'")
-                else:
-                    print(f"  Failed to fetch page for: {offer.link}")
+                try:
+                    async with self.session.get(offer.link, timeout=aiohttp.ClientTimeout(total=30)) as response:
+                        html = await response.text()
+                    if html:
+                        # Reset destination and re-extract
+                        offer.destination = ""
+                        await self._extract_offer_details_with_html(offer, html)
+                        print(f"  Fixed destination: '{offer.destination}'")
+                    else:
+                        print(f"  Failed to fetch page for: {offer.link}")
+                except Exception as e:
+                    print(f"  Error fetching page: {e}")
             
             fixed_offers.append(offer)
         
@@ -937,9 +1040,9 @@ async def main():
 
             # Export all debug results to JSON
             output_data = [offer.to_dict() for offer in all_debug_offers]
-            with open('aratur.json', 'w', encoding='utf-8') as f:
+            with open('aratur_debug.json', 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, ensure_ascii=False, indent=2)
-            print(f"\n✓ Exported {len(all_debug_offers)} debug offers to JSON: aratur.json")
+            print(f"\n✓ Exported {len(all_debug_offers)} debug offers to JSON: aratur_debug.json")
 
             print(f"Debug complete for {len(debug_urls)} URLs")
         else:
