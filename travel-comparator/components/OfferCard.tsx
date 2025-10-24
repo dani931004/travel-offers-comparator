@@ -29,7 +29,7 @@ const OfferCard: React.FC<OfferCardProps> = ({ offer }) => {
         <div className="mb-4">
           <div className="flex items-center justify-between mb-3">
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-primary-teal text-white shadow-md">
-              {offer.agency === 'aratour' ? '🦜' : '🏢'} {offer.agency}
+              {offer.agency === 'Aratur' ? '🦜' : '🏢'} {offer.agency}
             </span>
             {offer.duration_days && (
               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-teal/10 text-primary-teal">

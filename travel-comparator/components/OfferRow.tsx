@@ -28,7 +28,7 @@ const OfferRow: React.FC<OfferRowProps> = ({ offer }) => {
       <td className="px-4 sm:px-6 py-4 border-r border-gray-100">
         <div className="flex items-center">
           <div className="bg-primary-teal p-2 rounded-lg mr-3 shadow-md">
-            <span className="text-white text-sm">{offer.agency === 'aratour' ? '🦜' : '🏢'}</span>
+            <span className="text-white text-sm">{offer.agency === 'Aratur' ? '🦜' : '🏢'}</span>
           </div>
           <span className="font-bold text-primary-teal text-sm sm:text-base">{offer.agency}</span>
         </div>

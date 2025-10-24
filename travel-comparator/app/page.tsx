@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
 
 import OfferCard from '../components/OfferCard';
 import OfferRow from '../components/OfferRow';
@@ -32,6 +33,8 @@ export default function Home() {
     start_date: '',
     end_date: '',
   });
+  const [searchTermInput, setSearchTermInput] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTermInput, 300);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
 
@@ -71,8 +74,23 @@ export default function Home() {
     loadData();
   }, []);
 
+  // Sync debounced search term to the main filters state
+  useEffect(() => {
+    if (filters.search !== debouncedSearchTerm) {
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        search: debouncedSearchTerm,
+      }));
+    }
+  }, [debouncedSearchTerm, filters.search]);
+
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === 'search') {
+      setSearchTermInput(value);
+    } else {
+      setFilters({ ...filters, [name]: value });
+    }
   };
 
   // Filter offers client-side
@@ -147,7 +165,7 @@ export default function Home() {
                   type="text"
                   name="search"
                   placeholder="Try 'Albania', 'New Year', 'Christmas'..."
-                  value={filters.search}
+                  value={searchTermInput}
                   onChange={handleFilterChange}
                   className="w-full pl-12 pr-4 py-3 border-2 border-purple-200 rounded-xl focus:ring-4 focus:ring-purple-300 focus:border-purple-500 transition-all bg-white/80 backdrop-blur-sm text-gray-800 placeholder-gray-500"
                 />
