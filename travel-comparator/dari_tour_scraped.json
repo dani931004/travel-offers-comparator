@@ -63,46 +63,11 @@
     "destination": "Чехия"
   },
   {
-    "title": "Екскурзия до Китай 2026 - 10 нощувки - промо цена до 30.10.2025",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026",
-    "price": "4999 лв",
-    "dates": "30.10.2025 - 18.05.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "Екскурзия до Китай 2026",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026-8-noshtuvki",
-    "price": "3999 лв",
-    "dates": "17.03.2026 - 20.03.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "Екскурзия и почивка в Шри Ланка, януари 2026",
-    "link": "https://dari-tour.com/ekskurziya-i-pochivka-v-shri-lanka-yanuari-2026",
-    "price": "3519 лв",
-    "dates": "08.01.2026",
-    "destination": ""
-  },
-  {
-    "title": "Екскурзия в Япония 2026",
-    "link": "https://dari-tour.com/ekskurziya-v-yaponiya-2026",
-    "price": "7199 лв",
-    "dates": "15.05.2026",
-    "destination": "Япония"
-  },
-  {
     "title": "Круиз по Нил с Кайро, с кацане в Хургада",
     "link": "https://dari-tour.com/kruiz-po-nil-s-kayro-s-katsane-v-hurgada",
     "price": "2339 лв",
     "dates": "12.11.2025",
     "destination": "Египет"
-  },
-  {
-    "title": "Екскурзия в Япония есен 2025",
-    "link": "https://dari-tour.com/ekskurziya-v-yaponiya-esen-2025",
-    "price": "6999 лв",
-    "dates": "18.11.2025",
-    "destination": "Япония"
   },
   {
     "title": "Круиз по Нил с Кайро, с кацане в Кайро",
@@ -390,13 +355,6 @@
     "price": "6535 лв",
     "dates": "27.02.2026",
     "destination": "Колумбия"
-  },
-  {
-    "title": "Русия - Москва и Мурманск в Северно Сияние",
-    "link": "https://dari-tour.com/rusiya-moskva-i-murmansk-v-severno-siyanie",
-    "price": "4772.23 лв",
-    "dates": "28.02.2026 - 20.03.2026",
-    "destination": "Русия"
   },
   {
     "title": "Аржентина - Чили - вино и гурме",
@@ -693,13 +651,6 @@
     "destination": "Чехия"
   },
   {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "1722 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
     "title": "Виена - Будапеща",
     "link": "https://dari-tour.com/viena-budapeshta",
     "price": "595 лв",
@@ -728,34 +679,6 @@
     "destination": "Бразилия"
   },
   {
-    "title": "Екскурзия до Дубай - 7 нощувки, пролет 2026 - с включени 9 екскурзии",
-    "link": "https://dari-tour.com/ekskurziya-do-dubay-7-noshtuvki-prolet-2026-s-vklyucheni-9-ekskurzii",
-    "price": "2279 лв",
-    "dates": "05.03.2026 - 11.03.2026",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "Екскурзия до Китай 2026 - 10 нощувки - промо цена до 30.10.2025",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026",
-    "price": "4999 лв",
-    "dates": "30.10.2025 - 18.05.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "Екскурзия до Дубай - 7 нощувки, пролет 2026 - с включени 4 до 9 екскурзии",
-    "link": "https://dari-tour.com/ekskurziya-do-dubay-sas-7-noshtuvki-prolet-2026",
-    "price": "1739 лв",
-    "dates": "15.01.2026 - 16.01.2026",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "Екскурзия до Китай 2026",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026-8-noshtuvki",
-    "price": "3999 лв",
-    "dates": "17.03.2026 - 20.03.2026",
-    "destination": "Китай"
-  },
-  {
     "title": "Екскурзия до Дубай - 6 нощувки, включен The View, есен 2025",
     "link": "https://dari-tour.com/ekskurziya-do-dubay-6-noshtuvki-vklyuchen-the-view-esen-2025",
     "price": "1729 лв",
@@ -768,20 +691,6 @@
     "price": "2239 лв",
     "dates": "05.11.2025 - 06.11.2025",
     "destination": "ОАЕ"
-  },
-  {
-    "title": "Круиз по Нил с Кайро, с кацане в Хургада",
-    "link": "https://dari-tour.com/kruiz-po-nil-s-kayro-s-katsane-v-hurgada",
-    "price": "2339 лв",
-    "dates": "12.11.2025",
-    "destination": "Египет"
-  },
-  {
-    "title": "Круиз по Нил с Кайро, с кацане в Кайро",
-    "link": "https://dari-tour.com/kruiz-po-nil-s-katsane-v-kayro",
-    "price": "2309 лв",
-    "dates": "08.11.2025",
-    "destination": "Египет"
   },
   {
     "title": "Екскурзия до Дубай 7 дни, есен 2025",
@@ -840,711 +749,11 @@
     "destination": "Тунис"
   },
   {
-    "title": "САЩ И КАНАДА – НОВИЯТ СВЯТ",
-    "link": "https://dari-tour.com/sasht-i-kanada-noviyat-svyat",
-    "price": "6899 лв",
-    "dates": "23.04.2026 - 15.08.2026",
-    "destination": "САЩ"
-  },
-  {
-    "title": "АВСТРАЛИЯ, с големия Бариерен Риф, НОВА ЗЕЛАНДИЯ, СИНГАПУР и БАНКОК",
-    "link": "https://dari-tour.com/ekskurzia-do-avstralia-s-golemia-barieren-rif-nova-zelandia-singapur-i-bankok",
-    "price": "17095 лв",
-    "dates": "15.03.2025 - 14.11.2026",
-    "destination": "Сингапур"
-  },
-  {
-    "title": "Почивки в Шри Ланка",
-    "link": "https://dari-tour.com/pochivki-shri-lanka",
-    "price": "3519 лв",
-    "dates": "08.01.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "Екскурзия до Дубай - 7 нощувки, пролет 2026 - с включени 4 до 9 екскурзии",
-    "link": "https://dari-tour.com/ekskurziya-do-dubay-sas-7-noshtuvki-prolet-2026",
-    "price": "1739 лв",
-    "dates": "15.01.2026 - 16.01.2026",
+    "title": "Почивки в Дубай ≫ Оферти за ОАЕ",
+    "link": "https://dari-tour.com/pochivki-dubay",
+    "price": "2279 лв",
+    "dates": "04.11.2025 - 11.03.2026",
     "destination": "ОАЕ"
-  },
-  {
-    "title": "Екскурзия до Дубай - 6 нощувки, включен The View, есен 2025",
-    "link": "https://dari-tour.com/ekskurziya-do-dubay-6-noshtuvki-vklyuchen-the-view-esen-2025",
-    "price": "1729 лв",
-    "dates": "29.11.2025 - 06.12.2025",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "Екскурзия до Дубай 7 дни - включени всички екскурзии, есен 2025",
-    "link": "https://dari-tour.com/ekskurziya-do-dubay-7-dni-vklyucheni-vsichki-ekskurzii-esen-2025",
-    "price": "2239 лв",
-    "dates": "05.11.2025 - 06.11.2025",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "Екскурзия до Дубай 7 дни, есен 2025",
-    "link": "https://dari-tour.com/ekskurziya-do-dubai-7-dni-esen-2025",
-    "price": "1709 лв",
-    "dates": "04.11.2025 - 12.11.2025",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "Аржентина - Чили - вино и гурме",
-    "link": "https://dari-tour.com/arzhentina-chili-vino-i-gurme",
-    "price": "8329 лв",
-    "dates": "02.03.2026",
-    "destination": "Аржентина"
-  },
-  {
-    "title": "Карибски Рай: Круиз от Панама до Колумбия",
-    "link": "https://dari-tour.com/karibski-ray-kruiz-ot-panama-do-kolumbiya",
-    "price": "6386 лв",
-    "dates": "05.11.2025",
-    "destination": "Колумбия"
-  },
-  {
-    "title": "Карибски Рай: Круиз от Панама до Колумбия през 2026",
-    "link": "https://dari-tour.com/karibski-ray-kruiz-ot-panama-do-kolumbiya-prez-2026",
-    "price": "7578 лв",
-    "dates": "21.01.2026",
-    "destination": "Панама"
-  },
-  {
-    "title": "Колумбия - цветната градина на Южна Америка с полет от София",
-    "link": "https://dari-tour.com/kolumbiya-tsvetnata-gradina-na-yuzhna-amerika-s-polet-ot-sofiya",
-    "price": "6535 лв",
-    "dates": "27.02.2026",
-    "destination": "Колумбия"
-  },
-  {
-    "title": "ШВЕЙЦАРИЯ – Небесният химн на алпийските върхове",
-    "link": "https://dari-tour.com/shveytsariya-nebesniyat-himn-na-alpiyskite-vurhove",
-    "price": "2580 лв",
-    "dates": "14.08.2026",
-    "destination": "Швейцария"
-  },
-  {
-    "title": "ИТАЛИЯ И ШВЕЙЦАРИЯ – СТАНДАРТ – ПРИКАЗНИТЕ ЕЗЕРА",
-    "link": "https://dari-tour.com/italiya-i-shveytsariya-prikaznite-ezera",
-    "price": "1499 лв",
-    "dates": "12.04.2026 - 19.04.2026",
-    "destination": "Италия"
-  },
-  {
-    "title": "Виена - Коледни базари - с Австрийски авиолинии",
-    "link": "https://dari-tour.com/viena-koledni-bazari",
-    "price": "1422 лв",
-    "dates": "22.11.2025 - 07.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Коледа - Виена - с Австрийски авиолинии",
-    "link": "https://dari-tour.com/koleda-viena",
-    "price": "1398 лв",
-    "dates": "23.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Коледа - Виена - Будапеща",
-    "link": "https://dari-tour.com/koleda-viena-budapeshta",
-    "price": "772 лв",
-    "dates": "23.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Нова Година - Виена - с Австрийски авиолинии",
-    "link": "https://dari-tour.com/nova-godina-viena",
-    "price": "1386 лв",
-    "dates": "30.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Виена - на полупансион",
-    "link": "https://dari-tour.com/viena-na-polupansion",
-    "price": "1099 лв",
-    "dates": "20.05.2026 - 19.06.2026",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "795 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "1722 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Виена - Будапеща",
-    "link": "https://dari-tour.com/viena-budapeshta",
-    "price": "595 лв",
-    "dates": "03.12.2025 - 10.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Почивки в Доминиканска Република",
-    "link": "https://dari-tour.com/pochivki-dominikanska-republika",
-    "price": "1908.89 лв",
-    "dates": "25.10.2025 - 28.01.2026",
-    "destination": "Доминикана"
-  },
-  {
-    "title": "Почивки в Турция ≫ Оферти на Супер цени",
-    "link": "https://dari-tour.com/pochivki-turtsiya",
-    "price": "556 лв",
-    "dates": "26.10.2025 - 08.05.2026",
-    "destination": "Турция"
-  },
-  {
-    "title": "Почивки в Испания",
-    "link": "https://dari-tour.com/pochivki-ispaniya",
-    "price": "1179 лв",
-    "dates": "26.10.2025 - 23.05.2026",
-    "destination": "Испания"
-  },
-  {
-    "title": "Почивки в Индонезия",
-    "link": "https://dari-tour.com/pochivki-indoneziya",
-    "price": "5358.97 лв",
-    "dates": "01.11.2025 - 21.03.2026",
-    "destination": "Индонезия"
-  },
-  {
-    "title": "Почивки в Тайланд",
-    "link": "https://dari-tour.com/pochivki-tayland",
-    "price": "3882.32 лв",
-    "dates": "15.02.2026 - 24.04.2026",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "БЕНЕЛЮКС - аромат на шоколад и ухание на лалета",
-    "link": "https://dari-tour.com/benelyuks-aromat-na-shokolad-i-uhanie-na-laleta",
-    "price": "2490 лв",
-    "dates": "25.07.2026",
-    "destination": ""
-  },
-  {
-    "title": "Предколедна Прага",
-    "link": "https://dari-tour.com/predkoledna-praga",
-    "price": "1169 лв",
-    "dates": "12.12.2025",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "795 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "1722 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "ПАРИЖ - романтиката, стила и изяществото на една световна столица",
-    "link": "https://dari-tour.com/parizh-romantikata-stila-i-izyashtestvoto-na-edna-svetovna-stolitsa",
-    "price": "1750 лв",
-    "dates": "05.04.2026 - 09.04.2026",
-    "destination": ""
-  },
-  {
-    "title": "АВСТРАЛИЯ, с големия Бариерен Риф, НОВА ЗЕЛАНДИЯ, СИНГАПУР и БАНКОК",
-    "link": "https://dari-tour.com/ekskurzia-do-avstralia-s-golemia-barieren-rif-nova-zelandia-singapur-i-bankok",
-    "price": "16850 лв",
-    "dates": "09.02.2026 - 20.02.2026",
-    "destination": "Австралия"
-  },
-  {
-    "title": "Сингапур и о. Бали + 8 целодневни екскурзии",
-    "link": "https://dari-tour.com/singapur-i-o-bali-6-tselodnevni-ekskurzii",
-    "price": "5358.97 лв",
-    "dates": "01.11.2025 - 21.03.2026",
-    "destination": "Сингапур"
-  },
-  {
-    "title": "МАЛАЙЗИЯ - СИНГАПУР с остров Сентоса - ИНДОНЕЗИЯ с остров Бали",
-    "link": "https://dari-tour.com/malayziya-singapur-s-ostrov-sentosa-indoneziya-s-ostrov-bali",
-    "price": "5650 лв",
-    "dates": "23.11.2025 - 15.03.2026",
-    "destination": "Малайзия"
-  },
-  {
-    "title": "Екскурзия до Банкок, Сингапур, Камбоджа и о-в Пукет",
-    "link": "https://dari-tour.com/ekskurziya-do-bankok-singapur-kambodzha-i-o-v-puket",
-    "price": "5456.77 лв",
-    "dates": "02.11.2025 - 08.11.2025",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "АВСТРАЛИЯ, с големия Бариерен Риф, НОВА ЗЕЛАНДИЯ, СИНГАПУР и БАНКОК",
-    "link": "https://dari-tour.com/ekskurzia-do-avstralia-s-golemia-barieren-rif-nova-zelandia-singapur-i-bankok",
-    "price": "16850 лв",
-    "dates": "09.02.2026 - 20.02.2026",
-    "destination": "Австралия"
-  },
-  {
-    "title": "Круиз Скандинавски фиорди с Берген - Costa Diadema",
-    "link": "https://dari-tour.com/kruiz-skandinavski-fiordi-s-bergen-costa-diadema",
-    "price": "3696 лв",
-    "dates": "03.07.2026 - 10.07.2026",
-    "destination": ""
-  },
-  {
-    "title": "Люлебургаз - Текирдаг - Чорлу",
-    "link": "https://dari-tour.com/lyuleburgaz-tekirdag-chorlu",
-    "price": "210 лв",
-    "dates": "22.11.2025 - 06.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "ЛИКИЯ – ЗЕМЯ НА ЛЕГЕНДИ",
-    "link": "https://dari-tour.com/likiya-zemya-na-legendi",
-    "price": "699 лв",
-    "dates": "28.10.2025 - 04.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "КАПАДОКИЯ – МИСТИКА И ЧАР",
-    "link": "https://dari-tour.com/kapadokiya-char-i-mistika",
-    "price": "699 лв",
-    "dates": "28.10.2025 - 04.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "Почивки в Кипър",
-    "link": "https://dari-tour.com/pochivki-kipur",
-    "price": "968.14 лв",
-    "dates": "28.12.2025",
-    "destination": "Кипър"
-  },
-  {
-    "title": "Коледа и Нова Година 2026 в Коста Рика",
-    "link": "https://dari-tour.com/koleda-i-nova-godina-2026-v-kosta-rika",
-    "price": "4671 лв",
-    "dates": "20.12.2025 - 23.12.2025",
-    "destination": "Коста Рика"
-  },
-  {
-    "title": "Kоста Рика с директен полет от Мадрид",
-    "link": "https://dari-tour.com/kosta-rika-s-direkten-polet-ot-madrid",
-    "price": "3820 лв",
-    "dates": "08.11.2025 - 17.01.2026",
-    "destination": "Кипър"
-  },
-  {
-    "title": "ИСЛАНДИЯ - ЗЕМЯ ОТ ЛАВА И ЛЕД",
-    "link": "https://dari-tour.com/ekskurzia-do-islandia-zemya-ot-lava-i-led",
-    "price": "4440 лв",
-    "dates": "08.06.2025 - 23.08.2026",
-    "destination": "Исландия"
-  },
-  {
-    "title": "Екскурзия в Япония 2026",
-    "link": "https://dari-tour.com/ekskurziya-v-yaponiya-2026",
-    "price": "7199 лв",
-    "dates": "15.05.2026",
-    "destination": "Япония"
-  },
-  {
-    "title": "Екскурзия в Япония есен 2025",
-    "link": "https://dari-tour.com/ekskurziya-v-yaponiya-esen-2025",
-    "price": "6999 лв",
-    "dates": "18.11.2025",
-    "destination": "Япония"
-  },
-  {
-    "title": "ЯПОНИЯ – любов завинаги… ЯПОНИЯ – незабравима",
-    "link": "https://dari-tour.com/yaponiya-lyubov-zavinagi-yaponiya-nezabravima",
-    "price": "8390 лв",
-    "dates": "15.05.2026",
-    "destination": "Япония"
-  },
-  {
-    "title": "Мадрид - предколедна",
-    "link": "https://dari-tour.com/madrid-predkoledna",
-    "price": "1498 лв",
-    "dates": "02.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Коледа - Барселона",
-    "link": "https://dari-tour.com/koleda-barselona",
-    "price": "1233 лв",
-    "dates": "23.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Испания - Нова Година 2026 в центъра на Малага, Толедо и Мадрид.",
-    "link": "https://dari-tour.com/ispaniya-nova-godina-2026-v-tsentura-na-malaga-toledo-i-madrid",
-    "price": "3090.21 лв",
-    "dates": "28.12.2025",
-    "destination": "Испания"
-  },
-  {
-    "title": "НОВА ГОДИНА в южна Испания, на брега на Испанските Кариби - Кадис и Коста де ла Лус! С включена обиколка на  Кордоба и Мадрид",
-    "link": "https://dari-tour.com/nova-godina-v-yuzhna-ispaniya-na-brega-na-ispanskite-karibi-kadis-i-kosta-de-la-lus-s-vklyuchena-obi",
-    "price": "2945 лв",
-    "dates": "28.12.2025",
-    "destination": "Испания"
-  },
-  {
-    "title": "Нова Година - Барселона",
-    "link": "https://dari-tour.com/nova-godina-barselona",
-    "price": "1338 лв",
-    "dates": "30.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Плитвички езера-пещерата Постойна-Загреб-Любляна- замъка Предяма с автобус от Варна,Шумен,Велико Търново и София",
-    "link": "https://dari-tour.com/plitvichki-ezera-peshterata-postoyna-zagreb-lyublyana-zamuka-predyama-s-avtobus-ot-varnashumenveliko",
-    "price": "535 лв",
-    "dates": "30.10.2025",
-    "destination": ""
-  },
-  {
-    "title": "Адриатика - от Варна, Шумен и Велико Търново",
-    "link": "https://dari-tour.com/adriatika-ot-varna-shumen-veliko-turnovo-i-pleven",
-    "price": "1076 лв",
-    "dates": "04.04.2026 - 23.05.2026",
-    "destination": ""
-  },
-  {
-    "title": "ПРЕДКОЛЕДЕН КРАКОВ - приказки и легенди - 3 нощувки от София",
-    "link": "https://dari-tour.com/predkoleden-krakov-prikazki-i-legendi-3-noshtuvki-ot-sofiya",
-    "price": "859 лв",
-    "dates": "05.12.2025 - 12.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Коледа - Виена - Будапеща",
-    "link": "https://dari-tour.com/koleda-viena-budapeshta",
-    "price": "772 лв",
-    "dates": "23.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "795 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Прага - Братислава - Будапеща - Виена",
-    "link": "https://dari-tour.com/praga-bratislava-budapeshta-viena",
-    "price": "1722 лв",
-    "dates": "01.12.2025 - 07.04.2026",
-    "destination": "Чехия"
-  },
-  {
-    "title": "Виена - Будапеща",
-    "link": "https://dari-tour.com/viena-budapeshta",
-    "price": "595 лв",
-    "dates": "03.12.2025 - 10.12.2025",
-    "destination": "Австрия"
-  },
-  {
-    "title": "Семейно пътуване до Гардаленд, Италия",
-    "link": "https://dari-tour.com/semeyno-putuvane-do-gardalend-italiya",
-    "price": "1195 лв",
-    "dates": "31.10.2025",
-    "destination": "Италия"
-  },
-  {
-    "title": "АМАЛФИЙСКА РИВИЕРА",
-    "link": "https://dari-tour.com/amalfiyska-riviera",
-    "price": "1399 лв",
-    "dates": "28.10.2025 - 04.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "Лигурска ривиера и Монако",
-    "link": "https://dari-tour.com/ligurska-riviera-i-monako",
-    "price": "1499 лв",
-    "dates": "15.09.2026",
-    "destination": ""
-  },
-  {
-    "title": "Екскурзия до Загреб - Верона - Сирмионе, езерото Гарда - Милано и Венеция",
-    "link": "https://dari-tour.com/ekskurziya-do-zagreb-verona-sirmione-ezeroto-garda-milano-i-venetsiya",
-    "price": "480 лв",
-    "dates": "26.11.2025 - 12.02.2026",
-    "destination": ""
-  },
-  {
-    "title": "Класическа Италия - икономичен вариант",
-    "link": "https://dari-tour.com/klasicheska-italiya-ikonomichen-variant",
-    "price": "999 лв",
-    "dates": "07.04.2026 - 30.04.2026",
-    "destination": "Италия"
-  },
-  {
-    "title": "Магията на италианските езера и езерото Лугано",
-    "link": "https://dari-tour.com/magiata-na-italianskaite-ezera-i-ezeroto-lugano",
-    "price": "1585 лв",
-    "dates": "31.03.2026 - 28.04.2026",
-    "destination": ""
-  },
-  {
-    "title": "Най-красивите италиански езера",
-    "link": "https://dari-tour.com/nay-krasivite-italianski-ezera",
-    "price": "1018 лв",
-    "dates": "06.04.2026 - 23.05.2026",
-    "destination": ""
-  },
-  {
-    "title": "ИТАЛИЯ И ШВЕЙЦАРИЯ – СТАНДАРТ – ПРИКАЗНИТЕ ЕЗЕРА",
-    "link": "https://dari-tour.com/italiya-i-shveytsariya-prikaznite-ezera",
-    "price": "1499 лв",
-    "dates": "12.04.2026 - 19.04.2026",
-    "destination": "Италия"
-  },
-  {
-    "title": "О-В БАЛИ",
-    "link": "https://dari-tour.com/ekskurzia-do-ostrov-bali",
-    "price": "4880 лв",
-    "dates": "15.03.2025 - 20.11.2025",
-    "destination": "Бали"
-  },
-  {
-    "title": "Круиз по Нил с Кайро, с кацане в Хургада",
-    "link": "https://dari-tour.com/kruiz-po-nil-s-kayro-s-katsane-v-hurgada",
-    "price": "2339 лв",
-    "dates": "12.11.2025",
-    "destination": "Египет"
-  },
-  {
-    "title": "Круиз по Нил с Кайро, с кацане в Кайро",
-    "link": "https://dari-tour.com/kruiz-po-nil-s-katsane-v-kayro",
-    "price": "2309 лв",
-    "dates": "08.11.2025",
-    "destination": "Египет"
-  },
-  {
-    "title": "Почивки в Кения",
-    "link": "https://dari-tour.com/pochivki-keniya",
-    "price": "5488.06 лв",
-    "dates": "03.02.2026",
-    "destination": "Кения"
-  },
-  {
-    "title": "Почивки в Занзибар",
-    "link": "https://dari-tour.com/pochivki-zanzibar",
-    "price": "2714.38 лв",
-    "dates": "13.02.2026 - 27.02.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "НОВА ГОДИНА НА КРУИЗ В ПЕРСИЙСКИЯ ЗАЛИВ С MSC EURIBIA - малка група с водач от агенцията",
-    "link": "https://dari-tour.com/nova-godina-na-kruiz-v-persiyskiya-zaliv-s-msc-euribia-malka-grupa-s-vodach-ot-agentsiyata",
-    "price": "5847.93 лв",
-    "dates": "27.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Коледа - Луковска баня - хотел Bela Jela 4*",
-    "link": "https://dari-tour.com/koleda-lukovska-banya-hotel-bela-jela-4",
-    "price": "675 лв",
-    "dates": "23.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "Коледа - Пролом баня - хотел RADAN 3*",
-    "link": "https://dari-tour.com/koleda-prolom-banya-hotel-radan-3",
-    "price": "625 лв",
-    "dates": "23.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "Коледа - Върнячка баня - хотел Fontana 4*",
-    "link": "https://dari-tour.com/koleda-vurnyachka-banya-hotel-fontana-4",
-    "price": "679 лв",
-    "dates": "24.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "Коледа - Белград",
-    "link": "https://dari-tour.com/koleda-belgrad",
-    "price": "558 лв",
-    "dates": "24.12.2025",
-    "destination": "Сърбия"
-  },
-  {
-    "title": "Нова Година - Белград",
-    "link": "https://dari-tour.com/nova-godina-belgrad",
-    "price": "626 лв",
-    "dates": "30.12.2025",
-    "destination": "Сърбия"
-  },
-  {
-    "title": "Нова Година - Върнячка баня - хотел Tonanti & Spa 4*",
-    "link": "https://dari-tour.com/nova-godina-vurnyachka-banya-hotel-tonanti-spa-4",
-    "price": "1250 лв",
-    "dates": "30.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "Нова Година - Луковска баня - хотел Bela Jela 4*",
-    "link": "https://dari-tour.com/nova-godina-lukovska-banya-hotel-bela-jela-4",
-    "price": "1092 лв",
-    "dates": "30.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "Нова Година - Пролом баня - хотел RADAN 3*",
-    "link": "https://dari-tour.com/nova-godina-prolom-banya-hotel-radan-3",
-    "price": "959 лв",
-    "dates": "30.12.2025",
-    "destination": "България"
-  },
-  {
-    "title": "ЕЛ КАЛАФАТЕ, БУЕНОС АЙРЕС, водопадите ИГУАСУ и РИО ДЕ ЖАНЕЙРО",
-    "link": "https://dari-tour.com/patagoniya-buenos-ayres-vodopadite-iguasu-i-rio-de-zhaneyro",
-    "price": "9159 лв",
-    "dates": "16.01.2026 - 13.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "Почивки в Филипини",
-    "link": "https://dari-tour.com/pochivki-filipini",
-    "price": "6390 лв",
-    "dates": "28.11.2025 - 22.02.2026",
-    "destination": "Филипини"
-  },
-  {
-    "title": "Сингапур и о. Бали + 8 целодневни екскурзии",
-    "link": "https://dari-tour.com/singapur-i-o-bali-6-tselodnevni-ekskurzii",
-    "price": "5358.97 лв",
-    "dates": "01.11.2025 - 21.03.2026",
-    "destination": "Сингапур"
-  },
-  {
-    "title": "МАЛАЙЗИЯ - СИНГАПУР с остров Сентоса - ИНДОНЕЗИЯ с остров Бали",
-    "link": "https://dari-tour.com/malayziya-singapur-s-ostrov-sentosa-indoneziya-s-ostrov-bali",
-    "price": "5650 лв",
-    "dates": "23.11.2025 - 15.03.2026",
-    "destination": "Малайзия"
-  },
-  {
-    "title": "Екскурзия остров Бали – 7 екскурзии включени в цената",
-    "link": "https://dari-tour.com/ekskurziya-ostrov-bali-7-ekskurzii-vklyucheni-v-tsenata",
-    "price": "4478.85 лв",
-    "dates": "20.02.2026 - 07.03.2026",
-    "destination": "Индонезия"
-  },
-  {
-    "title": "ЮЖНА АФРИКА с Национален парк Крюгер – ЗИМБАБВЕ с водопада Виктория – БОТСВАНА с Национален парк Чобе. \nРeв на диви животни и грохот на водопади",
-    "link": "https://dari-tour.com/yuzhna-afrika-zimbabve-botsvana",
-    "price": "7960 лв",
-    "dates": "27.11.2025 - 01.03.2026",
-    "destination": "Ботсвана"
-  },
-  {
-    "title": "Ботсвана и Зимбабве",
-    "link": "https://dari-tour.com/botsvana-i-zimbabve",
-    "price": "3851 лв",
-    "dates": "07.11.2025 - 21.11.2025",
-    "destination": "Ботсвана"
-  },
-  {
-    "title": "РИО ДЕ   ЖАНЕЙРО и водопадите ИГУАСУ",
-    "link": "https://dari-tour.com/rio-de-zhaneyro-i-vodopadite-iguasu",
-    "price": "5733 лв",
-    "dates": "19.11.2025 - 10.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Бразилия и Аржентина – Буенос Айрес, водопадите Игуасу и Рио де Жанейро + Уругвай",
-    "link": "https://dari-tour.com/braziliya-i-arzhentina-buenos-ayres-vodopadite-iguasu-i-rio-de-zhaneyro-urugvay",
-    "price": "6434.68 лв",
-    "dates": "04.11.2025 - 16.11.2025",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "ЕЛ КАЛАФАТЕ, БУЕНОС АЙРЕС, водопадите ИГУАСУ и РИО ДЕ ЖАНЕЙРО",
-    "link": "https://dari-tour.com/patagoniya-buenos-ayres-vodopadite-iguasu-i-rio-de-zhaneyro",
-    "price": "9159 лв",
-    "dates": "16.01.2026 - 13.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "РИО ДЕ ЖАНЕЙРО, водопадите ИГУАСУ и АМАЗОНИЯ",
-    "link": "https://dari-tour.com/rio-de-zhaneyro-vodopadite-iguasu-i-amazoniya",
-    "price": "7903 лв",
-    "dates": "25.01.2026 - 22.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "РИО ДЕ ЖАНЕЙРО и АМАЗОНИЯ",
-    "link": "https://dari-tour.com/rio-de-zhaneyro-i-amazoniya",
-    "price": "7210 лв",
-    "dates": "29.01.2026 - 26.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "Карибски Рай: Круиз от Панама до Колумбия",
-    "link": "https://dari-tour.com/karibski-ray-kruiz-ot-panama-do-kolumbiya",
-    "price": "6386 лв",
-    "dates": "05.11.2025",
-    "destination": "Колумбия"
-  },
-  {
-    "title": "Карибски Рай: Круиз от Панама до Колумбия през 2026",
-    "link": "https://dari-tour.com/karibski-ray-kruiz-ot-panama-do-kolumbiya-prez-2026",
-    "price": "7578 лв",
-    "dates": "21.01.2026",
-    "destination": "Панама"
-  },
-  {
-    "title": "Екскурзия и почивка в Шри Ланка, януари 2026",
-    "link": "https://dari-tour.com/ekskurziya-i-pochivka-v-shri-lanka-yanuari-2026",
-    "price": "3519 лв",
-    "dates": "08.01.2026",
-    "destination": ""
-  },
-  {
-    "title": "Екскурзия в Шри Ланка и почивка на Малдиви",
-    "link": "https://dari-tour.com/ekskurziya-v-shri-lanka-i-pochivka-na-maldivi",
-    "price": "6434.68 лв",
-    "dates": "26.11.2025 - 27.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "Почивки в Бразилия",
-    "link": "https://dari-tour.com/pochivki-braziliya",
-    "price": "4760 лв",
-    "dates": "29.01.2026 - 26.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "Почивки в Индия",
-    "link": "https://dari-tour.com/pochivki-indiya",
-    "price": "6300 лв",
-    "dates": "14.11.2025 - 06.12.2025",
-    "destination": "Индия"
-  },
-  {
-    "title": "Екскурзия до Мексико + почивка в Плая Дел Кармен",
-    "link": "https://dari-tour.com/ekskurziya-do-meksiko-pochivka-v-playa-del-karmen",
-    "price": "6630.26 лв",
-    "dates": "17.01.2026 - 15.03.2026",
-    "destination": "Мексико"
-  },
-  {
-    "title": "МЕКСИКО С ВОДОПАДИТЕ AGUA AZUL",
-    "link": "https://dari-tour.com/meksiko-s-vodopadite-agua-azul",
-    "price": "7270 лв",
-    "dates": "27.01.2026 - 09.03.2026",
-    "destination": "Мексико"
   },
   {
     "title": "Почивки в Малдиви",
@@ -1554,157 +763,10 @@
     "destination": "Китай"
   },
   {
-    "title": "Албания - Елбасан, Тирана, Дуръс, Берат, Круя",
-    "link": "https://dari-tour.com/albaniya-elbasan-tirana-durus-berat-kruya",
-    "price": "420 лв",
-    "dates": "30.10.2025",
-    "destination": "Албания"
-  },
-  {
-    "title": "Русия - Москва и Мурманск в Северно Сияние",
-    "link": "https://dari-tour.com/rusiya-moskva-i-murmansk-v-severno-siyanie",
-    "price": "4772.23 лв",
-    "dates": "28.02.2026 - 20.03.2026",
-    "destination": "Русия"
-  },
-  {
-    "title": "Златният триъгълник",
-    "link": "https://dari-tour.com/zlatniyat-triugulnik",
-    "price": "3276 лв",
-    "dates": "02.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "Индия - Златният триъгълник",
-    "link": "https://dari-tour.com/india-zlatniyat-triagalnik",
-    "price": "2935 лв",
-    "dates": "19.01.2026",
-    "destination": "Индия"
-  },
-  {
-    "title": "Индия - Златният триъгълник (Джайпур, Агра, Делхи)",
-    "link": "https://dari-tour.com/indiya-zlatniyat-triugulnik-dzhaypur-agra-delhi",
-    "price": "3047 лв",
-    "dates": "07.11.2025 - 14.11.2025",
-    "destination": "Индия"
-  },
-  {
-    "title": "ИНДИЯ - изяществото на Тадж Махал, пищните храмове на \nКаджураху и могъщите крепости на Раджастан",
-    "link": "https://dari-tour.com/indiya-izyashtestvoto-na-tadzh-mahal",
-    "price": "4630 лв",
-    "dates": "07.04.2026",
-    "destination": "Индия"
-  },
-  {
-    "title": "ЮЖНА АФРИКА с Национален парк Крюгер – ЗИМБАБВЕ с водопада Виктория – БОТСВАНА с Национален парк Чобе. \nРeв на диви животни и грохот на водопади",
-    "link": "https://dari-tour.com/yuzhna-afrika-zimbabve-botsvana",
-    "price": "7960 лв",
-    "dates": "27.11.2025 - 01.03.2026",
-    "destination": "Ботсвана"
-  },
-  {
-    "title": "Южна Африка: Национален Парк Крюгер и панорамният маршрут",
-    "link": "https://dari-tour.com/yuzhna-afrika-natsionalen-park-kryuger-i-panoramniyat-marshrut",
-    "price": "2170 лв",
-    "dates": "29.10.2025 - 02.11.2025",
-    "destination": ""
-  },
-  {
-    "title": "Екскурзия до Китай 2026 - 10 нощувки - промо цена до 30.10.2025",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026",
-    "price": "4999 лв",
-    "dates": "30.10.2025 - 18.05.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "Екскурзия до Китай 2026",
-    "link": "https://dari-tour.com/ekskurziya-v-kitay-2026-8-noshtuvki",
-    "price": "3999 лв",
-    "dates": "17.03.2026 - 20.03.2026",
-    "destination": "Китай"
-  },
-  {
-    "title": "ИСЛАНДИЯ и ГРЕНЛАНДИЯ I къс вар.",
-    "link": "https://dari-tour.com/ekskuria-do-islandia-u-grenlandia",
-    "price": "12525 лв",
-    "dates": "14.08.2026",
-    "destination": "Исландия"
-  },
-  {
-    "title": "ИСЛАНДИЯ - ЗЕМЯ ОТ ЛАВА И ЛЕД",
-    "link": "https://dari-tour.com/ekskurzia-do-islandia-zemya-ot-lava-i-led",
-    "price": "4340 лв",
-    "dates": "18.08.2026",
-    "destination": "Исландия"
-  },
-  {
-    "title": "Исландия – Красота отвъд всички представи!",
-    "link": "https://dari-tour.com/islandiya-krasota-otvud-vsichki-predstavi",
-    "price": "4165.92 лв",
-    "dates": "05.04.2026 - 25.04.2026",
-    "destination": "Исландия"
-  },
-  {
-    "title": "САЩ И КАНАДА – НОВИЯТ СВЯТ",
-    "link": "https://dari-tour.com/sasht-i-kanada-noviyat-svyat",
-    "price": "6899 лв",
-    "dates": "23.04.2026 - 15.08.2026",
-    "destination": "САЩ"
-  },
-  {
-    "title": "ЛИСАБОН И  ПОРТО",
-    "link": "https://dari-tour.com/lisabon-i-porto",
-    "price": "3680 лв",
-    "dates": "01.04.2026 - 08.04.2026",
-    "destination": ""
-  },
-  {
-    "title": "Аржентина - Чили - вино и гурме",
-    "link": "https://dari-tour.com/arzhentina-chili-vino-i-gurme",
-    "price": "8329 лв",
-    "dates": "02.03.2026",
-    "destination": "Аржентина"
-  },
-  {
-    "title": "Бразилия и Аржентина – Буенос Айрес, водопадите Игуасу и Рио де Жанейро + Уругвай",
-    "link": "https://dari-tour.com/braziliya-i-arzhentina-buenos-ayres-vodopadite-iguasu-i-rio-de-zhaneyro-urugvay",
-    "price": "6434.68 лв",
-    "dates": "04.11.2025 - 16.11.2025",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "ЕЛ КАЛАФАТЕ, БУЕНОС АЙРЕС, водопадите ИГУАСУ и РИО ДЕ ЖАНЕЙРО",
-    "link": "https://dari-tour.com/patagoniya-buenos-ayres-vodopadite-iguasu-i-rio-de-zhaneyro",
-    "price": "9159 лв",
-    "dates": "16.01.2026 - 13.02.2026",
-    "destination": "Бразилия"
-  },
-  {
-    "title": "Почивки в Италия",
-    "link": "https://dari-tour.com/pochivki-italiya",
-    "price": "992 лв",
-    "dates": "19.11.2025 - 29.11.2025",
-    "destination": "Италия"
-  },
-  {
-    "title": "ЮЖНА АФРИКА с Национален парк Крюгер – ЗИМБАБВЕ с водопада Виктория – БОТСВАНА с Национален парк Чобе. \nРeв на диви животни и грохот на водопади",
-    "link": "https://dari-tour.com/yuzhna-afrika-zimbabve-botsvana",
-    "price": "7960 лв",
-    "dates": "27.11.2025 - 01.03.2026",
-    "destination": "Ботсвана"
-  },
-  {
-    "title": "Ботсвана и Зимбабве",
-    "link": "https://dari-tour.com/botsvana-i-zimbabve",
-    "price": "3851 лв",
-    "dates": "07.11.2025 - 21.11.2025",
-    "destination": "Ботсвана"
-  },
-  {
-    "title": "Екскурзия в Шри Ланка и почивка на Малдиви",
-    "link": "https://dari-tour.com/ekskurziya-v-shri-lanka-i-pochivka-na-maldivi",
-    "price": "6434.68 лв",
-    "dates": "26.11.2025 - 27.11.2025",
+    "title": "ПРЕДКОЛЕДЕН КРАКОВ - приказки и легенди - 3 нощувки от София",
+    "link": "https://dari-tour.com/predkoleden-krakov-prikazki-i-legendi-3-noshtuvki-ot-sofiya",
+    "price": "859 лв",
+    "dates": "05.12.2025 - 12.12.2025",
     "destination": ""
   },
   {
@@ -1715,25 +777,39 @@
     "destination": "Мавриций"
   },
   {
-    "title": "Почивки в Мексико",
-    "link": "https://dari-tour.com/pochivki-meksiko",
-    "price": "6630.26 лв",
-    "dates": "25.10.2025 - 15.03.2026",
-    "destination": "Мексико"
+    "title": "Почивки в Коста Рика",
+    "link": "https://dari-tour.com/pochivki-kosta-rika",
+    "price": "4671 лв",
+    "dates": "20.12.2025 - 23.12.2025",
+    "destination": "Коста Рика"
   },
   {
-    "title": "МАЛАЙЗИЯ - СИНГАПУР с остров Сентоса - ИНДОНЕЗИЯ с остров Бали",
-    "link": "https://dari-tour.com/malayziya-singapur-s-ostrov-sentosa-indoneziya-s-ostrov-bali",
-    "price": "5650 лв",
-    "dates": "23.11.2025 - 15.03.2026",
-    "destination": "Малайзия"
+    "title": "О-В БАЛИ",
+    "link": "https://dari-tour.com/ekskurzia-do-ostrov-bali",
+    "price": "4880 лв",
+    "dates": "15.03.2025 - 20.11.2025",
+    "destination": "Бали"
   },
   {
-    "title": "ТАЙЛАНД с ПУКЕТ и МАЛАЙЗИЯ",
-    "link": "https://dari-tour.com/tayland-s-puket-i-malayziya",
-    "price": "6930 лв",
-    "dates": "15.02.2026 - 24.04.2026",
-    "destination": "Малайзия"
+    "title": "Почивки в Индонезия",
+    "link": "https://dari-tour.com/pochivki-indoneziya",
+    "price": "5358.97 лв",
+    "dates": "01.11.2025 - 21.03.2026",
+    "destination": "Индонезия"
+  },
+  {
+    "title": "Почивки в Бразилия",
+    "link": "https://dari-tour.com/pochivki-braziliya",
+    "price": "4760 лв",
+    "dates": "29.01.2026 - 26.02.2026",
+    "destination": "Бразилия"
+  },
+  {
+    "title": "Почивки в Шри Ланка",
+    "link": "https://dari-tour.com/pochivki-shri-lanka",
+    "price": "3519 лв",
+    "dates": "08.01.2026",
+    "destination": "Китай"
   },
   {
     "title": "Почивки в Сингапур",
@@ -1743,158 +819,32 @@
     "destination": "Сингапур"
   },
   {
-    "title": "УЗБЕКИСТАН – Незабравимо пътешествие до сърцето на \nВеликия път на коприната",
-    "link": "https://dari-tour.com/uzbekistan-nezabravimo-puteshestvie-do-surtseto-na-velikiya-put-na-koprinata",
-    "price": "3670 лв",
-    "dates": "19.05.2026",
-    "destination": "Сингапур"
+    "title": "Почивки в Кения",
+    "link": "https://dari-tour.com/pochivki-keniya",
+    "price": "5488.06 лв",
+    "dates": "03.02.2026",
+    "destination": "Кения"
   },
   {
-    "title": "Почивки в Коста Рика",
-    "link": "https://dari-tour.com/pochivki-kosta-rika",
+    "title": "Почивки в Филипини",
+    "link": "https://dari-tour.com/pochivki-filipini",
+    "price": "6390 лв",
+    "dates": "28.11.2025 - 22.02.2026",
+    "destination": "Филипини"
+  },
+  {
+    "title": "Почивки в Тайланд",
+    "link": "https://dari-tour.com/pochivki-tayland",
+    "price": "3882.32 лв",
+    "dates": "15.02.2026 - 24.04.2026",
+    "destination": "Тайланд"
+  },
+  {
+    "title": "Коледа и Нова Година 2026 в Коста Рика",
+    "link": "https://dari-tour.com/koleda-i-nova-godina-2026-v-kosta-rika",
     "price": "4671 лв",
     "dates": "20.12.2025 - 23.12.2025",
     "destination": "Коста Рика"
-  },
-  {
-    "title": "Почивки в Тунис със самолет • Цени",
-    "link": "https://dari-tour.com/pochivki-tunis",
-    "price": "1177 лв",
-    "dates": "28.10.2025 - 23.09.2026",
-    "destination": "Тунис"
-  },
-  {
-    "title": "Екскурзия Виетнам и Камбоджа със Златния мост 2026",
-    "link": "https://dari-tour.com/ekskurziya-vietnam-i-kambodzha-2026",
-    "price": "4799 лв",
-    "dates": "17.03.2026",
-    "destination": "Виетнам"
-  },
-  {
-    "title": "Екскурзия до Банкок, Сингапур, Камбоджа и о-в Пукет",
-    "link": "https://dari-tour.com/ekskurziya-do-bankok-singapur-kambodzha-i-o-v-puket",
-    "price": "5456.77 лв",
-    "dates": "02.11.2025 - 08.11.2025",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "Карибски круиз на емблематични острови + 6 нощувки почивка в Доминикана",
-    "link": "https://dari-tour.com/karibski-kruiz-na-emblematichni-ostrovi-6-noshtuvki-pochivka-v-dominikana",
-    "price": "6864.96 лв",
-    "dates": "14.01.2026 - 28.01.2026",
-    "destination": "Доминикана"
-  },
-  {
-    "title": "Почивки в Дубай ≫ Оферти за ОАЕ",
-    "link": "https://dari-tour.com/pochivki-dubay",
-    "price": "2279 лв",
-    "dates": "04.11.2025 - 11.03.2026",
-    "destination": "ОАЕ"
-  },
-  {
-    "title": "БЕНЕЛЮКС - аромат на шоколад и ухание на лалета",
-    "link": "https://dari-tour.com/benelyuks-aromat-na-shokolad-i-uhanie-na-laleta",
-    "price": "2490 лв",
-    "dates": "25.07.2026",
-    "destination": ""
-  },
-  {
-    "title": "САЩ И КАНАДА – НОВИЯТ СВЯТ",
-    "link": "https://dari-tour.com/sasht-i-kanada-noviyat-svyat",
-    "price": "6899 лв",
-    "dates": "23.04.2026 - 15.08.2026",
-    "destination": "САЩ"
-  },
-  {
-    "title": "Тайланд - Банкок и Пукет - с Турски авиолинии",
-    "link": "https://dari-tour.com/tailand-bankok-i-puket-esen-2024",
-    "price": "4055 лв",
-    "dates": "12.11.2025",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "ТАЙЛАНД - Банкок, Аютая и плажовете на Краби - една \nотделна екзотична реалност! Включени всички екскурзии и \nпосещения",
-    "link": "https://dari-tour.com/tayland-bankok-ayutaya-i-plazhovete-na-krabi-edna-otdelna-ekzotichna-realnost",
-    "price": "4290 лв",
-    "dates": "16.11.2025",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "Екскурзия до Банкок, Сингапур, Камбоджа и о-в Пукет",
-    "link": "https://dari-tour.com/ekskurziya-do-bankok-singapur-kambodzha-i-o-v-puket",
-    "price": "5456.77 лв",
-    "dates": "02.11.2025 - 08.11.2025",
-    "destination": "Тайланд"
-  },
-  {
-    "title": "АВСТРАЛИЯ, с големия Бариерен Риф, НОВА ЗЕЛАНДИЯ, СИНГАПУР и БАНКОК",
-    "link": "https://dari-tour.com/ekskurzia-do-avstralia-s-golemia-barieren-rif-nova-zelandia-singapur-i-bankok",
-    "price": "16850 лв",
-    "dates": "09.02.2026 - 20.02.2026",
-    "destination": "Австралия"
-  },
-  {
-    "title": "ТАЙЛАНД с ПУКЕТ и МАЛАЙЗИЯ",
-    "link": "https://dari-tour.com/tayland-s-puket-i-malayziya",
-    "price": "6930 лв",
-    "dates": "15.02.2026 - 24.04.2026",
-    "destination": "Малайзия"
-  },
-  {
-    "title": "Босна и Херцеговина",
-    "link": "https://dari-tour.com/bosna-i-hertsegovina",
-    "price": "445 лв",
-    "dates": "10.04.2026 - 30.04.2026",
-    "destination": ""
-  },
-  {
-    "title": "КУБА – НЕУКРОТИМА СТРАСТ",
-    "link": "https://dari-tour.com/kuba-neukrotima-strast",
-    "price": "3699 лв",
-    "dates": "26.10.2025 - 23.11.2025",
-    "destination": "Куба"
-  },
-  {
-    "title": "Екскурзия Виетнам и Камбоджа със Златния мост 2026",
-    "link": "https://dari-tour.com/ekskurziya-vietnam-i-kambodzha-2026",
-    "price": "4799 лв",
-    "dates": "17.03.2026",
-    "destination": "Виетнам"
-  },
-  {
-    "title": "Екскурзия до Будва-Котор-Пераст-Дубровник от Варна,Шумен,Велико Търново и София",
-    "link": "https://dari-tour.com/ekskurziya-do-budva-kotor-perast-dubrovnik-ot-varnashumenveliko-turnovo-i-sofiya",
-    "price": "480 лв",
-    "dates": "29.10.2025",
-    "destination": ""
-  },
-  {
-    "title": "Обиколка на цяла ВЕЛИКОБРИТАНИЯ – най-значимото от АНГЛИЯ – ШОТЛАНДИЯ – ИРЛАНДИЯ – УЕЛС",
-    "link": "https://dari-tour.com/obikolka-na-tsyala-velikobritaniya-nay-znachimoto-ot-angliya-shotlandiya-irlandiya-uels",
-    "price": "4390 лв",
-    "dates": "12.07.2026 - 26.07.2026",
-    "destination": "Великобритания"
-  },
-  {
-    "title": "Почивки в Египет ᐉ Оферти и цени",
-    "link": "https://dari-tour.com/pochivki-egipet",
-    "price": "2339 лв",
-    "dates": "25.10.2025 - 12.11.2025",
-    "destination": "Египет"
-  },
-  {
-    "title": "Мюнхен - Коледни базари - промоция - 200 лева отстъпка",
-    "link": "https://dari-tour.com/myunhen-koledni-bazari",
-    "price": "1399 лв",
-    "dates": "06.12.2025",
-    "destination": ""
-  },
-  {
-    "title": "Семейно пътуване до Леголенд, Германия",
-    "link": "https://dari-tour.com/semeyno-putuvane-do-legolend-germaniya",
-    "price": "1189 лв",
-    "dates": "31.10.2025 - 19.12.2025",
-    "destination": "Германия"
   },
   {
     "title": "Почивки в Малайзия",
@@ -1902,5 +852,26 @@
     "price": "6250 лв",
     "dates": "25.12.2025 - 24.04.2026",
     "destination": "Малайзия"
+  },
+  {
+    "title": "Почивки в Занзибар",
+    "link": "https://dari-tour.com/pochivki-zanzibar",
+    "price": "2714.38 лв",
+    "dates": "13.02.2026 - 27.02.2026",
+    "destination": "Китай"
+  },
+  {
+    "title": "Почивки в Кипър",
+    "link": "https://dari-tour.com/pochivki-kipur",
+    "price": "968.14 лв",
+    "dates": "28.12.2025",
+    "destination": "Кипър"
+  },
+  {
+    "title": "Почивки в Индия",
+    "link": "https://dari-tour.com/pochivki-indiya",
+    "price": "6300 лв",
+    "dates": "14.11.2025 - 06.12.2025",
+    "destination": "Индия"
   }
 ]

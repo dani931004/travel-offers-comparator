@@ -549,9 +549,20 @@ class DariTourScraper:
         individual_offers = await self.scrape_individual_offers(offer_urls_list)
         all_offers.extend(individual_offers)
 
-        self.scraped_offers = all_offers
-        print(f"\n✓ Total offers scraped: {len(all_offers)}")
-        return all_offers
+        # Remove duplicates based on title + link combination
+        seen = set()
+        unique_offers = []
+        for offer in all_offers:
+            key = (offer.title, offer.link)
+            if key not in seen:
+                seen.add(key)
+                unique_offers.append(offer)
+
+        print(f"✓ Removed {len(all_offers) - len(unique_offers)} duplicate offers")
+
+        self.scraped_offers = unique_offers
+        print(f"\n✓ Total unique offers scraped: {len(unique_offers)}")
+        return unique_offers
 
     async def save_results(self):
         """Save scraped data to JSON file with only required fields."""
