@@ -163,9 +163,54 @@ def normalize_destination(dest, mappings):
     # Fallback to title case
     return dest.title()
 
+def is_valid_travel_offer(offer):
+    """Check if an offer is a valid travel offer (not promotional/social media content)."""
+    title_lower = offer.get('title', '').lower()
+    destination_lower = offer.get('destination', '').lower()
+    
+    # Exclude social media and promotional content
+    excluded_terms = [
+        'instagram', 'инстаграм', 'facebook', 'twitter', 'tiktok', 'youtube',
+        'social', 'promo', 'реклама', 'промо', 'giveaway', 'contest', 
+        'competition', 'розыгрыш', 'конкурс', 'лотария', 'лотарий'
+    ]
+    
+    # Check title and destination for excluded terms
+    for term in excluded_terms:
+        if term in title_lower or term in destination_lower:
+            return False
+    
+    # Exclude offers with very generic or single-word titles that aren't destinations
+    if len(title_lower.split()) <= 2:
+        # Allow common destination names
+        allowed_single_words = [
+            'албания', 'гърция', 'турция', 'испания', 'италия', 'франция', 
+            'египет', 'тунис', 'мароко', 'българия', 'сърбия', 'македония',
+            'черна гора', 'хърватия', 'грузия', 'армения', 'азербайджан',
+            'киргизстан', 'таджикистан', 'туркменистан', 'узбекистан', 'казахстан',
+            'бразилия', 'аржентина', 'уругвай', 'доминикана', 'зимбабве',
+            'танзания', 'замбия', 'ботсвана', 'намибия', 'юар', 'мозамбик',
+            'занзибар', 'мавриций', 'сешели', 'мадагаскар', 'реюнион',
+            'комори', 'кирибати', 'науру', 'палау', 'маршалови острови',
+            'микронезия', 'вануату', 'соломонови острови', 'папуа нова гвинея',
+            'източен тимор', 'бруней', 'източен тимор', 'лаос', 'камбоджа',
+            'мианмар', 'непал', 'бутан', 'молдова', 'украйна', 'беларус',
+            'балтийски държави', 'скандинавия', 'иберия', 'балкани',
+            'кавказ', 'централна азия', 'далечина изток', 'югоизточна азия'
+        ]
+        if title_lower not in allowed_single_words and len(title_lower) < 15:
+            # Check if it looks like a real destination name
+            if not any(country in title_lower for country in ['албания', 'гърция', 'турция', 'испания', 'италия', 'франция', 'египет', 'тунис', 'мароко', 'българия']):
+                return False
+    
+    # Exclude offers with no price or suspiciously low prices for non-promotional content
+    price = offer.get('price_eur')
+    if price is None or price == 0:
+        return False
+    
+    return True
+
 def parse_duration(duration_str, title, description, agency):
-    """Parse duration to days (int)."""
-    # First try the duration field
     if duration_str:
         match = re.search(r'(\d+)', duration_str)
         if match:
@@ -256,7 +301,10 @@ def process_files(file_paths):
                 data = json.load(f)
             for offer in data:
                 standardized = standardize_offer(offer, agency)
-                unified_offers.append(standardized)
+                if is_valid_travel_offer(standardized):
+                    unified_offers.append(standardized)
+                else:
+                    print(f"Filtered out invalid offer: '{standardized.get('title', '')}' -> {standardized.get('destination', '')}")
         except Exception as e:
             print(f"Error processing {file_path}: {e}")
 
