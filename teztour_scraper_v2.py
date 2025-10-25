@@ -22,8 +22,23 @@ class TeztourOffer(BaseOffer):
 class TeztourScraper(PlaywrightScraperBase):
     """Scraper for Teztour.bg using Playwright"""
     
-    def __init__(self, base_url: str, output_file: str, debug: bool = False):
+    def __init__(
+        self,
+        base_url: str,
+        output_file: str,
+        debug: bool = False,
+        no_enrich: bool = False,
+        batch_size: int = 50,
+        pw_concurrency: int = 5,
+        dot_mmdd: bool = False,
+        **kwargs,
+    ):
+        # Accept extra kwargs to be compatible with run_scraper's signature
         super().__init__(base_url, output_file, debug)
+        self.no_enrich = no_enrich
+        self.batch_size = batch_size
+        self.pw_concurrency = pw_concurrency
+        self.dot_mmdd = dot_mmdd
         
     def parse_price(self, price_text: str) -> str:
         """Extract numeric price from text"""
@@ -116,28 +131,10 @@ class TeztourScraper(PlaywrightScraperBase):
     
     async def discover_destinations(self) -> List[Dict[str, str]]:
         """Discover all destination pages from the website navigation"""
+        # The country slugs return 404 or redirect heavily; fallback to main page scraping
         if self.debug:
-            print("Using predefined destinations for Teztour...")
-        
-        # Teztour has connectivity issues, use common destinations
-        # These are typical Bulgarian travel agency destinations
-        destinations = [
-            {'name': 'Египет', 'url': 'https://www.teztour.bg/egypt'},
-            {'name': 'Турция', 'url': 'https://www.teztour.bg/turkey'},
-            {'name': 'Гърция', 'url': 'https://www.teztour.bg/greece'},
-            {'name': 'Дубай', 'url': 'https://www.teztour.bg/dubai'},
-            {'name': 'Тайланд', 'url': 'https://www.teztour.bg/thailand'},
-            {'name': 'Малдиви', 'url': 'https://www.teztour.bg/maldives'},
-            {'name': 'Испания', 'url': 'https://www.teztour.bg/spain'},
-            {'name': 'Португалия', 'url': 'https://www.teztour.bg/portugal'},
-            {'name': 'Тунис', 'url': 'https://www.teztour.bg/tunisia'},
-            {'name': 'Занзибар', 'url': 'https://www.teztour.bg/zanzibar'},
-        ]
-        
-        if self.debug:
-            print(f"Using {len(destinations)} predefined destinations")
-        
-        return destinations
+            print("Skipping destination discovery; will scrape main page instead.")
+        return []
     
     async def scrape_destination(self, destination: Dict[str, str]) -> List[TeztourOffer]:
         """Scrape all offers from a specific destination page"""

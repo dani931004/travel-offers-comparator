@@ -127,8 +127,7 @@ class LuxtravelScraper:
             Formatted date range string
         """
         # Look for dates in various formats
-        dates = re.findall(r'\d{2}\.\d{2}\.?\d{0,4}', date_text)
-        
+        dates = re.findall(r"\b(\d{1,2}\.\d{1,2}\.\d{4})\b", date_text)
         if len(dates) >= 2:
             return f"{dates[0]} - {dates[-1]}"
         elif len(dates) == 1:
@@ -151,13 +150,15 @@ class LuxtravelScraper:
         
         # Common destinations
         destinations = [
+            # Countries
             'египет', 'дубай', 'испания', 'турция', 'гърция', 'италия',
-            'франция', 'португалия', 'хърватия', 'черна гора', 'albania',
-            'албания', 'кипър', 'малдиви', 'тайланд', 'бали', 'сейшели',
-            'занзибар', 'мавриций', 'доминикана', 'мексико', 'куба',
+            'франция', 'португалия', 'хърватия', 'черна гора', 'албания',
+            'кипър', 'малдиви', 'тайланд', 'сейшели', 'занзибар', 'мавриций',
+            'доминикана', 'мексико', 'куба', 'йордания', 'мароко', 'малта',
+            # Regions/cities commonly in titles
             'хургада', 'шарм', 'анталия', 'бодрум', 'родос', 'крит',
             'тенерифе', 'малорка', 'барселона', 'рим', 'париж', 'дубровник',
-            'будва', 'котор', 'санторини', 'миконос'
+            'будва', 'котор', 'санторини', 'миконос', 'истамбул', 'лефкада', 'алания', 'памуккале'
         ]
         
         for dest in destinations:
@@ -168,119 +169,81 @@ class LuxtravelScraper:
         
     async def extract_offers_from_page(self, html: str, page_num: int = 1) -> List[LuxtravelOffer]:
         """
-        Extract offers from an offers listing page.
+        Extract offers from the Luxtravel homepage sections.
         
-        Args:
-            html: HTML content
-            page_num: Page number for debugging
-            
         Returns:
             List of LuxtravelOffer objects
         """
         soup = BeautifulSoup(html, 'html.parser')
-        offers = []
-        
-        # Try multiple selectors for offer cards
-        offer_cards = soup.find_all('div', class_=re.compile(r'offer|tour|package|program|card', re.I))
-        if not offer_cards:
-            offer_cards = soup.find_all('article')
-        if not offer_cards:
-            # Find all links that might be offers  
-            all_links = soup.find_all('a', href=True)
-            # Filter for tour/offer/package links
-            offer_cards = [link for link in all_links if any(keyword in link.get('href', '').lower() for keyword in ['/tour', '/offer', '/program', '/excurs'])]
-        
-        print(f"Found {len(offer_cards)} potential offer elements on page {page_num}")
-        
-        for idx, card in enumerate(offer_cards):
+        offers: List[LuxtravelOffer] = []
+
+        # Target concrete card structure observed in debug HTML
+        cards = soup.select('div.col-offer a.offer-item')
+        print(f"Found {len(cards)} offer cards on page {page_num}")
+
+        for idx, link_elem in enumerate(cards):
             if self.limit and len(self.offers) >= self.limit:
                 break
-                
             try:
-                # Extract link
-                if card.name == 'a':
-                    link_elem = card
-                else:
-                    link_elem = card.find('a', href=True)
-                    
-                if not link_elem:
+                # Link
+                href = link_elem.get('href', '').strip()
+                if not href:
                     continue
-                    
-                link = link_elem.get('href', '')
-                if not link:
+                if any(skip in href.lower() for skip in ['mailto:', 'tel:', 'javascript:', '#', 'facebook', 'instagram', 'twitter']):
                     continue
-                    
-                # Skip navigation, social media, mailto, tel links
-                if any(skip in link.lower() for skip in ['mailto:', 'tel:', 'javascript:', '#', 'facebook', 'instagram', 'twitter']):
+                if not href.startswith('http'):
+                    href = self.BASE_URL + (href if href.startswith('/') else f"/{href}")
+
+                if href in self.seen_urls:
                     continue
-                    
-                if not link.startswith('http'):
-                    link = self.BASE_URL + link if link.startswith('/') else f"{self.BASE_URL}/{link}"
-                    
-                # Skip duplicates
-                if link in self.seen_urls:
-                    continue
-                self.seen_urls.add(link)
-                
-                # Get text content
-                if card.name == 'a':
-                    parent = card.find_parent(['div', 'article', 'section'])
-                    text_content = parent.get_text(separator=' ', strip=True) if parent else card.get_text(separator=' ', strip=True)
-                else:
-                    text_content = card.get_text(separator=' ', strip=True)
-                
-                # Extract title
-                title_elem = card.find(['h1', 'h2', 'h3', 'h4'], class_=re.compile(r'title|name|head', re.I))
-                if not title_elem and card.name == 'a':
-                    title = card.get_text(strip=True)
-                elif title_elem:
-                    title = title_elem.get_text(strip=True)
-                else:
-                    # Try to extract from first line of text
-                    lines = [line.strip() for line in text_content.split('\n') if line.strip()]
-                    title = lines[0] if lines else "No title"
-                
-                # Skip if title is too short (likely navigation)
+                self.seen_urls.add(href)
+
+                # Title
+                title_el = link_elem.select_one('div.title span')
+                title = title_el.get_text(strip=True) if title_el else link_elem.get('title', '').strip() or link_elem.get_text(strip=True)
                 if len(title) < 5:
                     continue
-                
-                # Extract price
-                price_elem = card.find(['span', 'div', 'p'], class_=re.compile(r'price|cost|цена', re.I))
-                if price_elem:
-                    price = self.parse_price(price_elem.get_text(strip=True))
-                else:
-                    price_match = re.search(r'\d+[\s,]*€|\d+[\s,]*лв', text_content)
-                    price = self.parse_price(price_match.group(0)) if price_match else ""
-                
-                # Extract dates
-                date_elem = card.find(['span', 'div', 'p'], class_=re.compile(r'date|time|период|дат', re.I))
-                if date_elem:
-                    dates = self.parse_dates(date_elem.get_text(strip=True))
-                else:
-                    dates = self.parse_dates(text_content)
-                
-                # Extract destination
-                destination = self.extract_destination(title, text_content)
-                
-                # Create offer
+
+                # Price
+                price_el = link_elem.select_one('div.price-wrap div.price')
+                price_text = price_el.get_text(separator=' ', strip=True) if price_el else link_elem.get_text(separator=' ', strip=True)
+                price = self.parse_price(price_text)
+
+                # Dates: find the day-night block labeled with 'Дати'
+                dates_text = ''
+                for dn in link_elem.select('div.box_bottom div.day-night'):
+                    label = dn.select_one('span.over')
+                    if label and ('Дати' in label.get_text() or 'дати' in label.get_text().lower()):
+                        spans = dn.select('span')
+                        if len(spans) >= 2:
+                            dates_text = spans[-1].get_text(strip=True)
+                        else:
+                            dates_text = dn.get_text(separator=' ', strip=True)
+                        break
+                if not dates_text:
+                    # Fallback to any date-like text in the card
+                    dates_text = link_elem.get_text(separator=' ', strip=True)
+                dates = self.parse_dates(dates_text)
+
+                destination = self.extract_destination(title, link_elem.get_text(separator=' ', strip=True))
+
                 offer = LuxtravelOffer(
                     title=title,
-                    link=link,
+                    link=href,
                     price=price,
                     dates=dates,
                     destination=destination,
                     scraped_at=datetime.now().isoformat()
                 )
-                
+
                 offers.append(offer)
-                
+
                 if self.debug and idx < 3:
-                    await self.save_debug_html(str(card), f"debug_luxtravel_offer_{page_num}_{idx}.html")
-                    
+                    await self.save_debug_html(str(link_elem), f"debug_luxtravel_offer_{page_num}_{idx}.html")
             except Exception as e:
                 print(f"Error extracting offer from element {idx}: {e}")
                 continue
-                
+
         return offers
         
     async def scrape_offers(self):
