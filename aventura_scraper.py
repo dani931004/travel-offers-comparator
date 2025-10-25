@@ -118,6 +118,32 @@ class AventuraScraper:
             return f"{price} BGN"
             
         return price_text.strip()
+
+    def parse_price_from_html(self, html: str) -> str:
+        """Extract price from entire HTML text, prefer EUR, fallback to BGN."""
+        soup = BeautifulSoup(html, 'html.parser')
+        text = soup.get_text(separator=' ', strip=True)
+
+        # Prefer explicit EUROS in DOM spans first
+        span_texts = ' '.join([span.get_text(strip=True) for span in soup.find_all('span')])
+        m_eur = re.search(r'(\d+[\d\s,\.]*)\s*€', span_texts)
+        if m_eur:
+            num = m_eur.group(1).replace(' ', '').replace(',', '.')
+            return f"{num} EUR"
+
+        # Fallback to any EUR in full text
+        m_eur2 = re.search(r'(\d+[\d\s,\.]*)\s*€', text)
+        if m_eur2:
+            num = m_eur2.group(1).replace(' ', '').replace(',', '.')
+            return f"{num} EUR"
+
+        # Try BGN patterns (лв or BGN)
+        m_bgn = re.search(r'(\d+[\d\s,\.]*)\s*(лв\.?|BGN)', text, re.IGNORECASE)
+        if m_bgn:
+            num = m_bgn.group(1).replace(' ', '').replace(',', '.')
+            return f"{num} BGN"
+
+        return ""
         
     def parse_dates(self, date_text: str) -> str:
         """
@@ -129,27 +155,37 @@ class AventuraScraper:
         Returns:
             Formatted date range string
         """
-        # Look for dates in DD.MM.YYYY or DD.MM format, but avoid price-like patterns
-        # More specific regex to avoid matching prices like "05.61"
-        dates = re.findall(r'\b\d{1,2}\.\d{1,2}(?:\.\d{2,4})?\b', date_text)
-        
-        # Filter out dates that look like prices (very small numbers)
-        valid_dates = []
-        for date in dates:
-            parts = date.split('.')
-            if len(parts) >= 2:
+        # Look for dates in DD.MM.YYYY strictly to avoid matching prices
+        dates = re.findall(r'\b(\d{1,2}\.\d{1,2}\.\d{4})\b', date_text)
+
+        # Normalize to DD.MM.YYYY with leading zeros
+        norm = []
+        for d in dates:
+            try:
+                parts = d.split('.')
                 day = int(parts[0])
                 month = int(parts[1])
-                # Basic validation: day 1-31, month 1-12
-                if 1 <= day <= 31 and 1 <= month <= 12:
-                    valid_dates.append(date)
-        
-        if len(valid_dates) >= 2:
-            return f"{valid_dates[0]} - {valid_dates[-1]}"
-        elif len(valid_dates) == 1:
-            return valid_dates[0]
-            
-        return ""
+                year = int(parts[2])
+                if 1 <= day <= 31 and 1 <= month <= 12 and 2000 <= year <= 2100:
+                    norm.append(f"{day:02d}.{month:02d}.{year}")
+            except Exception:
+                continue
+
+        if not norm:
+            return ""
+
+        # Sort as date objects and build range
+        from datetime import datetime as _dt
+        parsed = sorted({_dt.strptime(x, "%d.%m.%Y") for x in norm})
+        start = parsed[0].strftime("%d.%m.%Y")
+        end = parsed[-1].strftime("%d.%m.%Y")
+        return f"{start} - {end}"
+
+    def parse_dates_from_html(self, html: str) -> str:
+        """Extract date range from the whole HTML page."""
+        soup = BeautifulSoup(html, 'html.parser')
+        text = soup.get_text(separator=' ', strip=True)
+        return self.parse_dates(text)
         
     def extract_destination(self, title: str, description: str = "") -> str:
         """
@@ -174,12 +210,33 @@ class AventuraScraper:
             'тенерифе', 'малорка', 'барселона', 'рим', 'париж', 'дубровник',
             'будва', 'котор', 'санторини', 'миконос'
         ]
+        # Add common variations/extra countries
+        destinations += ['тунис', 'гръцки']
         
         for dest in destinations:
             if dest in text:
+                if dest == 'гръцки':
+                    return 'Гърция'
                 return dest.capitalize()
                 
         return "Unknown"
+
+    def extract_destination_from_html(self, html: str, fallback_text: str = "") -> str:
+        """Try to extract a cleaner destination from the detail page."""
+        soup = BeautifulSoup(html, 'html.parser')
+        # Try known location class
+        loc = soup.find(['div', 'span'], class_=re.compile(r'(tr-loc|location|loc|дестинац|место)', re.I))
+        if loc:
+            return loc.get_text(strip=True)
+        # Try breadcrumbs
+        crumbs = soup.select('ul.breadcrumb li, .breadcrumb a, .breadcrumbs a')
+        if crumbs:
+            txt = ' - '.join([c.get_text(strip=True) for c in crumbs if c.get_text(strip=True)])
+            if txt:
+                return txt
+        # Fallback to heuristics using only the fallback text (avoid whole-page keywords noise)
+        fb = fallback_text or ''
+        return self.extract_destination(fb, fb)
         
     async def extract_offers_from_page(self, html: str, page_num: int = 1) -> List[AventuraOffer]:
         """
@@ -200,95 +257,110 @@ class AventuraScraper:
         
         print(f"Found {len(offer_links)} potential offer links on page {page_num}")
         
-        for idx, link_elem in enumerate(offer_links):
+        # Limit to desired number of offers
+        tasks = []
+        sem = asyncio.Semaphore(8)
+
+        async def process_link(idx: int, link_elem):
             if self.limit and len(self.offers) >= self.limit:
-                break
-                
+                return None
+            link = link_elem.get('href', '')
+            if not link:
+                return None
+
+            # Deduplicate
+            if link in self.seen_urls:
+                return None
+            self.seen_urls.add(link)
+
+            if not link.startswith('http'):
+                full_link = self.BASE_URL + link if link.startswith('/') else f"{self.BASE_URL}/{link}"
+            else:
+                full_link = link
+
+            # Title from listing
+            text_content = link_elem.get_text(separator=' ', strip=True)
+            title_elem = link_elem.find(['div'], class_=re.compile(r'tleft-title|tright-title|tr-hotel'))
+            title = title_elem.get_text(separator=' ', strip=True) if title_elem else text_content
+            title = re.sub(r'\s*от\s*\d+[\d\s,\.]*€|\s*от\s*\d+[\d\s,\.]*лв.*', '', title).strip()
+            if len(title) < 5:
+                return None
+
+            # Destination from listing if available
+            loc_elem = link_elem.find(['div'], class_=re.compile(r'tr-loc'))
+            dest_hint = loc_elem.get_text(strip=True) if loc_elem else self.extract_destination(title, text_content)
+
+            # Try to parse price from the listing block first (prefer EUR)
+            list_price = ''
+            m_eur_list = re.search(r'(\d+[\d\s,\.]*)\s*€', text_content)
+            if m_eur_list:
+                list_price = f"{m_eur_list.group(1).replace(' ', '').replace(',', '.')} EUR"
+            else:
+                m_bgn_list = re.search(r'(\d+[\d\s,\.]*)\s*(лв\.?|BGN)', text_content, re.IGNORECASE)
+                if m_bgn_list:
+                    list_price = f"{m_bgn_list.group(1).replace(' ', '').replace(',', '.')} BGN"
+
+            # Enrich from detail page
+            async with sem:
+                html_detail = await self.fetch_page(full_link)
+            if not html_detail:
+                price = list_price
+                dates = ''
+                destination = dest_hint or 'Unknown'
+            else:
+                # Prefer price from detail page; we'll fallback to listing price later
+                detail_price = self.parse_price_from_html(html_detail)
+                dates = self.parse_dates_from_html(html_detail)
+                destination = self.extract_destination_from_html(html_detail, fallback_text=dest_hint or title)
+                # Prefer listing price if available (advertised starting price), else detail price
+                price = list_price or detail_price
+
+            # If still no price, try to parse from combined text
+            if not price:
+                # Try to parse price from the link element's own text
+                m_eur = re.search(r'(\d+[\d\s,\.]*)\s*€', text_content)
+                m_bgn = re.search(r'(\d+[\d\s,\.]*)\s*(лв\.?|BGN)', text_content, re.IGNORECASE)
+                if m_eur:
+                    num = m_eur.group(1).replace(' ', '').replace(',', '.')
+                    price = f"{num} EUR"
+                elif m_bgn:
+                    num = m_bgn.group(1).replace(' ', '').replace(',', '.')
+                    price = f"{num} BGN"
+
+            # Normalize any non-breaking spaces in price and drop obviously invalid tiny EUR amounts (<20)
+            price = price.replace('\xa0', ' ').strip()
             try:
-                link = link_elem.get('href', '')
-                if not link:
-                    continue
-                    
-                # Skip duplicates
-                if link in self.seen_urls:
-                    continue
-                self.seen_urls.add(link)
-                
-                if not link.startswith('http'):
-                    link = self.BASE_URL + link if link.startswith('/') else f"{self.BASE_URL}/{link}"
-                
-                # Get text content from the link element
-                text_content = link_elem.get_text(separator=' ', strip=True)
-                
-                # Extract title - look for specific classes or patterns
-                title = ""
-                
-                # Try to find title in specific div classes
-                title_elem = link_elem.find(['div'], class_=re.compile(r'tleft-title|tright-title|tr-hotel'))
-                if title_elem:
-                    title = title_elem.get_text(separator=' ', strip=True)
-                else:
-                    # Fallback: use the link text
-                    title = text_content
-                
-                # Clean up title - remove price info
-                title = re.sub(r'\s*от\s*\d+[\d\s,\.]*€|\s*от\s*\d+[\d\s,\.]*лв.*', '', title).strip()
-                
-                # Skip if title is too short
-                if len(title) < 5:
-                    continue
-                
-                # Extract price - look for spans or specific patterns
-                price = ""
-                price_elem = link_elem.find('span')
-                if price_elem:
-                    price = self.parse_price(price_elem.get_text(strip=True))
-                else:
-                    # Look for price patterns in the text
-                    price_match = re.search(r'(\d+[\d\s,\.]*)\s*€|(\d+[\d\s,\.]*)\s*лв', text_content)
-                    if price_match:
-                        price_text = price_match.group(1) or price_match.group(2)
-                        price = self.parse_price(price_text + (' €' if price_match.group(1) else ' лв'))
-                
-                # Extract dates - look for date patterns in text or nearby elements
-                dates = ""
-                
-                # Check if there are any date comments or hidden date divs
-                date_div = link_elem.find_next('div', class_=re.compile(r'tr-date'))
-                if date_div:
-                    dates = self.parse_dates(date_div.get_text(strip=True))
-                else:
-                    # Look for date patterns in the text
-                    dates = self.parse_dates(text_content)
-                
-                # Extract destination - look for location div or patterns
-                destination = "Unknown"
-                loc_elem = link_elem.find(['div'], class_=re.compile(r'tr-loc'))
-                if loc_elem:
-                    destination = loc_elem.get_text(strip=True)
-                else:
-                    # Try to extract from title or text
-                    destination = self.extract_destination(title, text_content)
-                
-                # Create offer
-                offer = AventuraOffer(
-                    title=title,
-                    link=link,
-                    price=price,
-                    dates=dates,
-                    destination=destination,
-                    scraped_at=datetime.now().isoformat()
-                )
-                
-                offers.append(offer)
-                
-                if self.debug and idx < 3:
-                    await self.save_debug_html(str(link_elem), f"debug_aventura_offer_{page_num}_{idx}.html")
-                    
-            except Exception as e:
-                print(f"Error extracting offer from link {idx}: {e}")
-                continue
-                
+                m_val = re.match(r'^(\d+(?:\.\d+)?)\s*(EUR|BGN)$', price)
+                if m_val and m_val.group(2) == 'EUR' and float(m_val.group(1)) < 20:
+                    price = ''
+            except Exception:
+                pass
+
+            # Skip offers without price or date range to avoid incomplete data
+            if not price or not dates:
+                return None
+
+            offer = AventuraOffer(
+                title=title,
+                link=full_link,
+                price=price,
+                dates=dates,
+                destination=destination,
+                scraped_at=datetime.now().isoformat()
+            )
+
+            if self.debug and idx < 3:
+                await self.save_debug_html(str(link_elem), f"debug_aventura_offer_{page_num}_{idx}.html")
+
+            return offer
+
+        for idx, link_elem in enumerate(offer_links):
+            if self.limit and len(tasks) >= self.limit:
+                break
+            tasks.append(asyncio.create_task(process_link(idx, link_elem)))
+
+        results = await asyncio.gather(*tasks)
+        offers = [o for o in results if o]
         return offers
         
     async def scrape_offers(self):
