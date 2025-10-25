@@ -223,6 +223,29 @@ def is_valid_travel_offer(offer):
     price = offer.get('price_eur')
     if price is None or price == 0:
         return False
+
+    # Exclude offers that are entirely in the past (date range ended before today)
+    try:
+        today = datetime.now().date()
+        ds = offer.get('dates_start')
+        de = offer.get('dates_end')
+        if ds:
+            ds_d = datetime.fromisoformat(ds).date()
+        else:
+            ds_d = None
+        if de:
+            de_d = datetime.fromisoformat(de).date()
+        else:
+            de_d = None
+        # If both dates exist and end date is in the past, drop
+        if de_d and de_d < today:
+            return False
+        # If only start date exists and it's in the past by > 60 days, drop
+        if ds_d and not de_d and (today - ds_d).days > 60:
+            return False
+    except Exception:
+        # If date parsing fails here, keep the offer (already passed other checks)
+        pass
     
     return True
 

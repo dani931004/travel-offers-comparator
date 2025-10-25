@@ -191,6 +191,12 @@ class AventuraScraper:
                     '/pochivki.php',
                     '/pochivki',
                     '/pochivki-garcia',
+                    '/pochivki-turcia',
+                    '/pochivki-tunis',
+                    '/pochivki-kurorti.php',
+                    '/pochivki-kurort.php',
+                    '/excurzii.php',
+                    '/ekskurzii',
                 )
                 # Skip obvious detail pages and non-listing-like paths
                 if self._is_offer_detail_url(norm):
@@ -383,8 +389,18 @@ class AventuraScraper:
         soup = BeautifulSoup(html, 'html.parser')
         offers = []
         
-        # Find individual offer links (not containers)
-        offer_links = soup.find_all('a', href=re.compile(r'^(pochivka|ekskurzia)/'))
+        # Find individual offer links by normalizing and checking detail pattern
+        raw_links = soup.find_all('a', href=True)
+        offer_links = []
+        normalized_links = []
+        for a in raw_links:
+            href = a.get('href', '')
+            norm = self._normalize_url(href)
+            if not norm:
+                continue
+            if self._is_offer_detail_url(norm):
+                offer_links.append(a)
+                normalized_links.append(norm)
         
         print(f"Found {len(offer_links)} potential offer links on page {page_num}")
         
@@ -399,11 +415,7 @@ class AventuraScraper:
             if not link:
                 return None
 
-            # Deduplicate
-            if link in self.seen_urls:
-                return None
-            self.seen_urls.add(link)
-
+            # Build normalized full link now for dedupe
             if not link.startswith('http'):
                 full_link = self.BASE_URL + link if link.startswith('/') else f"{self.BASE_URL}/{link}"
             else:
@@ -415,6 +427,11 @@ class AventuraScraper:
                 full_link = urlunparse((parts.scheme, parts.netloc, safe_path, parts.params, parts.query, parts.fragment))
             except Exception:
                 pass
+
+            # Deduplicate on normalized absolute link
+            if full_link in self.seen_urls:
+                return None
+            self.seen_urls.add(full_link)
 
             # Title from listing
             text_content = link_elem.get_text(separator=' ', strip=True)
@@ -438,17 +455,29 @@ class AventuraScraper:
                 if m_bgn_list:
                     list_price = f"{m_bgn_list.group(1).replace(' ', '').replace(',', '.')} BGN"
 
+            # Fallback: if a listing date element exists, use it as a single-day range
+            list_dates = ''
+            date_elem = link_elem.find('div', class_=re.compile(r'\btr-date\b'))
+            if date_elem:
+                dd = self.parse_dates(date_elem.get_text(strip=True))
+                if dd:
+                    # parse_dates returns 'start - end' or '' when not parsed
+                    if ' - ' not in dd:
+                        list_dates = f"{dd} - {dd}"
+                    else:
+                        list_dates = dd
+
             # Enrich from detail page
             async with sem:
                 html_detail = await self.fetch_page(full_link)
             if not html_detail:
                 price = list_price
-                dates = ''
+                dates = list_dates
                 destination = dest_hint or 'Unknown'
             else:
                 # Prefer price from detail page; we'll fallback to listing price later
                 detail_price = self.parse_price_from_html(html_detail)
-                dates = self.parse_dates_from_html(html_detail)
+                dates = self.parse_dates_from_html(html_detail) or list_dates
                 destination = self.extract_destination_from_html(html_detail, fallback_text=dest_hint or title)
                 # Prefer listing price if available (advertised starting price), else detail price
                 price = list_price or detail_price
