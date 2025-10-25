@@ -27,10 +27,15 @@ def parse_price(price_str, agency):
     
     try:
         if agency == 'Angel Travel':
-            # Format: "421.00 лв. / 215.25 EUR"
+            # Format: "421.00 лв. / 215.25 EUR" (preferred)
             match = re.search(r'(\d+\.?\d*)\s*лв\.?\s*/\s*(\d+\.?\d*)\s*EUR', price_str)
             if match:
                 return float(match.group(2))
+            # Fallback: Format: "421.00 лв" (convert BGN to EUR)
+            bgn_match = re.search(r'(\d+\.?\d*)\s*лв\.?', price_str)
+            if bgn_match:
+                bgn = float(bgn_match.group(1))
+                return round(bgn * BGN_TO_EUR, 2)
         else:
             # Format: "2343 лв." or similar, convert to EUR
             bgn_match = re.search(r'(\d+\.?\d*)\s*лв\.?', price_str)
@@ -256,11 +261,6 @@ def standardize_offer(offer, agency):
     raw_destination = offer.get('destination', '').strip() or title
     destination = normalize_destination(raw_destination, MAPPINGS)
     
-    program_info = offer.get('program_info', '').strip()
-    price_includes = offer.get('price_includes', []) if isinstance(offer.get('price_includes'), list) else []
-    price_excludes = offer.get('price_excludes', []) if isinstance(offer.get('price_excludes'), list) else []
-    hotel_titles = offer.get('hotel_titles', []) if isinstance(offer.get('hotel_titles'), list) else []
-    booking_conditions = offer.get('booking_conditions', '').strip()
     scraped_at = offer.get('scrapedAt', '')
 
     price_eur = parse_price(offer.get('price', ''), agency)
@@ -276,11 +276,6 @@ def standardize_offer(offer, agency):
         'dates_start': dates_start,
         'dates_end': dates_end,
         'duration_days': duration_days,
-        'program_info': program_info,
-        'price_includes': price_includes,
-        'price_excludes': price_excludes,
-        'hotel_titles': hotel_titles,
-        'booking_conditions': booking_conditions,
         'link': link,
         'scraped_at': scraped_at
     }

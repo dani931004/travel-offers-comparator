@@ -9,11 +9,6 @@ interface Offer {
   dates_start: string;
   dates_end: string;
   duration_days: number;
-  program_info: string;
-  price_includes: string[];
-  price_excludes: string[];
-  hotel_titles: string[];
-  booking_conditions: string;
   link: string;
   scraped_at: string;
 }

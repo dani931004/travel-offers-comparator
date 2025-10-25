@@ -17,11 +17,6 @@ def create_db():
             dates_start TEXT,
             dates_end TEXT,
             duration_days INTEGER,
-            program_info TEXT,
-            price_includes TEXT,  -- JSON string
-            price_excludes TEXT,  -- JSON string
-            hotel_titles TEXT,    -- JSON string
-            booking_conditions TEXT,
             link TEXT,
             scraped_at TEXT
         )
@@ -36,17 +31,13 @@ def create_db():
         cursor.execute('''
             INSERT OR REPLACE INTO offers (
                 id, agency, title, destination, price_eur,
-                dates_start, dates_end, duration_days, program_info,
-                price_includes, price_excludes, hotel_titles,
-                booking_conditions, link, scraped_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                dates_start, dates_end, duration_days,
+                link, scraped_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             offer['id'], offer['agency'], offer['title'], offer['destination'],
             offer['price_eur'], offer['dates_start'], offer['dates_end'],
-            offer['duration_days'], offer['program_info'],
-            json.dumps(offer['price_includes']), json.dumps(offer['price_excludes']),
-            json.dumps(offer['hotel_titles']), offer['booking_conditions'],
-            offer['link'], offer['scraped_at']
+            offer['duration_days'], offer['link'], offer['scraped_at']
         ))
 
     conn.commit()
