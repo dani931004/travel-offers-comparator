@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LABEL</title>
+        <meta charset="utf-8" />
+                <meta name="robots" content="noindex,nofollow,noarchive,NOODP,NOYDIR" />
+        
+        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+        <script src="js/equal-height-divs.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="style.css?17" type="text/css" />
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/iframeResizer.contentWindow.min.js" defer></script>
+        <script src="js/jQuery.lazyload-1.9.7.js" type="text/javascript"></script>
+
+        <script src="Easy-Responsive-Tabs-to-Accordion-master/js/easyResponsiveTabs.js"></script>
+        <link rel="stylesheet" href="Easy-Responsive-Tabs-to-Accordion-master/css/easy-responsive-tabs.css" type="text/css" />
+
+        <script type="text/javascript">
+            var url2 = (window.location != window.parent.location) ? document.referrer : document.location.href;
+//            console.log(url2);
+
+            var arr = url2.split("/");
+            var domain_t = arr[2];
+            var domain2 = domain_t.replace("www.", "");
+
+                        $(document).ready(function (){
+                var allowed_domains = ["angeltravel.bg","angeltravel.bg,www.angeltravel.bg,dev1.angeltravel.bg,iframe.peakview.bg
+iframe.peakview.bg"];
+                allowed_domains.push("iframe.peakview.bg", "peakview.bg");
+                console.log(domain2);
+                console.log(allowed_domains);
+    console.log($.inArray( domain2, allowed_domains));
+                if ($.inArray( domain2, allowed_domains ) == -1) {
+                    document.getElementById('CONTENT_PAGE').innerHTML = '<div class="alert alert-warning" role="alert">Вашият достъп не е активен!</div><meta name="robots" content="noindex,nofollow" />';
+                }
+            });
+            
+//            var topLocation = String(top.location);
+//            console.log(top.location);
+//            var topLocation2 = topLocation.toString();
+//            console.log(topLocation2);
+//            var arr = topLocation.split("/");
+//            console.log(arr);
+        </script>
+        <script>
+            $(window).load(function() {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");;
+            });
+        </script>
+                <style>
+            body {
+    font-family: Arial,Tahoma,Verdana,sans-serif;
+    font-size: 14px;
+    background: 0 0;
+    color: #222;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+img {
+    max-width: 100%;
+    height: auto!important
+}
+
+h1,h2 {
+    margin: 0;
+    padding: 5px;
+    line-height: 100%;
+    font-size: inherit;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-style: italic;
+}
+
+a {
+    color: #008ecb
+}
+
+a:hover {
+    color: #008ecb;
+    text-decoration: none
+}
+
+a:focus {
+    color: #008ecb;
+    outline: none;
+    text-decoration: none
+}
+
+.test {
+    background-color: #000
+}
+
+.otstap {
+    margin-bottom: 25px
+}
+
+.program_once .but,.program_once .but:hover,.reservation-btn:hover {
+    color: #fff
+}
+
+.but,.reservation-btn {
+    display: block;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0072ff, #00c6ff) !important;
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.but:hover,.reservation-btn:hover {
+    transform: translateY(-4px);
+  background: linear-gradient(135deg, #0051c7, #0072ff) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.reservation-btn {
+    display: inline-block
+}
+
+.reservation-btn.small-btn {
+    display: inline-block
+	font-size: 14px;
+    padding: 6px 10px
+}
+
+.ofcontent {
+    padding-left: 0px;
+    text-align: center;
+}
+
+.program_once {
+    background: #fff;
+    border: 0px solid #e2e2e2;
+    padding: 10px 3px 3px 0px;
+    height: 100%;
+    box-shadow: 0px 2px 0px 0px #01add3;
+    border-radius: 20px;
+}
+
+.program_once h2 {
+    margin: 0 0 15px
+}
+
+.program_once a {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 110%;
+}
+.program_once a {
+    filter: saturate(110%) brightness(110%) contrast(110%);
+}
+.program_once a:hover {
+    color: #f05200
+}
+
+/.ofimg {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px
+}
+
+/.ofimg img {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%!important
+}
+.ofimg {
+    position: relative;
+    overflow: hidden; /* за да не излиза изображението извън контейнера при zoom */
+    border-radius: 30px
+}
+
+.ofimg img {
+    opacity: 1;
+    transform: scale(1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.ofimg:hover img {
+    opacity: 0.8;
+    transform: scale(1.08);
+}
+.col-wrap {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap
+}
+
+.date {
+    color: #757575
+}
+
+.price {
+    font-size: 18px;
+    color: #f46633
+}
+
+.price-big {
+    font-size: 24px;
+    color: #f46633
+}
+
+.left-col {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%
+}
+
+.right-col {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 50px
+}
+
+.but-wrap {
+    position: relative;
+    bottom: 0;
+    left: 0px;
+    padding: 30px 20px 0px 20px;
+}
+
+.antetka,.antetka-inner {
+    padding: 10px 0px 10px 5px;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 100%;
+    margin: 0 0 25px
+}
+
+h3 {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #0dcaf0;
+    color: white;
+    padding: 7px;
+}
+
+.price-from span {
+    color: #008ecb;
+    font-size: 26px;
+    line-height: 30px;
+    margin-left: 4px
+}
+
+.star-accordion {
+    font-size: 16px;
+    margin-bottom: 50px
+}
+.star-accordion .resp-tab-content {
+    border: 1px solid #ff9800;
+    padding: 30px;
+}
+
+.star-accordion .resp-tab-item {
+    border-width: 2px 2px 0!important;
+    color: #fff
+}
+
+.resp-tab-active {
+    border: 1px solid #ff9800!important;
+    border-bottom: none;
+    margin-bottom: -1px !important;
+    padding: 12px 14px 14px 14px !important;
+    border-top: 4px solid #ff9800!important;
+    border-bottom: 0px #fff solid !important;
+}
+
+.star-accordion .resp-tabs-list li {
+    padding: 13px 15px;
+    background: #ff9800!important;
+    font-size: 16px
+}
+
+.star-accordion .resp-tabs-list li.resp-tab-active {
+    background: #fff!important;
+    position: relative
+}
+@media (min-width: 1200px) {
+    .col-lg-6 {
+        width: 33%;
+    }
+}        </style>
+               
+    </head>
+    <body>
+                <div class="se-pre-con" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background: url('img/loading-gear.gif') center top no-repeat #fff;"></div>
+        <div id="CONTENT_PAGE" class="container-fluid1">
+                        
+    <div class="program-info">
+        <h1 class="antetka-inner">КОЛЕДНИ БАЗАРИ в  ЗЛАТНА ПРАГА - чартър от СОФИЯ - 4 нощувки</h1>
+        <h3>Hotel Abito &nbsp;3*</h3>
+        
+        <div class="seo-image-gallery">
+            <div class="container-imgs">
+                <div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/CAQTRW2P.jpg');"><img alt="Hotel Abito - pic #1" title="Hotel Abito - pic #1" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/CAQTRW2P.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MR17GHAJ.jpg');"><img alt="Hotel Abito - pic #2" title="Hotel Abito - pic #2" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MR17GHAJ.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MGNEH7AZ.jpg');"><img alt="Hotel Abito - pic #3" title="Hotel Abito - pic #3" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MGNEH7AZ.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3DZN8JBF.jpg');"><img alt="Hotel Abito - pic #4" title="Hotel Abito - pic #4" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3DZN8JBF.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/TMCAUDYQ.jpg');"><img alt="Hotel Abito - pic #5" title="Hotel Abito - pic #5" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/TMCAUDYQ.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3PT8C57M.jpg');"><img alt="Hotel Abito - pic #6" title="Hotel Abito - pic #6" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3PT8C57M.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/JMWF54ZT.jpg');"><img alt="Hotel Abito - pic #7" title="Hotel Abito - pic #7" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/JMWF54ZT.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/X2653CSG.jpg');"><img alt="Hotel Abito - pic #8" title="Hotel Abito - pic #8" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/X2653CSG.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/RNYUV9Q8.jpg');"><img alt="Hotel Abito - pic #9" title="Hotel Abito - pic #9" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/RNYUV9Q8.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/1NJKRGL7.jpg');"><img alt="Hotel Abito - pic #10" title="Hotel Abito - pic #10" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/1NJKRGL7.jpg"></div></div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div class="row-s">
+                    <div class="column"><div title="Hotel Abito - pic #1" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/CAQTRW2P.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG.jpg" onclick="currentSlide(1)"></div></div><div class="column"><div title="Hotel Abito - pic #2" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MR17GHAJ.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MR17GHAJ.jpg" onclick="currentSlide(2)"></div></div><div class="column"><div title="Hotel Abito - pic #3" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MGNEH7AZ.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/MGNEH7AZ.jpg" onclick="currentSlide(3)"></div></div><div class="column"><div title="Hotel Abito - pic #4" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3DZN8JBF.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3DZN8JBF.jpg" onclick="currentSlide(4)"></div></div><div class="column"><div title="Hotel Abito - pic #5" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/TMCAUDYQ.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/TMCAUDYQ.jpg" onclick="currentSlide(5)"></div></div><div class="column"><div title="Hotel Abito - pic #6" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3PT8C57M.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/3PT8C57M.jpg" onclick="currentSlide(6)"></div></div><div class="column"><div title="Hotel Abito - pic #7" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/JMWF54ZT.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/JMWF54ZT.jpg" onclick="currentSlide(7)"></div></div><div class="column"><div title="Hotel Abito - pic #8" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/X2653CSG.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/X2653CSG.jpg" onclick="currentSlide(8)"></div></div><div class="column"><div title="Hotel Abito - pic #9" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/RNYUV9Q8.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/RNYUV9Q8.jpg" onclick="currentSlide(9)"></div></div><div class="column"><div title="Hotel Abito - pic #10" class="image demo cursor" style="background-image:url('http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/1NJKRGL7.jpg');"><img class="" src="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/1NJKRGL7.jpg" onclick="currentSlide(10)"></div></div>
+                </div>
+            </div>
+        </div>
+        <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+        </script>
+        <div class="www"></div>
+        
+       
+        <div class="text_program" style="text-align:center;background:#f5f5f5;padding:10px;"><b>ОНЛАЙН ЦЕНИ И СВОБОДНИ МЕСТА</b></div><iframe loading=lazy frameborder="0" scrolling="no" src="https://www.abax.bg/axml/hotel_label.php?odomain=https://iframe.peakview.bg&cl=198&ifr_id=12892&op=2823&w=0&p=2823&h=9848&m=0&data_ot=&dni=4&nights_cnt=4&adult=2" width="100%" style='min-height:430px;'></iframe> <script type="text/javascript" src="https://www.abax.bg/axml/js/iframeResizer.min.js"></script> <script>iFrameResize({checkOrigin:false	})</script><br><br>
+            <div class="tablica-ceni" style="text-align:center;">
+                <div><strong>ТАБЛИЦА С ЦЕНИ</strong></div>
+                <!--<div style="font-size:20px">За избор на вариант, натиснете върху избраната от Вас цена от таблицата.</div>-->
+                <br /><br />
+                <div class="pricesm"><b>STANDARD ROOM - Цените са в ЛЕВА на база BB</b></div>
+            <div>За резервации: тел. <a href='tel:0897944043'>0897944043</a>, Ейнджъл травел ООД, e-mail: <a href='mailto:zhotev@angeltravel.bg'>zhotev@angeltravel.bg</a><br /></div>
+            <div class="table-hotel-prices" style="position:relative;">
+                <div class="col_dates" style="position:absolute;top:0;left:0;">
+                    <table class="pdates table-bordered table-centered table-sdi table" style="width:101px">
+                        <tr style="height: 107px;"><th class="title first_td">Дата</th></tr><tr><td class="date">02.12.2025</td></tr><tr><td class="date">03.12.2025</td></tr><tr><td class="date">09.12.2025</td></tr><tr><td class="date">10.12.2025</td></tr><tr><td class="date">16.12.2025</td></tr><tr><td class="date">17.12.2025</td></tr>
+                    </table>
+                </div>
+                <div class="col_prices" style="width: auto; overflow: auto;overflow-y: hidden;margin: 0 0 0 100px;" id='table_dates'>
+                    <table class="pprices table-bordered table-centered table-sdi table">
+                        <tbody>
+                            <tr style="height: 107px;"><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Човек в двойна стая</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Единична стая</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Двама възрастни в двойна стая</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Трима възрастни в двойна стая</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Един възрастен с дете 2-11.99</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Един възрастен с две деца 2-11.99 и 0-1.99</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Един възрастен с две деца 2-11.99 и 2-11.99</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Двама възрастни с дете 0-1.99</div></div></div></th><th class="title1"><div style="height: 90px;overflow: hidden;"><div style="display:table;width:100%;"><div style="height: 90px; overflow: hidden; vertical-align: middle; display: table-cell;">Двама възрастни с дете 2-11.99</div></div></div></th></tr>
+                            <tr><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Човек в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Единична стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 02.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=02.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td></tr><tr><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Човек в двойна стая
+Цена 943.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=943.00&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">943.00 лв. / 482.15 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Единична стая
+Цена 1326.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=1326.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1326.00 лв. / 677.97 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 03.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=03.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td></tr><tr><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Човек в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Единична стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 09.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=09.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td></tr><tr><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Човек в двойна стая
+Цена 943.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=943.00&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">943.00 лв. / 482.15 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Единична стая
+Цена 1326.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=1326.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1326.00 лв. / 677.97 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 10.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=10.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td></tr><tr><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Човек в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Единична стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td><td nowrap><a !title="Направи запитване за 16.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена STOP! " !href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=16.12.2025&ncena=STOP%21&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">STOP!   </a></td></tr><tr><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Човек в двойна стая
+Цена 943.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=943.00&nvaluta=BGN&ntab=%D0%A7%D0%BE%D0%B2%D0%B5%D0%BA+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">943.00 лв. / 482.15 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Единична стая
+Цена 1326.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=1326.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD%D0%B8%D1%87%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1326.00 лв. / 677.97 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Двама възрастни в двойна стая
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Трима възрастни в двойна стая
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%A2%D1%80%D0%B8%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D0%B2+%D0%B4%D0%B2%D0%BE%D0%B9%D0%BD%D0%B0+%D1%81%D1%82%D0%B0%D1%8F+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Един възрастен с дете 2-11.99
+Цена 1885.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=1885.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">1885.00 лв. / 963.79 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Един възрастен с две деца 2-11.99 и 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%95%D0%B4%D0%B8%D0%BD+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%B5%D0%BD+%D1%81+%D0%B4%D0%B2%D0%B5+%D0%B4%D0%B5%D1%86%D0%B0+2-11.99+%D0%B8+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Двама възрастни с дете 0-1.99
+Цена 2000.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=2000.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+0-1.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2000.00 лв. / 1022.58 EUR</a></td><td nowrap><a title="Направи запитване за 17.12.2025
+Вид настаняване: Двама възрастни с дете 2-11.99
+Цена 2798.00 лв." href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&m=2&toid=109&type=poc&b2b_id=1090002823&ndate=17.12.2025&ncena=2798.00&nvaluta=BGN&ntab=%D0%94%D0%B2%D0%B0%D0%BC%D0%B0+%D0%B2%D1%8A%D0%B7%D1%80%D0%B0%D1%81%D1%82%D0%BD%D0%B8+%D1%81+%D0%B4%D0%B5%D1%82%D0%B5+2-11.99+-+STANDARD+ROOM+-+%D0%A6%D0%B5%D0%BD%D0%B8%D1%82%D0%B5+%D1%81%D0%B0+%D0%B2+%D0%9B%D0%95%D0%92%D0%90+%D0%BD%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B0+BB">2798.00 лв. / 1430.59 EUR</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            </div>
+         <div class="hotel-info"><div class="htext"><p><strong>Hotel Abito</strong></p>
+
+<p>се намира в южната част на Прага, в район Прага 4, с удобен достъп до центъра на града чрез обществен транспорт. Трамвайна спирка се намира само на няколко минути пеша от хотела, а пътуването до историческия център на Прага отнема около 15&ndash;20 минути. Районът е спокоен, с добра инфраструктура и подходящ както за туристи, така и за бизнес пътуващи.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Хотел</strong><br />
+Abito е функционален и икономичен хотел от категория 3 звезди, разположен в модернизирана сграда с фокус върху практичност и удобство. Интериорът е семпъл и съвременен, с просторна рецепция, автомати за напитки и зала за закуска. Хотелът е подходящ за индивидуални туристи, групи и ученици, както и за транзитно настаняване.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Стаи &ndash; описание на видове</strong><br />
+Standard Single &ndash; единична стая с легло за един човек, подходяща за соло пътувания<br />
+Standard Double/Twin &ndash; двойна стая с едно двойно или две отделни легла, удобна за двойки или приятели<br />
+Triple Room &ndash; стая с три отделни легла, подходяща за малки групи или семейства<br />
+Family Room &ndash; по-просторна, с възможност за настаняване на 2 възрастни + 2 деца</p>
+
+<p>Всички стаи са обзаведени с основни мебели: легла с удобни матраци, гардероб, бюро, телевизор с плосък екран, минихладилник, самостоятелна баня с душ, тоалетни принадлежности и сешоар. Стаите разполагат с централно отопление и добри шумоизолационни прозорци.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Ресторанти и барове &ndash; видове</strong><br />
+Хотелът разполага със светла зала за закуска, където се предлага континентална закуска на блок-маса &ndash; хляб, масло, конфитюр, зърнени храни, колбаси, сирена, плодове, кафе, чай и сокове<br />
+В хотела няма ресторант или бар, но в близост има множество възможности за хапване &ndash; пицарии, бистра и кафенета<br />
+На рецепция има вендинг автомати с напитки и леки закуски</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Безплатни услуги</strong></p>
+
+<ul>
+	<li>Wi-Fi в целия хотел</li>
+	<li>Закуска (включена при някои резервации)</li>
+	<li>Ежедневно почистване</li>
+	<li>24-часова рецепция</li>
+	<li>Съхранение на багаж</li>
+	<li>Информация за туристически обекти и транспорт</li>
+	<li>Асансьор</li>
+	<li>Сейф на рецепция</li>
+	<li>Достъп за хора с намалена подвижност</li>
+	<li>Паркинг (при наличност)</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><strong>Платени услуги</strong></p>
+
+<ul>
+	<li>Закуска (ако не е включена в резервацията)</li>
+	<li>Пране и гладене</li>
+	<li>Трансфери до летище или жп гара (по заявка)</li>
+	<li>Копиране и принтиране на документи</li>
+	<li>Късно освобождаване на стая (при наличност)</li>
+	<li>Допълнително легло (при запитване)</li>
+	<li>Автомат за напитки и снаксове</li>
+	<li>Домашни любимци се допускат с възможна такса</li>
+</ul><!-- ANOTACIA_HOTEL--><!-- CENATA_VKL --><br /><br /><b>Цените включват:</b><br /><ul>
+	<li>Самолетен билет София -&nbsp;Пардубице - София с Bulgaria Air;</li>
+	<li>Чекиран багаж до 20 кг и ръчен багаж до 5 кг;</li>
+	<li>4 нощувки със закуска в хотел Hotel&nbsp;Abito 3*;</li>
+	<li>Трансфер летище &ndash; хотел &ndash; летище;</li>
+	<li>Представител на туроператора за целия престой;</li>
+	<li>Медицинска застраховка Помощ при пътуване от Евроинс с покритие 10000 евро (Traveller, Вариант А).</li>
+</ul><!-- CENATA_VKL --><!-- CENATA_NE_VKL --><br /><br /><b>Цените не включват:</b><br /><p><strong>Препоръчителни доплащания, резервирани по желание:</strong></p>
+
+<ul>
+	<li>Пешеходна обиколка на <strong>Прага </strong>с местен лицензиран екскурзовод на български език&nbsp;&ndash; 40 лева / 20 евро възрастен,&nbsp;&nbsp;20 лева / 10 евро за дете 2-11.99 г.;</li>
+	<li>Разходка с корабче по <strong>р. Вълтава</strong> с включена вечеря на блок маса &ndash; 80 лева / 40 евро за възрастен,&nbsp;40 лева&nbsp; / 20 евро за дете 2-11.99 г.;</li>
+	<li>Еднодневна екскурзия до<strong> Дрезден</strong> на български език &ndash; 140 лева / 71 евро за възрастен,&nbsp;70 лева / 35 евро за дете 2-11.99 г.;</li>
+	<li>Еднодневна екскурзия до <strong>Карлови Вари</strong> на български език &ndash; 140 лева / 71 евро за възрастен,&nbsp;70 лева / 35 евро за дете 2-11.99 г.;</li>
+	<li>Полудневна екскурзия до <strong>замъка Карлщейн</strong> - около 4 часа - осъществява се при мин 30 туриста - 90 лв / 46 евро възрастен, 70 лв / 35 евро деца 2-11,99г;</li>
+	<li>Вечеря в <strong>ресторант с традиционна чешка музика и танци</strong> -&nbsp;120 лева / 61 евро за възрастен, 60 лева / 30 евро за дете 2-11.99 г.;</li>
+	<li>Градски транспорт: 40 чешки крони (еднопосочен билет);</li>
+	<li>Входни такси и билети за музеи, обекти и прояви, посещавани по желание.</li>
+	<li>Доплащане за за седалка от ред 1 в самолета - 30 лева / 15 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 2 в самолета - 20 лева / 10 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 3 в самолета - 10 лева / 5 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 4 в самолета - 10 лева / 5 евро в посока;</li>
+	<li>Доплащане за седалка с допълнително място за крака от среден ред - 20 лева / 10 евро в посока.</li>
+	<li><strong>БОНУС пакет МАКСИМАЛНА СИГУРНОСТ - възстановяване на заплатената, в случай на забрана за пътуване по медицински причини (доказано с медицински документ) - 20 лева&nbsp; / 10 евро за човек.</strong></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><strong>Задължителни доплащания:</strong></p>
+
+<ul>
+	<li>Такса гориво и вредни емисии &ndash; обявява се 21 дни преди полета. Цените са калкулирани с параметри на самолетно гориво 800 щатски долара/тон при курс 1 евро = 1.08 щатски долара;</li>
+	<li>Градска такса &ndash; около 2.2 евро на човек на вечер.</li>
+	<li>Слушалки по време на туровете - 12 евро (по 3 евро на човек на ден). Задължително се заплащат на място на екскурзовода. Деца до 6 години не използват слушалки и не се таксуват.</li>
+	<li>Задължителна административна такса 5 евро (handling fee за офиса на местния партньор).</li>
+</ul><!-- CENATA_NE_VKL --></div></div>
+        <!--<div class='text-center'><a href="reservation_poc.php?cl=198&ifr_id=12892&p=2823&h=9848&toid=109" rel="nofollow" class="reservation-btn">ЗАПИТВАНЕ</a></div>-->
+        <a class="seo_back_link" href="javascript:history.go(-1);"><strong>ОБРАТНО КЪМ ПРОГРАМАТА &raquo;</strong></a><br /><br />
+
+    </div>        </div>
+        <div id="created" style="display:block!important;">
+        Powered by <a href="http://www.peakview.bg/" title="Туристическа B2B платформа за обмен на оферти" target="_blank"><img src="img/pv_bial_small.png" alt="Peakview.bg - B2B Туристически портал " style="display:inline!important;" /></a>&nbsp;&nbsp;&nbsp;<!-- Изработка: УебДизайн <a href="http://www.webdesignbg.eu/" target="_blank"><img src="/img/wd_bialfon.png" alt="webdesign" /></a>-->
+        </div>
+
+        <script>
+            /*$(window).on("load resize", function (e) {
+                equalheight('.once_offer');
+            });
+            */
+            $(document).ready(function () {
+                //$(".scrollbar-wrap").tinyscrollbar();
+            });
+            $(".lazy").lazyload({
+                effect: "fadeIn",
+                threshold : 400
+            });
+        </script>
+    </body>
+</html>

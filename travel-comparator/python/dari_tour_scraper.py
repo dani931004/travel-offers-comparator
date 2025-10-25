@@ -566,7 +566,7 @@ class DariTourScraper:
 
     async def save_results(self):
         """Save scraped data to JSON file with only required fields."""
-        output_path = "/home/dani/Desktop/Organizer/travel-comparator/dari_tour_scraped.json"
+        output_path = "/home/dani/Desktop/Organizer/dari_tour_scraped.json"
 
         # Save JSON with only required fields
         offers_data = [

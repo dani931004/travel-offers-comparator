@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LABEL</title>
+        <meta charset="utf-8" />
+                <meta name="robots" content="noindex,nofollow,noarchive,NOODP,NOYDIR" />
+        
+        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+        <script src="js/equal-height-divs.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="style.css?17" type="text/css" />
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/iframeResizer.contentWindow.min.js" defer></script>
+        <script src="js/jQuery.lazyload-1.9.7.js" type="text/javascript"></script>
+
+        <script src="Easy-Responsive-Tabs-to-Accordion-master/js/easyResponsiveTabs.js"></script>
+        <link rel="stylesheet" href="Easy-Responsive-Tabs-to-Accordion-master/css/easy-responsive-tabs.css" type="text/css" />
+
+        <script type="text/javascript">
+            var url2 = (window.location != window.parent.location) ? document.referrer : document.location.href;
+//            console.log(url2);
+
+            var arr = url2.split("/");
+            var domain_t = arr[2];
+            var domain2 = domain_t.replace("www.", "");
+
+                        $(document).ready(function (){
+                var allowed_domains = ["angeltravel.bg","angeltravel.bg,www.angeltravel.bg,dev1.angeltravel.bg,iframe.peakview.bg
+iframe.peakview.bg"];
+                allowed_domains.push("iframe.peakview.bg", "peakview.bg");
+                console.log(domain2);
+                console.log(allowed_domains);
+    console.log($.inArray( domain2, allowed_domains));
+                if ($.inArray( domain2, allowed_domains ) == -1) {
+                    document.getElementById('CONTENT_PAGE').innerHTML = '<div class="alert alert-warning" role="alert">Вашият достъп не е активен!</div><meta name="robots" content="noindex,nofollow" />';
+                }
+            });
+            
+//            var topLocation = String(top.location);
+//            console.log(top.location);
+//            var topLocation2 = topLocation.toString();
+//            console.log(topLocation2);
+//            var arr = topLocation.split("/");
+//            console.log(arr);
+        </script>
+        <script>
+            $(window).load(function() {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");;
+            });
+        </script>
+                <style>
+            body {
+    font-family: Arial,Tahoma,Verdana,sans-serif;
+    font-size: 14px;
+    background: 0 0;
+    color: #222;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+img {
+    max-width: 100%;
+    height: auto!important
+}
+
+h1,h2 {
+    margin: 0;
+    padding: 5px;
+    line-height: 100%;
+    font-size: inherit;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-style: italic;
+}
+
+a {
+    color: #008ecb
+}
+
+a:hover {
+    color: #008ecb;
+    text-decoration: none
+}
+
+a:focus {
+    color: #008ecb;
+    outline: none;
+    text-decoration: none
+}
+
+.test {
+    background-color: #000
+}
+
+.otstap {
+    margin-bottom: 25px
+}
+
+.program_once .but,.program_once .but:hover,.reservation-btn:hover {
+    color: #fff
+}
+
+.but,.reservation-btn {
+    display: block;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0072ff, #00c6ff) !important;
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.but:hover,.reservation-btn:hover {
+    transform: translateY(-4px);
+  background: linear-gradient(135deg, #0051c7, #0072ff) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.reservation-btn {
+    display: inline-block
+}
+
+.reservation-btn.small-btn {
+    display: inline-block
+	font-size: 14px;
+    padding: 6px 10px
+}
+
+.ofcontent {
+    padding-left: 0px;
+    text-align: center;
+}
+
+.program_once {
+    background: #fff;
+    border: 0px solid #e2e2e2;
+    padding: 10px 3px 3px 0px;
+    height: 100%;
+    box-shadow: 0px 2px 0px 0px #01add3;
+    border-radius: 20px;
+}
+
+.program_once h2 {
+    margin: 0 0 15px
+}
+
+.program_once a {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 110%;
+}
+.program_once a {
+    filter: saturate(110%) brightness(110%) contrast(110%);
+}
+.program_once a:hover {
+    color: #f05200
+}
+
+/.ofimg {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px
+}
+
+/.ofimg img {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%!important
+}
+.ofimg {
+    position: relative;
+    overflow: hidden; /* за да не излиза изображението извън контейнера при zoom */
+    border-radius: 30px
+}
+
+.ofimg img {
+    opacity: 1;
+    transform: scale(1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.ofimg:hover img {
+    opacity: 0.8;
+    transform: scale(1.08);
+}
+.col-wrap {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap
+}
+
+.date {
+    color: #757575
+}
+
+.price {
+    font-size: 18px;
+    color: #f46633
+}
+
+.price-big {
+    font-size: 24px;
+    color: #f46633
+}
+
+.left-col {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%
+}
+
+.right-col {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 50px
+}
+
+.but-wrap {
+    position: relative;
+    bottom: 0;
+    left: 0px;
+    padding: 30px 20px 0px 20px;
+}
+
+.antetka,.antetka-inner {
+    padding: 10px 0px 10px 5px;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 100%;
+    margin: 0 0 25px
+}
+
+h3 {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #0dcaf0;
+    color: white;
+    padding: 7px;
+}
+
+.price-from span {
+    color: #008ecb;
+    font-size: 26px;
+    line-height: 30px;
+    margin-left: 4px
+}
+
+.star-accordion {
+    font-size: 16px;
+    margin-bottom: 50px
+}
+.star-accordion .resp-tab-content {
+    border: 1px solid #ff9800;
+    padding: 30px;
+}
+
+.star-accordion .resp-tab-item {
+    border-width: 2px 2px 0!important;
+    color: #fff
+}
+
+.resp-tab-active {
+    border: 1px solid #ff9800!important;
+    border-bottom: none;
+    margin-bottom: -1px !important;
+    padding: 12px 14px 14px 14px !important;
+    border-top: 4px solid #ff9800!important;
+    border-bottom: 0px #fff solid !important;
+}
+
+.star-accordion .resp-tabs-list li {
+    padding: 13px 15px;
+    background: #ff9800!important;
+    font-size: 16px
+}
+
+.star-accordion .resp-tabs-list li.resp-tab-active {
+    background: #fff!important;
+    position: relative
+}
+@media (min-width: 1200px) {
+    .col-lg-6 {
+        width: 33%;
+    }
+}        </style>
+               
+    </head>
+    <body>
+                <div class="se-pre-con" style="position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background: url('img/loading-gear.gif') center top no-repeat #fff;"></div>
+        <div id="CONTENT_PAGE" class="container-fluid1">
+                        
+<h1 class="antetka-inner">КОЛЕДНИ БАЗАРИ в  ЗЛАТНА ПРАГА - чартър от СОФИЯ - 4 нощувки</h1>
+
+<div class="seo-image-gallery">
+    <div class="container-imgs">
+        <div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG1.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG1.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG2.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG2.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG3.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG3.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG4.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG4.jpg"></div></div><div class="mySlides"><div class="image" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG5.jpg');"><img src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG5.jpg"></div></div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="row-s">
+            <div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG.jpg" onclick="currentSlide(1)"></div></div><div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG1.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG1.jpg" onclick="currentSlide(2)"></div></div><div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG2.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG2.jpg" onclick="currentSlide(3)"></div></div><div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG3.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG3.jpg" onclick="currentSlide(4)"></div></div><div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG4.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG4.jpg" onclick="currentSlide(5)"></div></div><div class="column"><div class="image demo cursor" style="background-image:url('//static.peakview.bg/img/data/109/programi/2823/BIG_IMG5.jpg');"><img class="" src="//static.peakview.bg/img/data/109/programi/2823/BIG_IMG5.jpg" onclick="currentSlide(6)"></div></div>
+        </div>
+    </div>
+</div>
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+}
+</script>
+<h3></h3>
+<div class="ptsans">5 дни / 4 нощувки</div>
+Цена от: <font class="price-big">943.00 лв. / 482.15 EUR</font><br>
+За резервации: тел. <a href='tel:0897944043'>0897944043</a>, Ейнджъл травел ООД, e-mail: <a href='mailto:zhotev@angeltravel.bg'>zhotev@angeltravel.bg</a><br /><br>
+
+
+    <div class="star-accordion">
+        <div id="parentHorizontalTab">
+            <ul class="resp-tabs-list hor_1 clearfix">
+                <li>ХОТЕЛИ ПО ПРОГРАМА</li><li>ПРОГРАМА</li><li>ЦЕНАТА ВКЛЮЧВА</li><li>ЦЕНАТА НЕ ВКЛЮЧВА</li><li>ДОПЪЛНИТЕЛНА ИНФОРМАЦИЯ</li>
+            </ul>
+            <div class="resp-tabs-container hor_1">
+                <div>
+    <h3 class="zaglavie6">Изберете хотели за резервация по програмата</h3>
+    <div class="row flex">
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="Hotel Abito" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9848&spo_id=2823&type=poc&toid=109">Hotel Abito&nbsp;3*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="Hotel Abito" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9848&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/CAQTRW2P.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9848/gallery/CAQTRW2P.jpg" src="" class="lazy" alt="Hotel Abito"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">943.00 лв. / 482.15 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9848&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="Olympik Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=7649&spo_id=2823&type=poc&toid=109">Olympik Hotel&nbsp;4*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="Olympik Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=7649&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/7649/gallery/571NGSK3.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/7649/gallery/571NGSK3.jpg" src="" class="lazy" alt="Olympik Hotel"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">964.00 лв. / 492.89 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=7649&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="City Inn Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9728&spo_id=2823&type=poc&toid=109">City Inn Hotel&nbsp;3*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="City Inn Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9728&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9728/gallery/4NFH1A2P.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9728/gallery/4NFH1A2P.jpg" src="" class="lazy" alt="City Inn Hotel"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">1065.00 лв. / 544.53 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9728&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="Hotel Charles Central" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9882&spo_id=2823&type=poc&toid=109">Hotel Charles Central&nbsp;3*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="Hotel Charles Central" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9882&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9882/gallery/MWLP8DTB.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9882/gallery/MWLP8DTB.jpg" src="" class="lazy" alt="Hotel Charles Central"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">1097.00 лв. / 560.89 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9882&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="EA Hotel Crystal Palace" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8226&spo_id=2823&type=poc&toid=109">EA Hotel Crystal Palace&nbsp;4*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="EA Hotel Crystal Palace" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8226&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/8226/gallery/PBYWAU4K.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/8226/gallery/PBYWAU4K.jpg" src="" class="lazy" alt="EA Hotel Crystal Palace"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">1127.00 лв. / 576.23 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8226&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="Louis Leger Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9729&spo_id=2823&type=poc&toid=109">Louis Leger Hotel&nbsp;4*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="Louis Leger Hotel" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9729&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9729/gallery/TYLWV6FM.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/9729/gallery/TYLWV6FM.jpg" src="" class="lazy" alt="Louis Leger Hotel"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">1144.00 лв. / 584.92 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=9729&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 once_offer otstap">
+            <div class="program_once">
+                <h2><a title="Ramada Prague City Center" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8581&spo_id=2823&type=poc&toid=109">Ramada Prague City Center&nbsp;4*</a></h2>
+                <div class="col-wrap">
+                    <div class="left-col"><a class="ofimg lazy" title="Ramada Prague City Center" href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8581&spo_id=2823&type=poc&toid=109" data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/8581/gallery/2F6D738U.jpg" style="background-image: url('');"><img data-original="http://store.abax.bg/book.abax.bg/img_tour/2824/hotel/8581/gallery/2F6D738U.jpg" src="" class="lazy" alt="Ramada Prague City Center"></a></div>
+                    <div class="right-col">
+                        <div class="ofcontent">
+                            Чехия, ПРАГА<br><br>
+                            Цена от <font class="price">1227.00 лв. / 627.36 EUR</font><br>
+                            <div class="but-wrap"><a href="hotel-pochivka.php?cl=198&ifr_id=12892&b2b_id=1090002823&h=8581&spo_id=2823&type=poc&toid=109" class="but">Виж повече</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div><div><p><strong>Ден 1</strong></p>
+
+<p>Oтпътуване от България за Пардубице с полет на Bulgaria Air.&nbsp; Трансфер до хотела в Прага.</p>
+
+<p>Нощувка.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Ден 2</strong></p>
+
+<p>Закуска.</p>
+
+<p>Свободно време и възможност за допълнителни&nbsp;екскурзии:</p>
+
+<ul>
+	<li><strong>Пешеходна обиколка на Прага с местен лицензиран екскурзовод на български език.</strong>&nbsp;</li>
+</ul>
+
+<p>Потопете се в неповторимата атмосфера на Прага, обгърната в празнична премяна и ухание на греяно вино и канелени сладки! По време на тази вълшебна разходка ще видите едни от най-емблематичните забележителности на града, обагрени в светлините на коледните базари.</p>
+
+<p>Ще започнем с <strong>панорамна разходка из внушителния комплекс на Пражкия храд</strong> &ndash; най-големия замъчен комплекс в света, извисяващ се над река Вълтава. Ще се спрем пред <strong>величествената катедрала "Св. Вит"</strong> &ndash; архитектурен шедьовър, строен в продължение на векове, дом на чешката корона и Пантеон на националната история.</p>
+
+<p>Оттам ще се спуснем към <strong>живописния аристократичен квартал Мала Страна</strong>, със своите барокови фасади и романтични улички, водещи ни до символа на Прага &ndash; <strong>Карловия мост,</strong> обсипан с величествени статуи и омагьосваща гледка към града.</p>
+
+<p>Продължаваме по <strong>калдъръмените улици на Старе Место &ndash; Стария град</strong>, където времето сякаш е спряло. Ще излезем на <strong>Староместския площад</strong>, сърцето на коледната празничност в Прага &ndash; с дървени къщички, пъстри светлини, ароматни лакомства и звуци на чешки коледни песни.</p>
+
+<p>Тук ще се възхитим на извисяващия се <strong>Тински храм</strong>, на елегантната барокова <strong>църква &bdquo;Св. Микулаш&ldquo;</strong>, както и на внушителния паметник на реформатора Ян Хус. Разбира се, няма как да пропуснем и един от най-знаковите символи на Прага &ndash; <strong>световноизвестния Астрономически часовник Орлой от XV век</strong>, разположен върху фасадата на Кметството, където всеки кръгъл час механичният спектакъл събира възхитени погледи от цял свят.</p>
+
+<ul>
+	<li><strong>Допълнителна програма - вечеря на блок маса на кораб по р. Вълтава /2 часа/.</strong></li>
+</ul>
+
+<p>Нощувка.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Ден 3</strong></p>
+
+<p>Закуска. Свободно време и възможност за допълнителна&nbsp;екскурзия:</p>
+
+<ul>
+	<li><strong>Екскурзия до Дрезден </strong>&ndash; столицата на Саксония, известна като "Флоренция на Елба&rdquo;. Пешеходна разходка - комплекса Цвингер, Оперния площад, Кралската катедрала, катедралата Фрауенкирхе. Свободно време и възможност за посещение на музеи - бароковия дворец "Цвингер&rdquo;, прочут с Музея на порцелана, Оръжейния музей и една от най-богатите картинни галерии в света, известна с шедьовъра на Рафаело &ndash; "Сикстинската Мадона&rdquo;.</li>
+</ul>
+
+<p>Входните такси на музеите не са включени в цената на тура.&nbsp;Свободно време за разглеждане на картинната галерия, съкровишницата &bdquo;Зелените сводове&ldquo; и&nbsp;разглеждане на Коледните базари-най-старите в Германия.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Ден 4</strong></p>
+
+<p>Закуска. Свободно време и възможност за допълнителни&nbsp;екскурзии:</p>
+
+<ul>
+	<li>Екскурзия до <strong>Карлови Вари</strong> - един от най-старите европейски балнео-курорти, известен с лечебния ефект на горещите си минерални извори, Бехеровката и стъкларските изделия. Връщане в Прага.</li>
+	<li><strong>Допълнителна програма - вечеря в ресторант с традиционна чешка музика и танци.</strong></li>
+</ul>
+
+<p>Нощувка.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Ден 5</strong></p>
+
+<p>Закуска. Свободно време до обяд или възможност за допълнитена екскурзия:&nbsp;</p>
+
+<p><strong>Полудневна екскурзия до замъка Карлщейн</strong> -&nbsp;най-посещаваният и най-известният чешки замък, отстоящ само на 30км от Прага. Императорът на Свещената Римска империя Карл IV го устройва като съкровищница на кралските регалии и личната му колекция. Обиколката е с продължителност около 60 мин. като включва разглеждане на кралските апартаменти, параклиси и спалнята на краля, където са изложени бижута, корони, рицарски доспехи, най-голямата колекция от готически платна в света - 129 картини на дворцовия художник и др.&nbsp;</p>
+
+<p>Трансфер до летището за полет до България.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Полетно разписание (подлежи на препотвърждение):&nbsp;</strong></p>
+
+<p>София - Пардубице - 15:00 - 16:10</p>
+
+<p>Пардубице - София - 17:00 - 20:10</p>
+
+<p>&nbsp;</p><div class="title_block"></div><div class="desc_block"></div>
+           <br /><br /><div class="title_block"><b>Допълнителни екскурзии</b></div><div class="desc_block">
+           
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10035/gallery/9V28P3T4.jpg" class="img-responsive img-fluid" alt="Пешеходна обиколка на Прага с местен лицензиран екскурзовод на български език">
+			  <b>Пешеходна обиколка на Прага с местен лицензиран екскурзовод на български език</b><br />ЧЕХИЯ,ЧЕХИЯ (EU)
+			  <br />Цена за възрастен 40 BGN | 20 EUR<br>Цена за дете 20 BGN | 10 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Обиколна пешеходна разходка сред забележителностите на Златния град по време на най-приказното време от годината.</strong></p>
+
+<p>Потопете се в неповторимата атмосфера на Прага, обгърната в празнична премяна и ухание на греяно вино и канелени сладки! По време на тази вълшебна разходка ще видите едни от най-емблематичните забележителности на града, обагрени в светлините на коледните базари.</p>
+
+<p>Ще започнем с <strong>панорамна разходка из внушителния комплекс на Пражкия храд</strong> &ndash; най-големия замъчен комплекс в света, извисяващ се над река Вълтава. Ще се спрем пред величествената <strong>катедрала "Св. Вит"</strong> &ndash; архитектурен шедьовър, строен в продължение на векове, дом на чешката корона и Пантеон на националната история.</p>
+
+<p>Оттам ще се спуснем към <strong>живописния аристократичен квартал Мала Страна</strong>, със своите барокови фасади и романтични улички, водещи ни до <strong>символа на Прага &ndash; Карловия мост</strong>, обсипан с величествени статуи и омагьосваща гледка към града.</p>
+
+<p>Продължаваме по <strong>калдъръмените улици на Старе Место &ndash; Стария град</strong>, където времето сякаш е спряло. Ще излезем на <strong>Староместския площад</strong>, сърцето на коледната празничност в Прага &ndash; с дървени къщички, пъстри светлини, ароматни лакомства и звуци на чешки коледни песни.</p>
+
+<p>Тук ще се възхитим на извисяващия се <strong>Тински храм, на елегантната барокова църква &bdquo;Св. Микулаш&ldquo;</strong>, както и на внушителния <strong>паметник на реформатора Ян Хус</strong>. Разбира се, няма как да пропуснем и един от най-знаковите символи на Прага &ndash; <strong>световноизвестния Астрономически часовник Орлой от XV век, разположен върху фасадата на Кметството</strong>, където всеки кръгъл час механичният спектакъл събира възхитени погледи от цял свят.</p>
+              <br /><b>Цената включва</b><br /><p>Екскурзоводско обслужване на български език.</p>
+
+<p>&nbsp;</p><br /><b>Цената не включва</b><br /><ul>
+	<li>Слушалки по време на обиколната програма&nbsp;&ndash; 3&nbsp;евро/човек, задължително доплащане;</li>
+	<li>Ползването на градски транспорт/ при необходимост- 40 CZK в посока;</li>
+	<li>Входни такси за посещаваните обекти;</li>
+	<li>Разходи от личен характер.&nbsp;</li>
+</ul>
+
+<p>&nbsp;</p><br />
+              <br /><br />
+			  </div>
+			  </div>
+              
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10036/gallery/WTSC1P8N.jpg" class="img-responsive img-fluid" alt="Разходка с корабче по р. Вълтава с включена вечеря на блок маса">
+			  <b>Разходка с корабче по р. Вълтава с включена вечеря на блок маса</b><br />ЧЕХИЯ,ЧЕХИЯ (EU)
+			  <br />Цена за възрастен 80 BGN | 40 EUR<br>Цена за дете 40 BGN | 20 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Двучасова разходка с корабче по Вълтава</strong>&nbsp;-&nbsp;едно <strong>незабравимо пътешествие</strong>, което ще ви разкрие <strong>Прага от най-романтичната &#1117; страна -&nbsp;по вода</strong>.</p>
+
+<p>Докато плавате по живописната река, ще преминете под <strong>всички исторически мостове на Вълтава</strong>, включително <strong>емблематичния Карлов мост</strong>, и ще се насладите на <strong>впечатляващите фасади на най-големите забележителности</strong>, обърнати към реката: <strong>Пражкия замък</strong>, <strong>Националния театър</strong>, <strong>Катедралата &bdquo;Свети Вит&ldquo;</strong>, <strong>Каменния мост</strong> и <strong>Малката страна</strong>.</p>
+
+<p>Корабът преминава и през <strong>шлюза на река Вълтава</strong>&nbsp;-&nbsp;ключово съоръжение, което регулира нивото на водите и предпазва историческия център от наводнения. <strong>Комбинацията от панорамни гледки и плавен ритъм</strong> на водата създава усещането за пътуване назад във времето -&nbsp;към златната история на чешката столица.</p>
+
+<p>А докато се наслаждавате на магичната атмосфера, ще имате възможност да опитате <strong>вечеря на блок маса</strong>, с <strong>традиционни ястия от чешката кухня</strong>&nbsp;-&nbsp;истинско кулинарно изживяване сред романтиката на нощна Прага.</p>
+
+<p><strong>Една разходка, която остава завинаги в сърцето.</strong></p>
+              <br /><b>Цената включва</b><br /><ul>
+	<li>Билет за кораба;</li>
+	<li>Вечеря на блок маса без включени напитки.</li>
+</ul><br /><b>Цената не включва</b><br /><p>Разходи от личен характер.</p><br />
+              <br /><br />
+			  </div>
+			  </div>
+              
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10038/gallery/EKLN7MY3.jpg" class="img-responsive img-fluid" alt="Еднодневна екскурзия до Дрезден на български език">
+			  <b>Еднодневна екскурзия до Дрезден на български език</b><br />ГЕРМАНИЯ,ГЕРМАНИЯ (EU)
+			  <br />Цена за възрастен 140 BGN | 71 EUR<br>Цена за дете 70 BGN | 35 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Отпътуване за един от най-красивите и културно богати градове в Германия -&nbsp;Дрезден</strong>, често наричан <strong>&bdquo;Флоренция на Елба&ldquo;</strong> заради впечатляващата си <strong>архитектура и панорамни гледки</strong> покрай бреговете на река Елба.</p>
+
+<p>Очаква ви <strong>пешеходна обиколка с екскурзовод на български език</strong> из <strong>бароковото сърце на Дрезден</strong>, където всяка улица разказва история.</p>
+
+<p>Ще разгледаме <strong>емблематични забележителности</strong>:</p>
+
+<ul>
+	<li>
+	<p><strong>Дрезденската църква &bdquo;Фрауенкирхе&ldquo;</strong>&nbsp;-&nbsp;великолепно възстановен символ на мира и възраждането;</p>
+	</li>
+	<li>
+	<p><strong>Бароковия дворцов ансамбъл &bdquo;Цвингер&ldquo;</strong>&nbsp;-&nbsp;истински шедьовър на немския барок, съставен от четири сгради, с вътрешен двор, фонтани и богата декорация;</p>
+	</li>
+	<li>
+	<p><strong>Дрезденската картинна галерия &bdquo;Старите майстори&ldquo;</strong>, съхраняваща шедьоври на <strong>Рафаело, Тициан, Рембранд</strong> и други титани на класическото изкуство (входът е по желание и не е включен в цената);</p>
+	</li>
+	<li>
+	<p><strong>Католическата църква &bdquo;Хофкирхе&ldquo;</strong>&nbsp;-&nbsp;внушителен храм и една от най-важните сакрални постройки в града.</p>
+	</li>
+</ul>
+
+<p>След организираната програма ще имате <strong>свободно време</strong>, през което може да:</p>
+
+<ul>
+	<li>
+	<p>посетите световноизвестната <strong>съкровищница &bdquo;Зелените сводове&ldquo;</strong>, приютила уникална колекция от злато, скъпоценности и декоративно изкуство;</p>
+	</li>
+	<li>
+	<p>се потопите в <strong>предколедната магия на Дрезден</strong>, като разгледате <strong>най-старите коледни базари в Германия</strong>&nbsp;-&nbsp;<strong>Striezelmarkt</strong>, датиращ от 1434 г., където ще усетите аромата на греяно вино, печени бадеми и щолен.</p>
+	</li>
+</ul>
+
+<p><strong>Дрезден е град, който омагьосва -&nbsp;с изкуство, история и празнична атмосфера.</strong></p>
+              <br /><b>Цената включва</b><br /><p>Транспорт и екскурзоводско обслужване на български език.</p><br /><b>Цената не включва</b><br /><p>Слушалки - 3 евро на човек на ден;</p>
+
+<p>Входни такси на посещаваните в свободното време музеи;</p>
+
+<p>Разходи от личен характер.</p>
+
+<p>&nbsp;</p><br />
+              <br /><br />
+			  </div>
+			  </div>
+              
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10037/gallery/LXHENS74.jpg" class="img-responsive img-fluid" alt="Еднодневна екскурзия до Карлови Вари на български език">
+			  <b>Еднодневна екскурзия до Карлови Вари на български език</b><br />ЧЕХИЯ,ЧЕХИЯ (EU)
+			  <br />Цена за възрастен 140 BGN | 71 EUR<br>Цена за дете 70 BGN | 35 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Само на 120 км западно от Прага</strong> се намира <strong>Карлови Вари</strong>&nbsp;-&nbsp;<strong>перлата на чешките балнеокурорти</strong>, град с аристократична осанка и лечебна слава, основан още през XIV век от император <strong>Карл IV</strong>.</p>
+
+<p>Световно известен под старото си име <strong>Карлсбад</strong>, днес Карлови Вари е най-големият и престижен <strong>спа курорт в Чехия</strong>, прочут със своите <strong>горещи минерални извори</strong>, богати на калций, магнезий, желязо, натрий и хлор -&nbsp;еликсир за тялото и душата. <strong>Най-горещият гейзер в града, изригващ от 1906 г.</strong>, достига температури от над 70&deg;C и е истински символ на целебната му сила.</p>
+
+<p>По време на <strong>пешеходната разходка покрай река Тепла</strong> ще се насладите на елегантна архитектура в стил <strong>барок и сецесион</strong>, ще преминете покрай <strong>впечатляващи колонади</strong>, които приютяват минерални извори, и ще усетите неповторимата атмосфера на това място, където <strong>времето сякаш тече по-бавно и по-изтънчено</strong>.</p>
+
+<p>Карлови Вари е и люлка на прочутата <strong>стъкларска и порцеланова традиция</strong>, благодарение на залежите от каолин, както и роден дом на легендарния билков ликьор <strong>Бехеровка</strong>&nbsp;-&nbsp;наричан още &bdquo;тринадесетият извор&ldquo; на града.</p>
+
+<p><strong>Свободното време в близост до престижния хотел PUB</strong> ще ви даде възможност да опитате местни деликатеси, да се поглезите със СПА продукти, или просто да се изгубите сред <strong>аромата на топла минерална пара и вековна история</strong>.</p>
+
+<p><strong>Карлови Вари не просто се посещава -&nbsp;той се преживява.</strong></p>
+              <br /><b>Цената включва</b><br /><ul>
+	<li>Транспорт.</li>
+	<li>Екскурзоводско обслужване на български език.</li>
+</ul>
+
+<p>&nbsp;</p><br /><b>Цената не включва</b><br /><ul>
+	<li>Слушалки - 3 евро на човек на ден;</li>
+	<li>Входни такси на посещаваните в свободното време музеи;</li>
+	<li>Разходи от личен характер.</li>
+</ul>
+
+<p>&nbsp;</p><br />
+              <br /><br />
+			  </div>
+			  </div>
+              
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10039/gallery/J2T6ZU35.jpg" class="img-responsive img-fluid" alt="Вечеря в ресторант с традиционна чешка музика и танци">
+			  <b>Вечеря в ресторант с традиционна чешка музика и танци</b><br />ЧЕХИЯ,ЧЕХИЯ (EU)
+			  <br />Цена за възрастен 120 BGN | 61 EUR<br>Цена за дете 60 BGN | 30 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Потопете се в магията на чешките традиции с вечеря в автентичен ресторант</strong>, където ви очаква <strong>незабравима фолклорна вечер с музика и танци</strong>.</p>
+
+<p>В уютна атмосфера, сред дървени греди, свещи и традиционна декорация, ще се насладите на <strong>богато тристепенно меню с типични чешки специалитети-</strong>&ndash; от ароматни супи и месни деликатеси до прочутия ябълков щрудел.</p>
+
+<p>През цялата вечер ще ви забавляват <strong>талантливи музиканти с жива чешка музика</strong>, а танцьори в народни носии ще ви увлекат в <strong>ритъма на празника</strong> с вихрени танци, пляскане и весело настроение.</p>
+
+<p><strong>Очаква ви вечер, изпълнена с вкус, ритъм и емоция -&nbsp;истинско празнично изживяване в сърцето на Прага!</strong></p>
+              
+              <br /><br />
+			  </div>
+			  </div>
+              
+              <div class="row">
+			  <div class="col-lg-2">
+              <img src="https://store.abax.bg/book.abax.bg/img_fun/10040/gallery/M7H5GR1W.jpg" class="img-responsive img-fluid" alt="Полудневна екскурзия до замъка Карлщейн">
+			  <b>Полудневна екскурзия до замъка Карлщейн</b><br />ЧЕХИЯ,ЧЕХИЯ (EU)
+			  <br />Цена за възрастен 90 BGN | 46 EUR<br>Цена за дете 70 BGN | 35 EUR<br /><br />
+              </div>
+			  <div class="col-lg-10">
+              <p><strong>Карлщейн -&nbsp;средновековна легенда само на крачка от Прага!</strong></p>
+
+<p>Открийте <strong>най-посещавания и прочут замък в Чехия</strong>&nbsp;-&nbsp;<strong>Карлщейн</strong>, разположен само на 30 км от столицата. Построен от <strong>император Карл IV</strong> като съкровищница за кралските регалии и личната му колекция, замъкът впечатлява с величествена архитектура и драматична история.</p>
+
+<p>По време на <strong>60-минутната обиколка</strong> ще разгледате <strong>кралските апартаменти</strong>, <strong>личната спалня на краля</strong>, параклиси с реликви, <strong>рицарски доспехи</strong>, <strong>бляскави корони и бижута</strong>, както и <strong>невероятната колекция от 129 готически платна</strong>, дело на дворцовия художник -&nbsp;<strong>най-голямата в света</strong>.</p>
+
+<p><strong>Обща продължителност на екскурзията: около 4 часа.</strong><br />
+<strong>Важно:</strong> от паркинга до входа на замъка се върви пеша около 15 минути.<br />
+<strong>Екскурзията не е подходяща за хора с ограничена подвижност.</strong><br />
+<strong>Осъществява се при минимум 30 туриста.</strong></p>
+              <br /><b>Цената включва</b><br /><p>транспорт, входна такса и екскурзоводско обслужване на български език.</p><br /><b>Цената не включва</b><br /><ul>
+	<li>Слушалки - 3 евро на човек на ден.&nbsp;</li>
+	<li>Разходи от личен характер.</li>
+</ul><br />
+              <br /><br />
+			  </div>
+			  </div>
+              
+           </div>
+           <br /><br /><p><strong>Условия за резервации:</strong></p>
+
+<p>Депозит 30% платен към ТО до 24 часа след резервиране</p>
+
+<p>Доплащане 21 дни преди тръгване</p>
+
+<p>Издаване на документи за пътуване 7 дни преди полета</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Условия за анулации:</strong></p>
+
+<p>До 24 часа след резервация без такса за анулация</p>
+
+<p>До 30 дни преди тръгване 50 лв такса анулация на човек</p>
+
+<p>До 21 дни преди тръгване 30% от стойността, като такса анулация на човек</p>
+
+<p>Под 21 дни 100% като такса анулация на човек</p>
+
+<p>&nbsp;</p>
+
+<p><strong>ВАЖНО:</strong></p>
+
+<p>Минимален брой туристи: 130;</p>
+
+<p>Минимален брой туристи за допълнителните ексурзии: 49&nbsp;</p>
+
+<p>Срок за уведомяване при несъбран минимум &ndash; 21 дни;</p>
+
+<p>Българските граждани е необходимо да притежават валиден документ за самоличност, с валидност минимум 6 месеца след датата на прибиране в България;</p>
+
+<p>Туроператорът си запазва правото да прави промени по програмата и полетното разписания.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Пакет МАКСИМАЛНА СИГУРНОСТ - доплащане 30,00 лв / 15 евро</strong></p>
+
+<p>Пакет МАКСИМАЛНА СИГУРНОСТ може да се добави до 7 дни след направа на резервация!</p>
+
+<p>При предсрочно прекратяване на договора по инициатива на ПЪТУВАЩИЯ, заплатената от него или от негово име сума се възстановява чрез туристическия агент, сключил договора за туристически пакет с ПЪТУВАЩИЯ от името и за сметка на туроператора, когато ПЪТУВАЩИЯТ не може да започне и осъществи пътуването поради някоя от следните причини, която е била непредвидима към момента на сключване на договора за туристически пакет и е възникнала преди датата на отпътуване независимо от волята на пътуващия:</p>
+
+<p>1.1.Злополука, акутно заболяване (заболяване, което възниква внезапно и непредвидимо, представлява опасност за живота или здравето на пътуващия и изисква спешна медицинска намеса) или внезапно обостряне на хронично заболяване на ПЪТУВАЩ по договора за туристически пакет, с изключение на заболяване от COVID 19, при условие, че към началната дата на пътуването се провежда болнично или домашно лечение и съществува опасност за влошаване на здравословното му състояние от пътуването.</p>
+
+<p>1.2. Внезапно заболяване или злополука на близък на ПЪТУВАЩИЯ (съпруг/а), роднина по права линия - без ограничения или по съребрена линия - до втора степен вкл.), при условие, че към началната дата на пътуването се провежда болнично или домашно лечение и пътуващият трябва да полага грижи за болния.</p>
+
+<p>1.3. Смърт на пътуващия.</p>
+
+<p>1.4. Смърт на близък на пътуващия (съпруг/а), роднина по права линия - без ограничения или по съребрена линия - до втора степен вкл.).</p>
+
+<p>За доказване на настъпилите обстоятелства,пътуващия предоставя документите в заверено от него копие на адрес: гр. Пловдив, ул. Райко Даскалов 53, ет. 2, ап. 25.</p>
+
+<p>ТО се произнася в подходящ срок, но не повече от 5 раб. дни от получаване на документите.</p></div><div><ul>
+	<li>Самолетен билет София -&nbsp;Пардубице - София с Bulgaria Air;</li>
+	<li>Чекиран багаж до 20 кг и ръчен багаж до 5 кг;</li>
+	<li>4 нощувки на съответната база;</li>
+	<li>Трансфер летище &ndash; хотел &ndash; летище;</li>
+	<li>Представител на туроператора за целия престой;</li>
+	<li>Медицинска застраховка Помощ при пътуване от Евроинс с покритие 10000 евро (Traveller, Вариант А).</li>
+</ul></div><div><p><strong>Препоръчителни доплащания, резервирани по желание:</strong></p>
+<ul>
+	<li>Пешеходна обиколка на <strong>Прага </strong>с местен лицензиран екскурзовод на български език&nbsp;&ndash; 40 лева / 20 евро възрастен,&nbsp;&nbsp;20 лева / 10 евро за дете 2-11.99 г.;</li>
+	<li>Разходка с корабче по <strong>р. Вълтава</strong> с включена вечеря на блок маса &ndash; 80 лева / 40 евро за възрастен,&nbsp;40 лева&nbsp; / 20 евро за дете 2-11.99 г.;</li>
+	<li>Еднодневна екскурзия до<strong> Дрезден</strong> на български език &ndash; 140 лева / 71 евро за възрастен,&nbsp;70 лева / 35 евро за дете 2-11.99 г.;</li>
+	<li>Еднодневна екскурзия до <strong>Карлови Вари</strong> на български език &ndash; 140 лева / 71 евро за възрастен,&nbsp;70 лева / 35 евро за дете 2-11.99 г.;</li>
+	<li>Полудневна екскурзия до <strong>замъка Карлщейн</strong> - около 4 часа - осъществява се при мин 30 туриста - 90 лв / 46 евро възрастен, 70 лв / 35 евро деца 2-11,99г;</li>
+	<li>Вечеря в <strong>ресторант с традиционна чешка музика и танци</strong> -&nbsp;120 лева / 61 евро за възрастен, 60 лева / 30 евро за дете 2-11.99 г.;</li>
+	<li>Градски транспорт: 40 чешки крони (еднопосочен билет);</li>
+	<li>Входни такси и билети за музеи, обекти и прояви, посещавани по желание.</li>
+	<li>Доплащане за за седалка от ред 1 в самолета - 30 лева / 15 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 2 в самолета - 20 лева / 10 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 3 в самолета - 10 лева / 5 евро в посока;</li>
+	<li>Доплащане за за седалка от ред 4 в самолета - 10 лева / 5 евро в посока;</li>
+	<li>Доплащане за седалка с допълнително място за крака от среден ред - 20 лева / 10 евро в посока.</li>
+	<li><strong>БОНУС пакет МАКСИМАЛНА СИГУРНОСТ - възстановяване на заплатената, в случай на забрана за пътуване по медицински причини (доказано с медицински документ) - 30 лева&nbsp; / 15&nbsp;евро за човек.</strong></li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Задължителни доплащания:</strong></p>
+<ul>
+	<li>Такса гориво и вредни емисии &ndash; обявява се 21 дни преди полета. Цените са калкулирани с параметри на самолетно гориво 800 щатски долара/тон при курс 1 евро = 1.08 щатски долара;</li>
+	<li>Градска такса &ndash; около 2.2 евро на човек на вечер.</li>
+	<li>Слушалки по време на туровете - 12 евро (по 3 евро на човек на ден). Задължително се заплащат на място на екскурзовода. Деца до 6 години не използват слушалки и не се таксуват.</li>
+	<li>Задължителна административна такса 5 евро (handling fee за офиса на местния партньор).</li>
+</ul></div><div><p><strong>Условия за резервации:</strong></p>
+<p>Депозит 30% платен към ТО до 24 часа след резервиране</p>
+<p>Доплащане 21 дни преди тръгване</p>
+<p>Издаване на документи за пътуване 7 дни преди полета</p>
+<p>&nbsp;</p>
+<p><strong>Условия за анулации:</strong></p>
+<p>До 24 часа след резервация без такса за анулация</p>
+<p>До 30 дни преди тръгване 50 лв такса анулация на човек</p>
+<p>До 21 дни преди тръгване 30% от стойността, като такса анулация на човек</p>
+<p>Под 21 дни 100% като такса анулация на човек</p>
+<p>&nbsp;</p>
+<p><strong>ВАЖНО:</strong></p>
+<p>Минимален брой туристи: 130;</p>
+<p>Минимален брой туристи за допълнителните ексурзии: 49&nbsp;</p>
+<p>Срок за уведомяване при несъбран минимум &ndash; 21 дни;</p>
+<p>Българските граждани е необходимо да притежават валиден документ за самоличност, с валидност минимум 6 месеца след датата на прибиране в България;</p>
+<p>Туроператорът си запазва правото да прави промени по програмата и полетното разписания.</p>
+<p>&nbsp;</p>
+<p><strong>Пакет МАКСИМАЛНА СИГУРНОСТ - доплащане 30,00 лв / 15 евро</strong></p>
+<p>Пакет МАКСИМАЛНА СИГУРНОСТ може да се добави до 7 дни след направа на резервация!</p>
+<p>При предсрочно прекратяване на договора по инициатива на ПЪТУВАЩИЯ, заплатената от него или от негово име сума се възстановява чрез туристическия агент, сключил договора за туристически пакет с ПЪТУВАЩИЯ от името и за сметка на туроператора, когато ПЪТУВАЩИЯТ не може да започне и осъществи пътуването поради някоя от следните причини, която е била непредвидима към момента на сключване на договора за туристически пакет и е възникнала преди датата на отпътуване независимо от волята на пътуващия:</p>
+<p>1.1.Злополука, акутно заболяване (заболяване, което възниква внезапно и непредвидимо, представлява опасност за живота или здравето на пътуващия и изисква спешна медицинска намеса) или внезапно обостряне на хронично заболяване на ПЪТУВАЩ по договора за туристически пакет, с изключение на заболяване от COVID 19, при условие, че към началната дата на пътуването се провежда болнично или домашно лечение и съществува опасност за влошаване на здравословното му състояние от пътуването.</p>
+<p>1.2. Внезапно заболяване или злополука на близък на ПЪТУВАЩИЯ (съпруг/а), роднина по права линия - без ограничения или по съребрена линия - до втора степен вкл.), при условие, че към началната дата на пътуването се провежда болнично или домашно лечение и пътуващият трябва да полага грижи за болния.</p>
+<p>1.3. Смърт на пътуващия.</p>
+<p>1.4. Смърт на близък на пътуващия (съпруг/а), роднина по права линия - без ограничения или по съребрена линия - до втора степен вкл.).</p>
+<p>За доказване на настъпилите обстоятелства,пътуващия предоставя документите в заверено от него копие на адрес: гр. Пловдив, ул. Райко Даскалов 53, ет. 2, ап. 25.</p>
+<p>ТО се произнася в подходящ срок, но не повече от 5 раб. дни от получаване на документите.</p></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Horizontal Tab
+            $('#parentHorizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true, // 100% fit in a container
+                tabidentify: 'hor_1', // The tab groups identifier
+                activate: function (event) { // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#nested-tabInfo');
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $(window).on("load resize", function (e) {
+                $(document).on("click", ".hor_1", function () {
+                    if ($('body').width() < 768) {
+                        //$('body').scrollTo(this, {});
+                        window.scrollTo(0, ($(this).offset().top-0));
+                    }
+                });
+            });
+        });
+    </script>
+
+
+        </div>
+        <div id="created" style="display:block!important;">
+        Powered by <a href="http://www.peakview.bg/" title="Туристическа B2B платформа за обмен на оферти" target="_blank"><img src="img/pv_bial_small.png" alt="Peakview.bg - B2B Туристически портал " style="display:inline!important;" /></a>&nbsp;&nbsp;&nbsp;<!-- Изработка: УебДизайн <a href="http://www.webdesignbg.eu/" target="_blank"><img src="/img/wd_bialfon.png" alt="webdesign" /></a>-->
+        </div>
+
+        <script>
+            /*$(window).on("load resize", function (e) {
+                equalheight('.once_offer');
+            });
+            */
+            $(document).ready(function () {
+                //$(".scrollbar-wrap").tinyscrollbar();
+            });
+            $(".lazy").lazyload({
+                effect: "fadeIn",
+                threshold : 400
+            });
+        </script>
+    </body>
+</html>
