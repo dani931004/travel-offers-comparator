@@ -90,10 +90,31 @@ class AngelTravelScraper:
                 else:
                     offer.price = str(price_raw).strip()
 
-            # Extract dates
+            # Extract dates and format as date range
             dates_raw = item.get('dates')
             if dates_raw and dates_raw != 'None':
-                offer.dates = str(dates_raw).strip()
+                dates_str = str(dates_raw).strip()
+                # Parse multiple dates and create range from first to last
+                date_pattern = r'\d{1,2}\.\d{1,2}\.\d{4}'
+                all_dates = re.findall(date_pattern, dates_str)
+                
+                if all_dates:
+                    if len(all_dates) == 1:
+                        offer.dates = all_dates[0]
+                    else:
+                        # Sort dates and create range
+                        try:
+                            from datetime import datetime
+                            parsed_dates = [datetime.strptime(d, "%d.%m.%Y") for d in all_dates]
+                            parsed_dates.sort()
+                            first_date = parsed_dates[0].strftime("%d.%m.%Y")
+                            last_date = parsed_dates[-1].strftime("%d.%m.%Y")
+                            offer.dates = f"{first_date} - {last_date}"
+                        except:
+                            # If parsing fails, use first and last from the list
+                            offer.dates = f"{all_dates[0]} - {all_dates[-1]}"
+                else:
+                    offer.dates = dates_str
             else:
                 # Try to extract from title or program_info
                 title_text = offer.title.lower()
@@ -248,7 +269,7 @@ async def main():
 
     # Default paths
     source_file = "/home/dani/Desktop/Organizer/angel_travel_scrape.json"
-    output_file = "/home/dani/Desktop/Organizer/angeltravel.json"
+    output_file = "/home/dani/Desktop/Organizer/angel_travel_scrape.json"
 
     # Allow custom paths from command line
     if len(sys.argv) > 1:
