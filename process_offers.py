@@ -26,6 +26,11 @@ def parse_price(price_str, agency):
     price_str = price_str.strip()
     
     try:
+        # Check for EUR or € symbol first (for new scrapers)
+        eur_match = re.search(r'(\d+\.?\d*)\s*(EUR|€)', price_str, re.IGNORECASE)
+        if eur_match:
+            return float(eur_match.group(1))
+        
         if agency == 'Angel Travel':
             # Format: "421.00 лв. / 215.25 EUR" (preferred)
             match = re.search(r'(\d+\.?\d*)\s*лв\.?\s*/\s*(\d+\.?\d*)\s*EUR', price_str)
@@ -37,8 +42,8 @@ def parse_price(price_str, agency):
                 bgn = float(bgn_match.group(1))
                 return round(bgn * BGN_TO_EUR, 2)
         else:
-            # Format: "2343 лв." or similar, convert to EUR
-            bgn_match = re.search(r'(\d+\.?\d*)\s*лв\.?', price_str)
+            # Format: "2343 BGN" or "2343 лв." - convert to EUR
+            bgn_match = re.search(r'(\d+\.?\d*)\s*(BGN|лв\.?)', price_str, re.IGNORECASE)
             if bgn_match:
                 bgn = float(bgn_match.group(1))
                 return round(bgn * BGN_TO_EUR, 2)
@@ -74,6 +79,10 @@ def _parse_date_string(date_str, agency, title):
     """Parse a date string, handling single dates, ranges, and multiple dates."""
     date_str = date_str.strip()
     
+    # Skip duration-only strings (e.g., "5 дни", "3 nights")
+    if re.match(r'^\d+\s+(дни|ден|days?|nights?|нощувки)$', date_str, re.IGNORECASE):
+        return None, None
+    
     # Handle already ISO formatted dates
     if re.match(r'\d{4}-\d{2}-\d{2}', date_str):
         if ' - ' in date_str:
@@ -108,7 +117,9 @@ def _parse_date_string(date_str, agency, title):
             start = date_parser.parse(date_str, dayfirst=True).date().isoformat()
             return start, None
         except Exception as e:
-            print(f"Warning: Failed to parse single date '{date_str}' for {agency} - {title}. Error: {e}")
+            # Only warn if it doesn't look like a duration string
+            if not re.search(r'\d+\s+(дни|ден|days?|nights?|нощувки)', date_str, re.IGNORECASE):
+                print(f"Warning: Failed to parse single date '{date_str}' for {agency} - {title}. Error: {e}")
             return None, None
 
 def parse_dates(dates_str, description, agency, title):
@@ -286,7 +297,12 @@ def process_files(file_paths):
     agency_map = {
         'angel_travel_scrape.json': 'Angel Travel',
         'aratur.json': 'Aratur',
-        'dari_tour_scraped.json': 'Dari Tour'
+        'dari_tour_scraped.json': 'Dari Tour',
+        'luxtravel.json': 'Luxtravel',
+        'profitours.json': 'Profitours',
+        'aventura.json': 'Aventura',
+        'bohemia.json': 'Bohemia',
+        'teztour.json': 'Teztour'
     }
 
     for file_path in file_paths:
@@ -309,7 +325,12 @@ if __name__ == '__main__':
     files = [
         'angel_travel_scrape.json',
         'aratur.json',
-        'dari_tour_scraped.json'
+        'dari_tour_scraped.json',
+        'luxtravel.json',
+        'profitours.json',
+        'aventura.json',
+        'bohemia.json',
+        'teztour.json'
     ]
     unified = process_files(files)
     with open('unified_offers.json', 'w', encoding='utf-8') as f:

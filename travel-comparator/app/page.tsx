@@ -88,6 +88,27 @@ export default function Home() {
     }
   };
 
+  const clearFilter = (key: keyof typeof filters) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [key]: '',
+    }));
+    if (key === 'search') {
+      setSearchTermInput('');
+    }
+  };
+
+  const clearAllFilters = () => {
+    setFilters({
+      search: '',
+      min_price: '',
+      max_price: '',
+      start_date: '',
+      end_date: '',
+    });
+    setSearchTermInput('');
+  };
+
   // Filter offers client-side
   const offers = useMemo(() => {
     // Only show offers if at least one filter is active
@@ -131,6 +152,28 @@ export default function Home() {
       return true;
     }).sort((a, b) => a.price_eur - b.price_eur);
   }, [allOffers, filters]);
+
+  const activeFilters = useMemo(() => {
+    const active: { key: keyof typeof filters; label: string; value: string }[] = [];
+    
+    if (filters.search) {
+      active.push({ key: 'search', label: 'Search', value: filters.search });
+    }
+    if (filters.min_price) {
+      active.push({ key: 'min_price', label: `Min Price (€)`, value: filters.min_price });
+    }
+    if (filters.max_price) {
+      active.push({ key: 'max_price', label: `Max Price (€)`, value: filters.max_price });
+    }
+    if (filters.start_date) {
+      active.push({ key: 'start_date', label: `Start Date`, value: filters.start_date });
+    }
+    if (filters.end_date) {
+      active.push({ key: 'end_date', label: `End Date`, value: filters.end_date });
+    }
+    
+    return active;
+  }, [filters]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-2 sm:p-4">
@@ -227,6 +270,37 @@ export default function Home() {
             </div>
           </div>
 
+          {activeFilters.length > 0 && (
+            <div className="mb-6 p-3 border border-dashed border-gray-300 rounded-xl bg-gray-50">
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider">Active Filters ({activeFilters.length})</h3>
+                <button
+                  onClick={clearAllFilters}
+                  className="text-xs font-semibold text-red-600 hover:text-red-800 transition-colors flex items-center"
+                >
+                  <span className="mr-1">❌</span> Clear All
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {activeFilters.map((filter) => (
+                  <div
+                    key={filter.key}
+                    className="flex items-center bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full shadow-sm"
+                  >
+                    <span className="mr-2">{filter.label}: <span className="font-bold">{filter.value}</span></span>
+                    <button
+                      onClick={() => clearFilter(filter.key)}
+                      className="ml-1 text-purple-600 hover:text-purple-900 transition-colors"
+                      aria-label={`Clear ${filter.label} filter`}
+                    >
+                      &times;
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg mr-3">
@@ -263,8 +337,8 @@ export default function Home() {
         {offers.length === 0 && !loading && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-bold text-gray-700 mb-2">Start Your Search</h3>
-            <p className="text-gray-500">Use the filters above to find amazing travel offers from top Bulgarian agencies</p>
+            <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">Start Your Search</h3>
+            <p className="text-white/90">Use the filters above to find amazing travel offers from top Bulgarian agencies</p>
           </div>
         )}
         {viewMode === 'grid' ? (
