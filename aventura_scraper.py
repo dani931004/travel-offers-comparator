@@ -14,6 +14,7 @@ from dataclasses import dataclass, asdict
 from typing import List, Optional
 import re
 import json
+from urllib.parse import urlparse, urlunparse, quote
 
 
 @dataclass
@@ -46,6 +47,7 @@ class AventuraScraper:
         self.session: Optional[aiohttp.ClientSession] = None
         self.offers: List[AventuraOffer] = []
         self.seen_urls = set()
+        self.discovered_listing_pages: List[str] = []
         
     async def __aenter__(self):
         """Async context manager entry"""
@@ -82,8 +84,137 @@ class AventuraScraper:
             print(f"Timeout fetching {url}")
             return None
         except Exception as e:
+            # Catch connection errors, redirects loops, DNS issues, etc.
             print(f"Error fetching {url}: {e}")
             return None
+
+    def _normalize_url(self, href: str) -> Optional[str]:
+        """Normalize relative vs absolute URLs and ensure they are internal to BASE_URL."""
+        if not href:
+            return None
+        href = href.strip()
+        # Skip useless links
+        if any(href.lower().startswith(x) for x in ['mailto:', 'tel:', 'javascript:', '#']):
+            return None
+        if href.startswith('http'):
+            # Only allow same host (root or www), ignore other subdomains
+            allowed_hosts = [
+                'https://aventura.bg',
+                'http://aventura.bg',
+                'https://www.aventura.bg',
+                'http://www.aventura.bg',
+            ]
+            if not any(href.startswith(h) for h in allowed_hosts):
+                return None
+            # Prefer https and canonicalize www -> root
+            href = href.replace('http://', 'https://')
+            if href.startswith('https://www.aventura.bg'):
+                href = 'https://aventura.bg' + href[len('https://www.aventura.bg'):]
+            # Sanitize path (encode spaces, ampersands in path, etc.)
+            try:
+                parts = urlparse(href)
+                safe_path = quote(parts.path, safe="/:%()-._~")
+                href = urlunparse((parts.scheme, parts.netloc, safe_path, parts.params, parts.query, parts.fragment))
+            except Exception:
+                pass
+            return href
+        # Make absolute
+        if href.startswith('/'):
+            return f"{self.BASE_URL}{href}"
+        return f"{self.BASE_URL}/{href}"
+
+    def _is_offer_detail_url(self, href: str) -> bool:
+        """Heuristic: detail pages start with /pochivka/ or /ekskurzia/"""
+        try:
+            path = href.split('aventura.bg')[-1]
+            return path.startswith('/pochivka/') or path.startswith('/ekskurzia/')
+        except Exception:
+            return False
+
+    def _count_offer_links(self, html: str) -> int:
+        soup = BeautifulSoup(html, 'html.parser')
+        links = soup.find_all('a', href=True)
+        cnt = 0
+        for a in links:
+            href = a.get('href', '')
+            norm = self._normalize_url(href)
+            if not norm:
+                continue
+            if self._is_offer_detail_url(norm.replace('https://', 'https://')):
+                cnt += 1
+        return cnt
+
+    async def discover_listing_pages(self, max_pages: int = 100) -> List[str]:
+        """Discover listing/destination pages by crawling internal links up to shallow depth.
+        Strategy: start from homepage, collect internal links; any page with >=5 offer detail links is a listing page.
+        Avoid adding detail pages themselves. Limit total to max_pages.
+        """
+        print("Discovering listing pages...")
+        start_url = self.OFFERS_URL
+        visited = set()
+        queue = [start_url]
+        listings: List[str] = []
+
+        while queue and len(listings) < max_pages:
+            url = queue.pop(0)
+            if url in visited:
+                continue
+            visited.add(url)
+
+            html = await self.fetch_page(url)
+            if not html:
+                continue
+
+            # Count offers on this page
+            offer_count = self._count_offer_links(html)
+            if offer_count >= 5 and not self._is_offer_detail_url(url):
+                listings.append(url)
+                print(f"Listing page: {url} (offers: {offer_count})")
+
+            # Enqueue more internal links (limited breadth)
+            soup = BeautifulSoup(html, 'html.parser')
+            for a in soup.find_all('a', href=True):
+                norm = self._normalize_url(a.get('href', ''))
+                if not norm:
+                    continue
+                # Only consider likely listing/category pages to avoid deep crawling of detail slugs
+                try:
+                    p = urlparse(norm)
+                    path = p.path or '/'
+                except Exception:
+                    path = '/'
+                allowed_listing_prefixes = (
+                    '/',
+                    '/ранни-записвания',
+                    '/препоръчани',
+                    '/kalendar.php',
+                    '/pochivki.php',
+                    '/pochivki',
+                    '/pochivki-garcia',
+                )
+                # Skip obvious detail pages and non-listing-like paths
+                if self._is_offer_detail_url(norm):
+                    continue
+                if not any(path == prefix or path.startswith(prefix + '/') or path.startswith(prefix + '?') for prefix in allowed_listing_prefixes):
+                    continue
+                if norm not in visited and norm not in queue and len(visited) + len(queue) < 300:
+                    queue.append(norm)
+
+        # Always include homepage if not already
+        if start_url not in listings:
+            listings.insert(0, start_url)
+
+        # De-duplicate while preserving order
+        seen = set()
+        ordered = []
+        for u in listings:
+            if u not in seen:
+                seen.add(u)
+                ordered.append(u)
+
+        self.discovered_listing_pages = ordered[:max_pages]
+        print(f"Discovered {len(self.discovered_listing_pages)} listing pages")
+        return self.discovered_listing_pages
             
     async def save_debug_html(self, html: str, filename: str):
         """Save HTML to debug file"""
@@ -277,6 +408,13 @@ class AventuraScraper:
                 full_link = self.BASE_URL + link if link.startswith('/') else f"{self.BASE_URL}/{link}"
             else:
                 full_link = link
+            # Sanitize full link path
+            try:
+                parts = urlparse(full_link)
+                safe_path = quote(parts.path, safe="/:%()-._~")
+                full_link = urlunparse((parts.scheme, parts.netloc, safe_path, parts.params, parts.query, parts.fragment))
+            except Exception:
+                pass
 
             # Title from listing
             text_content = link_elem.get_text(separator=' ', strip=True)
@@ -367,21 +505,24 @@ class AventuraScraper:
         """Main scraping logic"""
         print(f"Starting Aventura.bg scraper...")
         print(f"Debug mode: {self.debug}, Limit: {self.limit or 'No limit'}")
-        
-        # Fetch main offers page
-        html = await self.fetch_page(self.OFFERS_URL)
-        if not html:
-            print("Failed to fetch offers page")
-            return
-            
-        if self.debug:
-            await self.save_debug_html(html, "aventura_offers_page.html")
-            
-        # Extract offers from first page
-        page_offers = await self.extract_offers_from_page(html, 1)
-        self.offers.extend(page_offers)
-        
-        print(f"Scraped {len(self.offers)} total offers")
+
+        # Discover listing pages
+        listings = await self.discover_listing_pages(max_pages=100)
+        count_pages = 0
+        for idx, url in enumerate(listings, start=1):
+            html = await self.fetch_page(url)
+            if not html:
+                continue
+            if self.debug and idx == 1:
+                await self.save_debug_html(html, "aventura_offers_page.html")
+            page_offers = await self.extract_offers_from_page(html, idx)
+            self.offers.extend([o for o in page_offers if o])
+            count_pages += 1
+            # Respect limit if provided
+            if self.limit and len(self.offers) >= self.limit:
+                break
+
+        print(f"Processed {count_pages} listing pages; scraped {len(self.offers)} total offers")
         
     async def save_results(self, output_file: str = "aventura.json"):
         """
